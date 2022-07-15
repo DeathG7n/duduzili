@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/duduzili/static/css/main.c56c5db3.css",
+    "main.js": "/duduzili/static/js/main.3bc89ebe.js",
+    "static/js/787.b6892eac.chunk.js": "/duduzili/static/js/787.b6892eac.chunk.js",
+    "static/media/audio_playing.gif": "/duduzili/static/media/audio_playing.e3d12b92b1a34e7cf8ac.gif",
+    "static/media/tp.png": "/duduzili/static/media/tp.2a41144d7c8652400ed5.png",
+    "static/media/new-logo.png": "/duduzili/static/media/new-logo.874b921154cedd622821.png",
+    "static/media/audio_static.jpg": "/duduzili/static/media/audio_static.00af5d5bdde92a2a946a.jpg",
+    "static/media/trending.svg": "/duduzili/static/media/trending.6d7535e31529f742a5af5eaecf84f8a4.svg",
+    "index.html": "/duduzili/index.html",
+    "static/media/link.svg": "/duduzili/static/media/link.a86b3f86c23cfeb7e4d99cc30e2ba00a.svg",
+    "static/media/blocked.svg": "/duduzili/static/media/blocked.1ba1844d9f46fc68998998a8c5c9e217.svg",
+    "static/media/user-plus.svg": "/duduzili/static/media/user-plus.56fa3b60978c61f220a92b0a24822769.svg",
+    "static/media/bell.svg": "/duduzili/static/media/bell.ec8380d49c027cfcd133d2dfdbe221a6.svg",
+    "static/media/post.svg": "/duduzili/static/media/post.6fb2fdaafab6514386a48df1a52c1f45.svg",
+    "static/media/share.svg": "/duduzili/static/media/share.0cbc222d22c75390c300779430f26564.svg",
+    "static/media/search.svg": "/duduzili/static/media/search.2554daee06cfad9c0cfa08aa5bd9afca.svg",
+    "static/media/home.svg": "/duduzili/static/media/home.77fb7610c59dceefdaa16970f675be19.svg",
+    "static/media/volume.svg": "/duduzili/static/media/volume.c7f7142d13c4d4a7bffaae931d53c88d.svg",
+    "static/media/flag.svg": "/duduzili/static/media/flag.ab664e3d04be337c556b5265f6332977.svg",
+    "static/media/mail.svg": "/duduzili/static/media/mail.97f1f1541ff8c4036b0ac74d22446dbc.svg",
+    "static/media/x.svg": "/duduzili/static/media/x.11c578dce2d79d4f7fe4a065bfde89fa.svg",
+    "static/media/back.svg": "/duduzili/static/media/back.a23d884608e82a84813ab79a4a0c005d.svg",
+    "main.c56c5db3.css.map": "/duduzili/static/css/main.c56c5db3.css.map",
+    "main.3bc89ebe.js.map": "/duduzili/static/js/main.3bc89ebe.js.map",
+    "787.b6892eac.chunk.js.map": "/duduzili/static/js/787.b6892eac.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c56c5db3.css",
+    "static/js/main.3bc89ebe.js"
+  ]
+}
