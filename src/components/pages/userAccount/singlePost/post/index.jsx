@@ -63,7 +63,7 @@ const Index = ({ handleOpenModal, handleOpenRepostModal }) => {
     if (userData) {
       setSingleUserData(userData);
       dispatch({ type: "GET_SINGLE_REPOST", payload: userData });
-
+      console.log(singleUserData)
       // Get the post comments after 1sec
       setTimeout(() => {
         getRequest(`posts/${userData?.id}/`);
@@ -71,9 +71,10 @@ const Index = ({ handleOpenModal, handleOpenRepostModal }) => {
     } else {
       return;
     }
-  }, []);
+  }, [postData]);
 
   console.log(singleUserData);
+  console.log(singleUserData?.user)
 
   return (
     <>

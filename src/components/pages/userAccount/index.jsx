@@ -19,6 +19,7 @@ import Followers from "./followersPage/index"
 import Followings from "./followings/index"
 import Repost from "./repostPage/index"
 
+
 import TopBar from "../../constants/topbar/index";
 import home from "../../assets/home.png";
 import trending from "../../assets/trending.png";
@@ -124,47 +125,47 @@ const Index = () => {
 
           <ProtectedRoute path="/user/search" component={SearchResult} /> */}
 
-          <Route path="messages/chats" element={<MobileChatView />}/>
+          <Route exact path="messages/chats" element={<MobileChatView />}/>
             
           
 
-          <Route path="settings" element={<Settings />} />
+          <Route exact path="settings" element={<Settings />} />
 
-          <Route path="msettings/account" element={<MAccountComponent />} />
+          <Route exact path="msettings/account" element={<MAccountComponent />} />
 
-          <Route path="msettings/feeds" element={<MFeedsComponent />} />
+          <Route exact path="msettings/feeds" element={<MFeedsComponent />} />
 
-          <Route path="msettings/chat" element={ <MChat />} />
+          <Route exact path="msettings/chat" element={ <MChat />} />
 
-          <Route path="msettings/safety" element={<MSafety />} />
+          <Route exact path="msettings/safety" element={<MSafety />} />
 
-          <Route path="msettings/notification" element={<MNotifications />} />
+          <Route exact path="msettings/notification" element={<MNotifications />} />
 
-          <Route path="notifications" element={<Notifications />} />
+          <Route exact path="notifications" element={<Notifications />} />
 
-          <Route path="trending/post/:id" element={<SingleTrendingPost />} />
+          <Route exact path="trending/post/:id" element={<SingleTrendingPost />} />
 
-          <Route path="trending" element={<Trending />} />
+          <Route exact path="trending" element={<Trending />} />
 
-          <Route path="profile" element={<Profile />} />
+          <Route exact path="profile" element={<Profile />} />
 
-          <Route path="discover" element={<DiscoverPeople />} />
+          <Route exact path="discover" element={<DiscoverPeople />} />
 
-          <Route path="article/new" element={<PostArticle />} />
+          <Route exact path="article/new" element={<PostArticle />} />
 
-          <Route path=":username/post/:id/likes" element={<LikedPosts />} />
+          <Route exact path=":username/post/:id/likes" element={<LikedPosts />} />
 
-          <Route path=":username/post/:id/reposts" element={<Repost />} />
+          <Route exact path=":username/post/:id/reposts" element={<Repost />} />
 
-          <Route path=":username/followers" element={<Followers />} />
+          <Route exact path=":username/followers" element={<Followers />} />
 
-          <Route path=":username/followings" element={<Followings />} />
+          <Route exact path=":username/followings" element={<Followings />} />
 
           <Route exact path=":username/:id" element={<SingleUserProfile />} />
 
-          <Route path=":id" element={<SinglePost />} />
+          <Route exact path=":id" element={<SinglePost />} />
 
-          <Route path="*" element={<Navigate to="feed"/>} />
+          {/* <Route path="*" element={<Navigate to="feed"/>} /> */}
 
           </Routes>
       </div>

@@ -39,7 +39,7 @@ const Index = () => {
     state: { notification },
   } = DataContext();
 
-  console.log(notification?.notifications);
+  console.log(notification);
 
   const history = useNavigate();
 
