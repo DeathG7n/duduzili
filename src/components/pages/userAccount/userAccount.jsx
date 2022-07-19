@@ -165,7 +165,7 @@ const Index = () => {
 
           <Route exact path=":id" element={<SinglePost />} />
 
-          {/* <Route path="*" element={<Navigate to="feed"/>} /> */}
+          <Route path="*" element={<Navigate to="feed"/>} />
 
           </Routes>
       </div>

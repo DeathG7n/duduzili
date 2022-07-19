@@ -54,7 +54,6 @@ const Index = () => {
 
 
   const elemRef = useRef();
-  console.log(postModal);
 
   useEffect(() => {
     if (postModal === true) {

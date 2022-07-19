@@ -22,6 +22,7 @@ export const initialValues = {
   hideTopBar: false,
   getEditPost: null,
   singleRepostData: null,
+  message: null,
 };
 
 export const reducer = (state, action) => {
@@ -57,6 +58,13 @@ export const reducer = (state, action) => {
       ...state,
       notification: action.payload,
     };
+  } 
+  // Mark Notifications
+  else if (action.type === "MARK_RESPONSE"){
+    return{
+      ...state,
+      message: action.payload,
+    }
   }
   // Fetch trending posts
   else if (action.type === "TRENDING") {
@@ -168,5 +176,5 @@ export const reducer = (state, action) => {
     };
   } else {
     return state;
-  }
+  } 
 };

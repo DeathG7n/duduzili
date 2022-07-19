@@ -347,3 +347,32 @@ export const useUserActions = () => {
     userAction,
   };
 };
+
+export const useMarkRequest = () => {
+  const [loading, setLoading] = useState(false);
+  const { dispatch } = DataContext();
+
+  const markRequest = (endpoint) => {
+    setLoading(true);
+    API({
+      url: endpoint,
+      method: "GET",
+    })
+      .then((res) => {
+        setLoading(false);
+        if (res.status === 200) {
+          dispatch({ type: "MARK_RESPONSE", payload: res.data });
+        }
+        console.log(res.data);
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+      });
+  };
+
+  return {
+    loading,
+    markRequest,
+  };
+};

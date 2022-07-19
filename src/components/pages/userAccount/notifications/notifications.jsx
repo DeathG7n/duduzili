@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import {
   Container,
@@ -27,6 +27,7 @@ import Discover from "../../../constants/discoverPeople/discoverPeople";
 import TagBox from "../../../constants/tagBox/tagBox";
 import { DataContext } from "../../../api/context";
 import { Link, useNavigate } from "react-router-dom";
+import { useMarkRequest } from "../../../api/api";
 
 import Person from "../../../assets/person.png";
 import icon from "../../../assets/setting.png";
@@ -36,9 +37,10 @@ import { Delete } from "@mui/icons-material";
 
 const Index = () => {
   const {
-    state: { notification },
+    state: { notification, userData, message },
   } = DataContext();
-
+  
+  const {markRequest} = useMarkRequest()
   console.log(notification);
 
   const history = useNavigate();
@@ -47,6 +49,13 @@ const Index = () => {
     history.goBack();
   };
 
+  const markNotifications = () => {
+    console.log(userData?.user?.id)
+    markRequest(`notifications/mark_as_read/${userData?.user?.id}/`)
+  }
+  useEffect(
+    window.reload(),
+  [message])
   return (
     <Container>
       <BodyContainer>
@@ -60,10 +69,10 @@ const Index = () => {
 
               <IconBox>
                 <img src={icon} alt="icon" style={{ cursor: "pointer" }} />
-
+ 
                 <DropDownBox className="dropdown">
                   <DropDownContent>
-                    <div>
+                    <div onClick={() => markNotifications()}>
                       <img src={TextEdit} alt="" style={{ width: "24px", height: "24px", marginTop: "1px", marginRight: "-15px"}}/>
                       <DropDownText>Mark all as seen</DropDownText>
                     </div>
@@ -86,7 +95,7 @@ const Index = () => {
               <h2>No Notifications</h2>
             ) : (
               notification?.notifications.map((item, ind) => {
-                console.log(item?.post?.post_url);
+                console.log(item?.receiver.id);
                 return (
                   <CardBody bc="#f7fcfa" key={ind}>
                     {/* Return empty on Notifications without post url */}

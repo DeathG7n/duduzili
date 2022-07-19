@@ -34,8 +34,8 @@ import comment from "../../assets/comment.png";
 import like from "../../assets/like.png";
 import love from "../../assets/heart.png";
 import SkeletonLoader from "../skeletonLoaders/postCardLoader";
-import MobileMoreDropDown from "./dropdowns/moreDropDown/index";
-import MobileShareDropDown from "./dropdowns/shareDropDown/index";
+import MobileMoreDropDown from "./dropdowns/moreDropDown/moreDropDown";
+import MobileShareDropDown from "./dropdowns/shareDropDown/shareDropDown";
 import RepostCard from "../repostCard/repostCard";
 import { LinkPreview } from "@dhaiwat10/react-link-preview";
 
@@ -505,7 +505,6 @@ const ReactionsComponent = ({
     await dispatch({ type: "GET_REPOSTDATA" });
     handleOpenRepostModal();
   };
-  console.log(item)
   return (
     <ReactionBox>
       <Reaction onClick={() => sendLikeRequest(item?.id)}>

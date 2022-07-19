@@ -50,7 +50,6 @@ const Index = () => {
   const { searchRequest, data } = useSearchRequest();
 
   const history = useNavigate();
-
   const {
     state: { userData },
     dispatch,
@@ -91,7 +90,6 @@ const Index = () => {
   };
 
   const checkNameLength = `${userData?.user?.first_name} ${userData?.user?.last_name}`;
-
   return (
     <>
       {openMenu && (
