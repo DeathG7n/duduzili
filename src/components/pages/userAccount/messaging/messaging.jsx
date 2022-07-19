@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 import {
   Container,
   ContentBox,
@@ -123,14 +123,17 @@ const Index = () => {
                       <img src={Delete} alt="" style={{marginTop: "-7px", marginRight: "-15px"}}/>
                       <DropDownText>Delete conversations</DropDownText>
                     </div>
-
+                  <Link to="/user/settings/chat" style={{textDecoration: "none", color: "black"}}>
                     <div style={{
                       display: "flex",
                       alignItems: "center"
                     }}>
-                      <img src={Messetting} alt="" style={{marginTop: "-7px", marginRight: "-15px"}}/>
-                      <DropDownText>Message settings</DropDownText>
-                    </div>
+                      
+                        <img src={Messetting} alt="" style={{marginTop: "-7px", marginRight: "-15px"}}/>
+                        <DropDownText>Message settings</DropDownText>
+                      
+                      </div>
+                    </Link>
                   </DropDownContent>
                 </DropDownBox>
               </ImgBox>

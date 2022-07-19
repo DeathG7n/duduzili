@@ -78,10 +78,12 @@ const Index = () => {
                       <img src={Delet} alt="" style={{marginTop: "1px", marginRight: "-15px"}}/>
                       <DropDownText>Delete notifications</DropDownText>
                     </div>
-
+                    
                     <div>
                       <img src={Messetting} alt="" style={{marginTop: "1px", marginRight: "-15px"}}/>
-                      <DropDownText>Notifications settings</DropDownText>
+                      <Link to="/user/settings/notification" style={{textDecoration: "none", color: "black"}}>
+                        <DropDownText>Notifications settings</DropDownText>
+                      </Link>
                     </div>
                   </DropDownContent>
                 </DropDownBox>

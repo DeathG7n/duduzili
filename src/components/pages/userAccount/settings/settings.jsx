@@ -11,7 +11,7 @@ import {
   Menu,
   BodyContent,
 } from "./settingStyles";
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { Routes, Route, Link, useLocation, Navigate } from "react-router-dom";
 import Account from "./account/account";
 import Chat from "./chat/chat";
 import Feed from "./feeds/feeds";
@@ -25,8 +25,6 @@ import SettingsMobileView from "./mobileView/index"
 
 const Index = () => {
   const location = useLocation().pathname;
-
-  console.log(location);
 
   const [openEmailModal, setOpenEmailModal] = useState(false);
   const [openPasswordModal, setOpenPasswordModal] = useState(false);
@@ -131,28 +129,19 @@ const Index = () => {
 
             <BodyContent>
               <Routes>
-                <Route exact path="/user/settings">
-                  <Account
+                <Route exact path="/" element={<Account
                     handleOpenEmailModal={handleOpenEmailModal}
                     handleOpenPasswordModal={handleOpenPasswordModal}
-                  />
-                </Route>
+                  />} />
 
-                <Route path="/user/settings/chat">
-                  <Chat />
-                </Route>
+                <Route exact path="chat" element={<Chat />} />
 
-                <Route path="/user/settings/feeds">
-                  <Feed />
-                </Route>
+                <Route exact path="feeds" element={<Feed />} />
 
-                <Route path="/user/settings/notification">
-                  <Notifications />
-                </Route>
+                <Route exact path="notification" element={<Notifications />} />
 
-                <Route path="/user/settings/safety">
-                  <Safety />
-                </Route>
+                <Route exact path="safety" element={<Safety />} />
+                <Route path="*" element={<Navigate to="/" /> } />
               </Routes>
             </BodyContent>
           </BodyBox>

@@ -58,13 +58,6 @@ const Index = () => {
 
   useEffect(() => {
     volumeRequest();
-      // getRequest("dashboard/")
-      // getRequest("posts/"),
-      // getRequest("notifications/"),
-      // getRequest("trending/"),
-      // getRequest("get_topics/"),
-      // getRequest("conversations/"),
-      // getRequest("discover_people/"),
 
     // Get screen size so as to hide topbar in some components
     if (window.innerWidth < 900) {
@@ -129,7 +122,7 @@ const Index = () => {
             
           
 
-          <Route exact path="settings" element={<Settings />} />
+          <Route exact path="settings/*" element={<Settings />} />
 
           <Route exact path="msettings/account" element={<MAccountComponent />} />
 
@@ -153,19 +146,19 @@ const Index = () => {
 
           <Route exact path="article/new" element={<PostArticle />} />
 
-          <Route exact path=":username/post/:id/likes" element={<LikedPosts />} />
+          <Route  path=":username/post/:id/likes" element={<LikedPosts />} />
 
-          <Route exact path=":username/post/:id/reposts" element={<Repost />} />
+          <Route  path=":username/post/:id/reposts" element={<Repost />} />
 
-          <Route exact path=":username/followers" element={<Followers />} />
+          <Route  path=":username/followers" element={<Followers />} />
 
-          <Route exact path=":username/followings" element={<Followings />} />
+          <Route  path=":username/followings" element={<Followings />} />
 
-          <Route exact path=":username/:id" element={<SingleUserProfile />} />
+          <Route  path=":username/:id" element={<SingleUserProfile />} />
 
-          <Route exact path=":id" element={<SinglePost />} />
+          <Route  path=":username/post/:post_url/" element={<SinglePost />} />
 
-          <Route path="*" element={<Navigate to="feed"/>} />
+          {/* <Route path="*" element={<Navigate to="feed"/>} /> */}
 
           </Routes>
       </div>

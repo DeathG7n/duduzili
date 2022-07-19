@@ -17,14 +17,20 @@ import twitter from "../../../../assets/twitter.png";
 import apple from "../../../../assets/apple.png";
 
 import { useGetRequest } from "../../../../api/api"
+import { DataContext } from "../../../../api/context";
+import { useNavigate } from "react-router-dom";
 
 const Index = ({ handleOpenEmailModal, handleOpenPasswordModal}) => {
-
+  const{dispatch} = DataContext()
   const { getRequest, data }=useGetRequest()
-
+  const history = useNavigate()
+  const handleLogOut = () => {
+    dispatch({ type: "LOGOUT" });
+    history("/")
+  };
   useEffect(()=>{
     // pending not completed by the backend
-    getRequest('account_settings_page/')
+    getRequest("accounts_settings_page/")
   },[])
 
   return (
@@ -84,6 +90,7 @@ const Index = ({ handleOpenEmailModal, handleOpenPasswordModal}) => {
             br="20px"
             bc="white"
             fw="600"
+            onClick={handleLogOut}
           >
             Sign Out
           </Button>

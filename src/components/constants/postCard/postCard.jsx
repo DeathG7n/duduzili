@@ -241,6 +241,7 @@ const Index = ({
           {postFeed &&
             postFeed.map((item, idx, arr) => {
               return (
+                <Link to={`/user${item?.post_url}`} style={{textDecoration: "none"}}>
                 <Container key={idx}>
                   <TopBox>
                     <ProfileBox>
@@ -458,6 +459,7 @@ const Index = ({
                     />
                   </Content>
                 </Container>
+                </Link>
               );
             })}
         </>

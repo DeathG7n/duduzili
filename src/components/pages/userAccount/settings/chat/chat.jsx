@@ -10,6 +10,7 @@ const Index = () => {
 
   useEffect(() => {
     getRequest('message_settings_page/')
+    console.log("success")
   }, []);
 
   return (

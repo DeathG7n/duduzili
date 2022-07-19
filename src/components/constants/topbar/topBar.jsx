@@ -65,7 +65,7 @@ const Index = () => {
 
   const handleLogOut = () => {
     dispatch({ type: "LOGOUT" });
-   
+    history("/")
   };
 
   const handleChange = (e) => {
