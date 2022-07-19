@@ -53,9 +53,6 @@ const Index = () => {
     console.log(userData?.user?.id)
     markRequest(`notifications/mark_as_read/${userData?.user?.id}/`)
   }
-  useEffect(
-    window.reload(),
-  [message])
   return (
     <Container>
       <BodyContainer>
