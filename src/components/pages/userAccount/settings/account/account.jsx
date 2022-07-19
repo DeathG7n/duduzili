@@ -50,6 +50,7 @@ const Index = ({ handleOpenEmailModal, handleOpenPasswordModal}) => {
             br="20px"
             bc="white"
             fw="600"
+            fs= "14px"
             onClick={handleOpenEmailModal}
           >
             Change
@@ -70,6 +71,7 @@ const Index = ({ handleOpenEmailModal, handleOpenPasswordModal}) => {
             br="20px"
             bc="white"
             fw="600"
+            fs= "14px"
             onClick={handleOpenPasswordModal}
           >
             Change
@@ -90,6 +92,7 @@ const Index = ({ handleOpenEmailModal, handleOpenPasswordModal}) => {
             br="20px"
             bc="white"
             fw="600"
+            fs= "14px"
             onClick={handleLogOut}
           >
             Sign Out
@@ -102,13 +105,16 @@ const Index = ({ handleOpenEmailModal, handleOpenPasswordModal}) => {
           </TextBox>
 
           <Button
-            width="170px"
+            width="180px"
             height="35px"
             border="1px solid #BD2000"
             color="#BD2000"
             br="20px"
             bc="white"
             fw="600"
+            hc="white"
+            hbc= "#BD2000"
+            fs= "16px"
           >
             Deactivate Account
           </Button>

@@ -38,8 +38,13 @@ export const Button = styled.button`
   border-radius: ${(props) => props.br};
   margin: ${(props) => props.margin};
   font-weight: ${(props) => props.fw};
-  font-size: 14px;
+  font-size: ${(props) => props.fs};
   cursor: pointer;
+
+  :hover{
+    background-color: ${(props) => props.hbc};
+    color: ${(props) => props.hc}
+  }
 `;
 
 export const Accounts = styled.div`
