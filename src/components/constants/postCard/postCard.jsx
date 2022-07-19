@@ -241,8 +241,9 @@ const Index = ({
           {postFeed &&
             postFeed.map((item, idx, arr) => {
               return (
-                <Link to={`/user${item?.post_url}`} style={{textDecoration: "none"}}>
+                
                 <Container key={idx}>
+                  <Link to={`/user${item?.post_url}`} style={{textDecoration: "none"}}>
                   <TopBox>
                     <ProfileBox>
                       <img src={item?.user?.photo_url || Person} alt="dp" />
@@ -388,7 +389,7 @@ const Index = ({
                       )}
                     </MoreBox>
                   </TopBox>
-
+                  </Link>
                   <Content>
                     <ContentText>
                       <Link to={`/user${item?.post_url}`} className="link">
@@ -458,8 +459,9 @@ const Index = ({
                       handleOpenRepostModal={handleOpenRepostModal}
                     />
                   </Content>
+                  
                 </Container>
-                </Link>
+                
               );
             })}
         </>
