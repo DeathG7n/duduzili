@@ -158,7 +158,7 @@ const Index = () => {
 
           <Route  path=":username/post/:post_url/" element={<SinglePost />} />
 
-          {/* <Route path="*" element={<Navigate to="feed"/>} /> */}
+          <Route path="*" element={<Navigate to="feed"/>} />
 
           </Routes>
       </div>
