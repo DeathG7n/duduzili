@@ -11,9 +11,9 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import arrow from "../../../assets/arrow-right.png";
-import Trending from "../../../constants/trending/index";
-import Tags from "../../../constants/tagBox/index";
-import DiscoverCard from "./discoverCard/index";
+import Trending from "../../../constants/trending/trending";
+import Tags from "../../../constants/tagBox/tagBox";
+import DiscoverCard from "./discoverCard/discoverCard";
 
 
 const Index = () => {

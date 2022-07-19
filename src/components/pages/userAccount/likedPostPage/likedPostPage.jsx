@@ -7,10 +7,10 @@ import {
   NewsFeedBox,
   TitleBox,
   ContentBox,
-} from "./followersStyles";
-import { useNavigate, useLocation } from "react-router-dom";
+} from "./likedStyles";
 import arrow from "../../../assets/arrow-right.png";
-import FollowCard from "../discoverPeople/discoverCard/followCard";
+import { useNavigate, useParams } from "react-router-dom";
+import PostStats from "../../../constants/postStatsCard/postStatsCard";
 import { useGetRequest } from "../../../api/api";
 import {Rings} from "react-loader-spinner";
 
@@ -22,12 +22,10 @@ const Index = () => {
     history.goBack();
   };
 
-  const location = useLocation();
-
-  const { id } = location.state;
+  const id = useParams().id;
 
   useEffect(() => {
-    getRequest(`user_followers/${id}/`);
+    getRequest(`post_likers/${id}/`);
   }, []);
 
   return (
@@ -38,7 +36,7 @@ const Index = () => {
             <TitleBox>
               <div>
                 <img alt="arrow icon" src={arrow} onClick={routeBack} />
-                <h3>People who follow you</h3>
+                <h3>People who liked this post</h3>
               </div>
             </TitleBox>
 
@@ -54,8 +52,16 @@ const Index = () => {
               </div>
             ) : (
               <ContentBox>
-                {data?.followers.map((item) => {
-                  return <FollowCard key={item?.id} item={item} />;
+                {data?.likers.map((item) => {
+                  return (
+                    <PostStats
+                      key={item?.id}
+                      firstName={item?.first_name}
+                      userName={item?.username}
+                      photo={item?.photo_url}
+                      id={item?.id}
+                    />
+                  );
                 })}
               </ContentBox>
             )}

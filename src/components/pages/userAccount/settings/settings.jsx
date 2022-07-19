@@ -12,15 +12,15 @@ import {
   BodyContent,
 } from "./settingStyles";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
-import Account from "./account/index";
-import Chat from "./chat/index";
-import Feed from "./feeds/index";
-import Safety from "./safety/index";
-import Notifications from "./nofications/index";
+import Account from "./account/account";
+import Chat from "./chat/chat";
+import Feed from "./feeds/feeds";
+import Safety from "./safety/safety";
+import Notifications from "./nofications/notifications";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-import EmailModal from "./account/modal/emailModal/index";
-import PasswordModal from "./account/modal/passwordModal/index";
+import EmailModal from "./account/modal/emailModal/emailModal";
+import PasswordModal from "./account/modal/passwordModal/passwordModal";
 import SettingsMobileView from "./mobileView/index"
 
 const Index = () => {

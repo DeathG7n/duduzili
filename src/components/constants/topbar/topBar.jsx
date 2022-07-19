@@ -37,9 +37,9 @@ import bell from "../../assets/bell.svg";
 import dropdown from "../../assets/dropdown.png";
 import person from "../../assets/People.png";
 import user from "../../assets/user.png";
-import MobileSideNav from "./mobileSideNav/index";
-import SearchComponent from "./search/index";
-import DropDownMenu from "./dropdownmenu/index";
+import MobileSideNav from "./mobileSideNav/mobileSideNav";
+import SearchComponent from "./search/search";
+import DropDownMenu from "./dropdownmenu/dropDownMenu";
 
 const Index = () => {
   const location = useLocation().pathname;

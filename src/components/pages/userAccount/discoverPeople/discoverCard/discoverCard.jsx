@@ -6,7 +6,7 @@ import {
  
 } from "./discoverCardStyles";
 
-import FollowCard from "./followCard";
+import FollowCard from "./followCard/followCard";
 import SkeletonLoader from "../../../../constants/skeletonLoaders/simpleLoader";
 import { DataContext } from "../../../../api/context";
 

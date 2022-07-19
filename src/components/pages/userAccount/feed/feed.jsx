@@ -10,16 +10,16 @@ import {
   CreatePostIcon,
 } from "./feedStyles";
 
-import Trending from "../../../constants/trending/index";
-import TagBox from "../../../constants/tagBox/index";
-import NewsFeed from "../../../constants/postCard/index";
-import DiscoverPeople from "../../../constants/discoverPeople/index";
-import CreatePost from "./createPost/index";
-import CreatePostModal from "./createPost/modal/createPostModal/index";
-import ChatComponent from "../chat/index";
-import CommentModal from "../../../constants/postCard/modal/commentModal/index";
-import RepostModal from "../../../constants/postCard/modal/repostModal/index";
-import EditPostModal from "../../../constants/postCard/modal/editPostModal/index";
+import Trending from "../../../constants/trending/trending";
+import TagBox from "../../../constants/tagBox/tagBox";
+import NewsFeed from "../../../constants/postCard/postCard";
+import DiscoverPeople from "../../../constants/discoverPeople/discoverPeople";
+import CreatePost from "./createPost/createPost";
+import CreatePostModal from "./createPost/modal/createPostModal/createPostModal";
+import ChatComponent from "../chat/chat";
+import CommentModal from "../../../constants/postCard/modal/commentModal/commentModal";
+import RepostModal from "../../../constants/postCard/modal/repostModal/repostModal";
+import EditPostModal from "../../../constants/postCard/modal/editPostModal/editPostModal";
 import { DataContext } from "../../../api/context";
 
 import postIcon from "../../../assets/post.svg";

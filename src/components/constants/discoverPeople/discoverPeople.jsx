@@ -10,7 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import SkeletonLoader from "../skeletonLoaders/simpleLoader";
 import { DataContext } from "../../api/context";
-import FollowCard from "./followCard/index"
+import FollowCard from "./followCard/followCard"
 
 const Index = () => {
   const {

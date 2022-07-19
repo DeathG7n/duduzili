@@ -24,7 +24,7 @@ import hash from "../../../../../../assets/hash.png";
 import image from "../../../../../../assets/image.png";
 import back from "../../../../../../assets/back.svg";
 
-import RepostCard from "../../../../../../constants/repostCard/index";
+import RepostCard from "../../../../../../constants/repostCard/repostCard";
 import { usePostComment } from "../../../../../../api/api";
 import { DataContext } from "../../../../../../api/context";
 

@@ -36,7 +36,7 @@ import SkeletonLoader from "../../../../constants/skeletonLoaders/postCardLoader
 import { DataContext } from "../../../../api/context";
 import { useLocation } from "react-router-dom";
 import { useGetRequest, useGetLikeRequest } from "../../../../api/api";
-import RepostCard from "../../../../constants/repostCard/index";
+import RepostCard from "../../../../constants/repostCard/repostCard";
 import {Rings} from "react-loader-spinner";
 import { LinkPreview } from "@dhaiwat10/react-link-preview";
 import { extractLinkText } from "../../../../constants/extractLinkText";

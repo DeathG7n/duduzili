@@ -8,12 +8,12 @@ import {
   DiscoverBox,
 } from "./singlePostStyles";
 
-import Trending from "../../../constants/trending/index";
-import TagBox from "../../../constants/tagBox/index";
-import Post from "./post/index";
-import DiscoverPeople from "../../../constants/discoverPeople/index";
-import CommentModal from "./post/modal/commentModal/index";
-import RepostModal from "./post/modal/repostModal/index";
+import Trending from "../../../constants/trending/trending";
+import TagBox from "../../../constants/tagBox/tagBox";
+import Post from "./post/post";
+import DiscoverPeople from "../../../constants/discoverPeople/discoverPeople";
+import CommentModal from "./post/modal/commentModal/commentModal";
+import RepostModal from "./post/modal/repostModal/repostModal";
 
 const Index = () => {
   const [commentModal, setCommentModal] = useState(false);

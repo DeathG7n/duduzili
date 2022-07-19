@@ -21,11 +21,11 @@ import {
   BioDescText,
 } from "./profileStyles";
 
-import Trending from "../../../constants/trending/index";
-import TagBox from "../../../constants/tagBox/index";
-import NewsFeed from "../../../constants/postCard/index";
-import DiscoverPeople from "../../../constants/discoverPeople/index";
-import Modal from "./modal/index";
+import Trending from "../../../constants/trending/trending";
+import TagBox from "../../../constants/tagBox/tagBox";
+import NewsFeed from "../../../constants/postCard/postCard";
+import DiscoverPeople from "../../../constants/discoverPeople/discoverPeople";
+import Modal from "./modal/modal";
 
 import Avatar from "../../../assets/avatar.png";
 import Location from "../../../assets/map-pin.png";

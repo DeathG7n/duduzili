@@ -13,13 +13,13 @@ import {
   NavigationBox,
 } from "./searchResultStyle";
 
-import Trending from "../../../constants/trending/index";
-import TagBox from "../../../constants/tagBox/index";
-import DiscoverPeople from "../../../constants/discoverPeople/index";
-import ChatComponent from "../chat/index";
+import Trending from "../../../constants/trending/trending";
+import TagBox from "../../../constants/tagBox/tagBox";
+import DiscoverPeople from "../../../constants/discoverPeople/discoverPeople";
+import ChatComponent from "../chat/chat";
 import arrow from "../../../assets/arrow-right.png";
-import FollowCard from "../discoverPeople/discoverCard/followCard";
-import NewsFeed from "../../../constants/postCard/index";
+import FollowCard from "../discoverPeople/discoverCard/followCard/followCard";
+import NewsFeed from "../../../constants/postCard/postCard";
 
 import { useNavigate } from "react-router-dom";
 import { DataContext } from "../../../api/context";

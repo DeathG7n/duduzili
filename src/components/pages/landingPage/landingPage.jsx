@@ -7,10 +7,10 @@ import {
   TrendingBox,
 } from "./homeStyles";
 
-import TopBar from "../../constants/topbar/index";
-import PostCard from "../../constants/postCard/index";
-import Trending from "../../constants/trending/index";
-import TagBox from "../../constants/tagBox/index";
+import TopBar from "../../constants/topbar/topBar";
+import PostCard from "../../constants/postCard/postCard";
+import Trending from "../../constants/trending/trending";
+import TagBox from "../../constants/tagBox/tagBox";
 
 const index = () => {
   return (

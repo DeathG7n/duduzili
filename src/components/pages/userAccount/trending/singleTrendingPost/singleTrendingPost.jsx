@@ -15,11 +15,11 @@ import {
   TagContent,
 } from "./trendingStyles";
 
-import Trending from "../../../../constants/trending/index";
-import TagBox from "../../../../constants/tagBox/index";
-import ChatComponent from "../../chat/index";
-import TrendSingleFeed from "../singlePost/index";
-import DiscoverPeople from "../../../../constants/discoverPeople/index";
+import Trending from "../../../../constants/trending/trending";
+import TagBox from "../../../../constants/tagBox/tagBox";
+import ChatComponent from "../../chat/chat";
+import TrendSingleFeed from "../singlePost/singlePost";
+import DiscoverPeople from "../../../../constants/discoverPeople/discoverPeople";
 import { DataContext } from "../../../../api/context";
 // import { truncate } from "../../../../constants/textTruncate";
 import { useParams } from "react-router-dom";

@@ -1,11 +1,11 @@
 import React from "react";
 import {  BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
-import SignIn from "../pages/auth/signin/index";
-import SignUp from "../pages/auth/signup/index";
-import Reset from "../pages/auth/reset/index";
-import HomePage from "../pages/landingPage/index";
-import AuthUser from "../pages/userAccount/index";
+import SignIn from "../pages/auth/signin/signin";
+import SignUp from "../pages/auth/signup/signup";
+import Reset from "../pages/auth/reset/reset";
+import HomePage from "../pages/landingPage/landingPage";
+import AuthUser from "../pages/userAccount/userAccount";
 
 const router = () => {
   return (

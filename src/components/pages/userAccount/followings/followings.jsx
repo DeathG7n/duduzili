@@ -10,7 +10,7 @@ import {
 } from "./followingsStyles";
 import { useLocation, useNavigate } from "react-router-dom";
 import arrow from "../../../assets/arrow-right.png";
-import FollowCard from "../discoverPeople/discoverCard/followCard";
+import FollowCard from "../discoverPeople/discoverCard/followCard/followCard";
 import { useGetRequest } from "../../../api/api";
 import {Rings} from "react-loader-spinner";
 

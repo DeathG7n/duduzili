@@ -36,7 +36,7 @@ import love from "../../assets/heart.png";
 import SkeletonLoader from "../skeletonLoaders/postCardLoader";
 import MobileMoreDropDown from "./dropdowns/moreDropDown/index";
 import MobileShareDropDown from "./dropdowns/shareDropDown/index";
-import RepostCard from "../repostCard/index";
+import RepostCard from "../repostCard/repostCard";
 import { LinkPreview } from "@dhaiwat10/react-link-preview";
 
 import user from "../../assets/user.png";

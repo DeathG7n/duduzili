@@ -1,37 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Link, useLocation, Navigate } from "react-router-dom";
 
-import Trending from "./trending/index";
-import Messaging from "./messaging/index";
-import Settings from "./settings/index";
-import Feeds from "./feed/index";
-import Notifications from "./notifications/index";
-import DiscoverPeople from "./discoverPeople/index";
-import Profile from "./profile/index";
-import MobileChatView from "./messaging/mobileView/mobileChatView/index";
-import SinglePost from "./singlePost/index";
-import SingleUserProfile from "./singleUserProfile/index";
-import SingleTrendingPost from "./trending/singleTrendingPost/index";
-import PostArticle from "./postArticle/index";
-import SearchResult from "./searchResult/index";
-import LikedPosts from "./likedPostPage/index"
-import Followers from "./followersPage/index"
-import Followings from "./followings/index"
-import Repost from "./repostPage/index"
+import Trending from "./trending/trending";
+import Messaging from "./messaging/messaging";
+import Settings from "./settings/settings";
+import Feeds from "./feed/feed";
+import Notifications from "./notifications/notifications";
+import DiscoverPeople from "./discoverPeople/discoverPeople";
+import Profile from "./profile/profile";
+import MobileChatView from "./messaging/mobileView/mobileChatView/mobileChatView";
+import SinglePost from "./singlePost/singlePost";
+import SingleUserProfile from "./singleUserProfile/singleUserProfile";
+import SingleTrendingPost from "./trending/singleTrendingPost/singleTrendingPost";
+import PostArticle from "./postArticle/postArticle";
+import SearchResult from "./searchResult/searchResult";
+import LikedPosts from "./likedPostPage/likedPostPage"
+import Followers from "./followersPage/followersPage"
+import Followings from "./followings/followings"
+import Repost from "./repostPage/repost"
 
 
-import TopBar from "../../constants/topbar/index";
+import TopBar from "../../constants/topbar/topBar";
 import home from "../../assets/home.png";
 import trending from "../../assets/trending.png";
 import mail from "../../assets/mail.png";
 import bell from "../../assets/bell.png";
 
 import { NavigationBox, Icon, Container, IconBox } from "./userAccountStyles";
-import MAccountComponent from "./settings/mobileView/account/index";
-import MFeedsComponent from "./settings/mobileView/feeds/index";
-import MChat from "./settings/mobileView/chat/index";
-import MSafety from "./settings/mobileView/safety/index";
-import MNotifications from "./settings/mobileView/nofications/index";
+import MAccountComponent from "./settings/mobileView/account/account";
+import MFeedsComponent from "./settings/mobileView/feeds/feeds";
+import MChat from "./settings/mobileView/chat/chat";
+import MSafety from "./settings/mobileView/safety/safety";
+import MNotifications from "./settings/mobileView/nofications/notifications";
 import SnackBar from "../../constants/successSnackbar";
 
 import { DataContext } from "../../api/context";

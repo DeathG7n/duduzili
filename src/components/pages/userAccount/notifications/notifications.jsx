@@ -19,12 +19,12 @@ import {
   DropDownText,
   // ButtonBox,
 } from "./notificationStyles";
-import Trending from "../../../constants/trending/index";
+import Trending from "../../../constants/trending/trending";
 import Messetting from "../../../assets/messetting.png";
 import TextEdit from "../../../assets/textedit.png";
 import Delet from "../../../assets/delete.png";
-import Discover from "../../../constants/discoverPeople/index";
-import TagBox from "../../../constants/tagBox/index";
+import Discover from "../../../constants/discoverPeople/discoverPeople";
+import TagBox from "../../../constants/tagBox/tagBox";
 import { DataContext } from "../../../api/context";
 import { Link, useNavigate } from "react-router-dom";
 

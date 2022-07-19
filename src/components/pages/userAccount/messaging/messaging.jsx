@@ -38,7 +38,7 @@ import dots from "../../../assets/dot.png";
 import gif from "../../../assets/gifs.png";
 import upload from "../../../assets/upload.png";
 import searchIcon from "../../../assets/search.png";
-import MobileMessageComponent from "./mobileView/index";
+import MobileMessageComponent from "./mobileView/mobileView";
 import {Rings} from "react-loader-spinner";
 
 import { DataContext } from "../../../api/context";
