@@ -23,6 +23,7 @@ export const initialValues = {
   getEditPost: null,
   singleRepostData: null,
   followings: null,
+  followers: null,
 };
 
 export const reducer = (state, action) => {
@@ -81,12 +82,19 @@ export const reducer = (state, action) => {
       getTopics: action.payload,
     };
   }
-  
+
   // Fetch followings
   else if (action.type === "FOLLOWINGS") {
     return {
       ...state,
       followings: action.payload,
+    };
+  }
+  // Fetch followers
+  else if (action.type === "FOLLOWERS") {
+    return {
+      ...state,
+      followers: action.payload,
     };
   }
 

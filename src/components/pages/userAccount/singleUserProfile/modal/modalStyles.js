@@ -122,7 +122,13 @@ export const InputBox = styled.div`
     border: none;
     height: 25px;
     outline: none;
+    
+    :focus{
+      background: #ffffff;
+      box-shadow: none;
+    }
   }
+
 
   > textarea {
     background-color: white;

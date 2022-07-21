@@ -21,9 +21,7 @@ const Index = () => {
   const { getRequest, loading, data } = useGetRequest();
 
   const { getFollowingsRequest } = useGetFollowingsRequest();
-  const {
-    state: { userData, followings, discoverPeople },
-  } = DataContext();
+  const { state: { userData, followings, discoverPeople } } = DataContext();
 
   const routeBack = () => {
     history(-1);
@@ -43,12 +41,7 @@ const Index = () => {
   
   useEffect(()=>{
     getFollowingsRequest(`user_followings/${id}/`)
-    console.log("hi")
-    console.log(followings)
   }, [followingData])
-
-  console.log(followings?.followings)
-  console.log(id)
 
   return (
     <Container>
@@ -58,7 +51,7 @@ const Index = () => {
             <TitleBox>
               <div>
                 <img alt="arrow icon" src={arrow} onClick={routeBack} />
-                <h3>People who follow you</h3>
+                <h3>People you follow</h3>
               </div>
             </TitleBox>
 

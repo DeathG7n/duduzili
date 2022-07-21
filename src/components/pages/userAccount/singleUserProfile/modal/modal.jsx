@@ -132,7 +132,8 @@ const Index = ({ handleOpenModal, id }) => {
               onChange={handleChange}
             />
 
-            <InputBox>
+
+            <InputBox tp="10px">
               <label>First Name</label>
               <input
                 placeholder="duduzilli"

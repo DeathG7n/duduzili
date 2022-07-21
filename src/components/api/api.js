@@ -158,10 +158,12 @@ export const useGetFollowingsRequest = () => {
         setLoading(false);
         console.log(res.data);
         setData(res.data);
-        dispatch({
-          type: "FOLLOWINGS",
-          payload: res.data
-        });
+        if (endpoint.includes("user_followings")) {
+          dispatch({ type: "FOLLOWINGS", payload: res.data });
+        }
+        if (endpoint.includes("user_followers")) {
+          dispatch({ type: "FOLLOWERS", payload: res.data });
+        }
       })
       .catch((err) => {
         setLoading(false);

@@ -63,4 +63,11 @@ export const TitleBox = styled.div`
 export const ContentBox = styled.div`
    width: 100%;
    margin-top: 5px;
+   padding-bottom: 10px;
+  
+
+   h1{
+    text-align: center;
+    color: rgb(126 126 126 / 50%);
+   }
 `
