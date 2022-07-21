@@ -45,10 +45,11 @@ export const ProfileDropDown = styled.div`
   background-color: white;
   position: absolute;
   display: none;
-  bottom: 10px;
-  right: 0%;
+  bottom: -145px;
+  left: -50px;
   box-shadow: 0px 16px 64px rgba(16, 34, 28, 0.32);
   border-radius: 8px;
+  z-index: 1;
 `;
 
 export const ProfileDropDownContent = styled.div`

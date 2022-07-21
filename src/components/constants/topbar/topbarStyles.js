@@ -219,7 +219,7 @@ export const DropDownBox = styled.div`
   position: absolute;
   z-index: 11;
   top: 30px;
-  right: 45%;
+  right: 280px;
   display: none;
 `;
 
