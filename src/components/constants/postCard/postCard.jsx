@@ -68,7 +68,7 @@ const Index = ({
   // const [selectValue, setSelectValue] = useState(null);
   const [openMoreModal, setOpenMoreModal] = useState(false);
   const [openShareModal, setOpenShareModal] = useState(false);
-
+  
   const handleOpenMobileModal = () => {
     setOpenMoreModal((props) => !props);
   };
@@ -96,7 +96,6 @@ const Index = ({
     handleOpenPostModal();
   };
   console.log(postFeed)
-
   return (
     <>
       {/* {openMoreModal && (
@@ -111,134 +110,7 @@ const Index = ({
         <SkeletonLoader num="2" />
       ) : (
         <>
-          {/* <Container>
-            <TopBox>
-              <ProfileBox>
-                <img src={Person} alt="dp" />
-                <div>
-                  {" "}
-                  <Name>
-                    Duduzili <span>@duduzili</span>
-                  </Name>{" "}
-                  <DateText>1 day ago</DateText>
-                </div>
-
-                <ProfileDropDown className="dropdown">
-                  <ProfileDropDownContent>
-                    <div>
-                      <img src={Person} alt="dp" />
-                      <Name1>
-                        <ProfileText fw="600" fs="15px">
-                          Queen Alicia
-                        </ProfileText>
-                        <span>@licia22</span>
-
-                        <ProfileText color="#49665C" fs="14px" mt="10px">
-                          Political Analyst
-                        </ProfileText>
-                        <ProfileText color="#49665C" fs="14px">
-                          i love going on vacation..
-                        </ProfileText>
-                      </Name1>
-                    </div>
-                    <Button>Follow</Button>
-                  </ProfileDropDownContent>
-                </ProfileDropDown>
-              </ProfileBox>
-
-              <MoreBox onClick={handleOpenMobileModal}>
-                <span></span>
-                <span></span>
-                <span></span>
-                <DropDown1 className="dropdown">
-                  <DropDownContent>
-                    <img src={user} alt="icon" />
-                    <p>Follow @duduzili</p>
-                  </DropDownContent>
-
-                  <DropDownContent>
-                    <img src={user} alt="icon" />
-                    <p>Save post</p>
-                  </DropDownContent>
-
-                  <DropDownContent>
-                    <img src={volume} alt="icon" />
-                    <p>Mute @duduzili</p>
-                  </DropDownContent>
-
-                  <DropDownContent>
-                    <img src={blocked} alt="icon" />
-                    <p>Block @duduzili</p>
-                  </DropDownContent>
-
-                  <DropDownContent>
-                    <img src={flag} alt="icon" />
-                    <p>Report post</p>
-                  </DropDownContent>
-                </DropDown1>
-              </MoreBox>
-            </TopBox>
-
-            <Content>
-              <ContentText>
-                My heart goes out to all backend and infrastructure engineers.
-                While frontend engineers get praised for their beautiful UIs and
-                product managers get credited for their awesome products,
-                backend / infra engineers get little to no recognition, except
-                when a service goes down for 5 minutes, at which point they get
-                called garbage engineers who can't keep a service up.
-              </ContentText>
-
-              <HashTagBox>
-                <p>#backend</p>
-                <p>#infraengineers</p>
-              </HashTagBox>
-
-              <ReactionBox>
-                <Reaction>
-                  <img alt="icon" src={like} />
-                  <p>8.8k</p>
-                </Reaction>
-
-                <Reaction ml="27px">
-                  <img alt="icon" src={comment} />
-                  <p>619</p>
-                </Reaction>
-
-                <Reaction ml="27px">
-                  <img alt="icon" src={repost} />
-                  <p>300</p>
-                </Reaction>
-
-                <DropDownReaction ml="27px">
-                  <img
-                    alt="icon"
-                    src={share}
-                    onClick={handleOpenMobileShareModal}
-                  />
-        
-                  <ShareDropDown className="dropdown">
-                    <div>
-                      <img src={link} alt="icon" />
-                      <p>Copy link</p>
-                    </div>
-
-                    <div>
-                      <img src={mail} alt="icon" />
-                      <p>Send via message</p>
-                    </div>
-
-                    <div>
-                      <img src={shareicon} alt="icon" />
-                      <p>Share with apps</p>
-                    </div>
-                  </ShareDropDown>
-                </DropDownReaction>
-              </ReactionBox>
-            </Content>
-          </Container> */}
-
-          {/* second post with image */}
+          
           {postFeed &&
             postFeed.map((item, idx, arr) => {
               return (
@@ -294,7 +166,9 @@ const Index = ({
                               )}
                             </Name1>
                           </div>
-                          <Button>Follow</Button>
+                          {userData?.user?.username !== item?.user?.username ? <Button onClick={()=>{
+
+                          }}>{item?.user?.is_following ? "Unfollow" : "Follow"}</Button> : <button disabled>{item?.user?.is_following ? "Unfollow" : "Follow"}</button>}
                         </ProfileDropDownContent>
                       </ProfileDropDown>
                     </ProfileBox>
@@ -308,9 +182,6 @@ const Index = ({
                       <span></span>
                       <span></span>
 
-                      {/* {arr[idx] && openMoreModal && (
-                        <MobileMoreDropDown openModal={handleOpenMobileModal} />
-                      )} */}
 
                       {/* Opens more options modal when clicked */}
                       {/* Optionally display modal for me and general users */}
@@ -440,8 +311,6 @@ const Index = ({
                           ""
                         )}
                         <CardContent>
-                          {/* <CardTitle>New york</CardTitle> */}
-                          {/* <CardText>en.wikipedia.org . 81 min read</CardText> */}
                         </CardContent>
                       </Card>
                     </Link>

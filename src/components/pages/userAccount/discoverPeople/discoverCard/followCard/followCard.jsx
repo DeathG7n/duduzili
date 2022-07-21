@@ -41,6 +41,7 @@ const FollowCard = ({ item }) => {
         </Link>
       </div>
 
+
       <Button
         bc="#f7fcfa"
         border="1px solid #29BB89"
