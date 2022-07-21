@@ -201,7 +201,7 @@ const Index = ({
                         <DropDown1 className="dropdown" height="230px">
                           <DropDownContent>
                             <img src={user} alt="icon" />
-                            <p>Follow @{item?.user?.username}</p>
+                            <p>{item?.user?.is_following ? "Unfollow" : "Follow"} @{item?.user?.username}</p>
                           </DropDownContent>
 
                           <DropDownContent
