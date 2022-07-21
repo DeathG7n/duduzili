@@ -160,7 +160,7 @@ export const useGetLikeRequest = () => {
         setData(res.data);
         dispatch({
           type: "OPEN_SNACKBAR",
-          payload: isFollowing === true ? "Post Unliked" : "Post Liked",
+          payload: isFollowing  ? "Post Unliked" : "Post Liked",
         });
       })
       .catch((err) => {
@@ -262,11 +262,16 @@ export const useSearchRequest = () => {
   const { dispatch } = DataContext();
   const [data, setData] = useState(null);
 
-  const searchRequest = (endpoint, cb) => {
+  const searchRequest = (endpoint, cb, data) => {
     setLoading(true);
     API({
       url: endpoint,
-      method: "GET",
+      method: "POST",
+      data: data,
+      responseType: "json",
+      headers: {
+        "Content-Type": "Text",
+      },
     })
       .then((res) => {
         setLoading(false);
@@ -353,6 +358,24 @@ export const useMarkRequest = () => {
   const { dispatch } = DataContext();
 
   const markRequest = (endpoint) => {
+    setLoading(true);
+    API({
+      url: endpoint,
+      method: "GET",
+    })
+      .then((res) => {
+        setLoading(false);
+        if (res.status === 200) {
+          dispatch({ type: "MARKED", payload: res.data });
+        }
+        console.log(res.data);
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+      });
+  };
+  const markAllRequest = (endpoint) => {
     setLoading(true);
     API({
       url: endpoint,

@@ -13,22 +13,23 @@ import arrow from "../../../assets/arrow-right.png";
 import FollowCard from "../discoverPeople/discoverCard/followCard/followCard";
 import { useGetRequest } from "../../../api/api";
 import {Rings} from "react-loader-spinner";
+import { DataContext } from "../../../api/context";
 
 const Index = () => {
   const history = useNavigate();
   const { getRequest, loading, data } = useGetRequest();
+  const {userData} = DataContext()
 
   const routeBack = () => {
-    history.goBack();
+    history(-1);
   };
 
   const location = useLocation();
 
-  const { id } = location.state;
-
   useEffect(() => {
-    getRequest(`user_followings/${id}/`);
+    getRequest(`user_followings/53/`);
   }, []);
+  console.log(location)
 
   return (
     <Container>
@@ -54,8 +55,8 @@ const Index = () => {
               </div>
             ) : (
               <ContentBox>
-                {data?.followings.map((item) => {
-                  return <FollowCard key={item?.id} item={item} />;
+                {data?.followings.map((item, id) => {
+                  return <FollowCard key={id} item={item} />;
                 })}
               </ContentBox>
             )}

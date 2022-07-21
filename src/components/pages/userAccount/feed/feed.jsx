@@ -26,7 +26,7 @@ import postIcon from "../../../assets/post.svg";
 
 const Index = () => {
   const {
-    state: { postData, openPostModal },
+    state: { postData, openPostModal, discoverPeople },
     dispatch,
   } = DataContext();
 
@@ -92,6 +92,7 @@ const Index = () => {
                 postFeed={postData}
                 handleOpenPostModal={handleOpenEditPostModal}
                 handleOpenRepostModal={handleOpenRepostModal}
+                item={discoverPeople}
               />
             </NewsFeedBox>
 

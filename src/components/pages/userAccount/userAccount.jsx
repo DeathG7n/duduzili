@@ -18,6 +18,7 @@ import LikedPosts from "./likedPostPage/likedPostPage"
 import Followers from "./followersPage/followersPage"
 import Followings from "./followings/followings"
 import Repost from "./repostPage/repost"
+import SavedPost from "./savedPost/savedPost"
 
 
 import TopBar from "../../constants/topbar/topBar";
@@ -139,6 +140,8 @@ const Index = () => {
           <Route exact path="trending/post/:id" element={<SingleTrendingPost />} />
 
           <Route exact path="trending" element={<Trending />} />
+
+          <Route exact path="saved-posts" element={<SavedPost />} />
 
           <Route exact path="profile" element={<Profile />} />
 

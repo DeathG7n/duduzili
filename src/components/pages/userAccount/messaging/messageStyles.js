@@ -353,7 +353,7 @@ export const WriteMessage = styled.input`
   box-sizing: border-box;
   border-radius: 24px;
   font-size: 16px;
-  color: #a5bdb4;
+  color: black;
 
 
   ::placeholder{

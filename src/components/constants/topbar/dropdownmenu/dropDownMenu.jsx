@@ -65,7 +65,12 @@ const Index = ({ firstName, lastName, handleLogOut, username, id }) => {
 
         <ListBox>
           <ListImg ml="5px" width="20px" height="25px" alt="" src={saved} />
-          <p>Saved</p>
+          <Link
+            to={"/user/saved-posts"}
+            style={{ textDecoration: "none", color: "#29bb89", marginLeft: "13px" }}
+          >
+            Saved
+          </Link>
         </ListBox>
 
         <ListBox onClick={handleLogOut}>

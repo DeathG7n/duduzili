@@ -19,7 +19,7 @@ const Index = () => {
     state: { trendingPosts },
   } = DataContext();
 
-  console.log(trendingPosts?.trending?.post.slice(0, 2));
+  console.log(trendingPosts?.trending?.post.slice(0, 3));
 
   return (
     <>

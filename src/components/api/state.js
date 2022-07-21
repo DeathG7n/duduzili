@@ -160,6 +160,9 @@ export const reducer = (state, action) => {
       getEditPost: state.postData.find((item) => item.id === state.getPostId),
     };
   }
+  else if (action.type === "MARK_RESPONSE") {
+    window.location.reload(false);
+  }
   // get the repost data of the single page post
   else if (action.type === "GET_SINGLE_REPOST") {
     return {

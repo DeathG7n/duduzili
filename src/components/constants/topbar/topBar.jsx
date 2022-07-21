@@ -83,7 +83,7 @@ const Index = () => {
     if (searchResult === "") {
       return;
     } else {
-      searchRequest(`make_search/${searchResult}/`, changeRoute);
+      searchRequest(`make_search/`, changeRoute, searchResult);
     }
 
     // handleOpenSearch();

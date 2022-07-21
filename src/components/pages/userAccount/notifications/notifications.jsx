@@ -40,8 +40,8 @@ const Index = () => {
     state: { notification, userData, message },
   } = DataContext();
   
-  const {markRequest} = useMarkRequest()
-  console.log(notification);
+  const { markAllRequest, markRequest} = useMarkRequest()
+  console.log(userData);
 
   const history = useNavigate();
 
@@ -49,10 +49,15 @@ const Index = () => {
     history.goBack();
   };
 
-  const markNotifications = () => {
-    console.log(userData?.user?.id)
-    markRequest(`notifications/mark_as_read/${userData?.user?.id}/`)
+  const markAllNotifications = () => {
+    markAllRequest(`notifications/mark_as_read/${userData?.user?.id}/`)
   }
+  
+  const markSingleNotification = (id) => {
+    console.log(id)
+    markRequest(`notification/mark_as_read/${id}/`)
+  }
+
   return (
     <Container>
       <BodyContainer>
@@ -69,7 +74,7 @@ const Index = () => {
  
                 <DropDownBox className="dropdown">
                   <DropDownContent>
-                    <div onClick={() => markNotifications()}>
+                    <div onClick={() => markAllNotifications()}>
                       <img src={TextEdit} alt="" style={{ width: "24px", height: "24px", marginTop: "1px", marginRight: "-15px"}}/>
                       <DropDownText>Mark all as seen</DropDownText>
                     </div>
@@ -94,9 +99,9 @@ const Index = () => {
               <h2>No Notifications</h2>
             ) : (
               notification?.notifications.map((item, ind) => {
-                console.log(item?.receiver.id);
+                console.log(item?.id);
                 return (
-                  <CardBody bc="#f7fcfa" key={ind}>
+                  <CardBody bc="#f7fcfa" key={ind} onClick={() => markSingleNotification(item?.id)}>
                     {/* Return empty on Notifications without post url */}
                     {!item?.post?.post_url ? (
                       <NonLinkBox>

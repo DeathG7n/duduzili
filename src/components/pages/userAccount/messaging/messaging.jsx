@@ -65,6 +65,8 @@ const Index = () => {
     `wss://duduzili.com/ws/chat/psalmskalu?token=${token}`
   );
 
+  console.log(client)
+
   const msgBody = {
     user: "psalmskalu",
     firstname: "Psalms",

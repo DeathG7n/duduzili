@@ -145,6 +145,7 @@ export const CardBody = styled.div`
       align-items: center;
     }
   }
+  
   :hover{
     border: 1px solid #dbe7e3;
   }

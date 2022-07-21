@@ -95,6 +95,7 @@ const Index = ({
     await dispatch({ type: "GET_EDITPOST" });
     handleOpenPostModal();
   };
+  console.log(postFeed)
 
   return (
     <>
@@ -323,7 +324,7 @@ const Index = ({
                           <DropDownContent
                             onClick={() =>
                               userAction(
-                                `save/${item?.user?.id}/`,
+                                `save/${item?.id}/`,
                                 "Post saved successfully"
                               )
                             }
@@ -359,7 +360,7 @@ const Index = ({
                           <DropDownContent
                             onClick={() =>
                               userAction(
-                                `report_post/${item?.user?.id}/`,
+                                `report_post/${item?.id}/`,
                                 "Post reported successfully"
                               )
                             }
@@ -476,6 +477,7 @@ const ReactionsComponent = ({
 }) => {
   const [openShareModal, setOpenShareModal] = useState(false);
   const [isLiked, setIsLiked] = useState(item?.i_like_this_post);
+  const [likes, setLikes] = useState(item?.total_likes);
 
   const { getLikeRequest, data } = useGetLikeRequest();
 
@@ -494,10 +496,12 @@ const ReactionsComponent = ({
   const sendLikeRequest = (id) => {
     getLikeRequest(`like/${id}/`);
     toggleLikeReaction();
+    console.log(isLiked ? "unliked" : "liked")
   };
 
   const toggleLikeReaction = () => {
-    setIsLiked((props) => !props);
+    setLikes(isLiked ? likes - 1 : likes + 1)
+    setIsLiked(prevState => !prevState);
   };
 
   const handleRepost = async (id) => {
@@ -508,9 +512,9 @@ const ReactionsComponent = ({
   return (
     <ReactionBox>
       <Reaction onClick={() => sendLikeRequest(item?.id)}>
-        <img alt="icon" src={isLiked /*|| item?.i_like_this_post */? love : like} />
+        <img alt="icon" src={isLiked ? love : like} />
         <p>
-          {isLiked ? item?.total_likes + 1 : item?.total_likes}
+          {likes}
         </p>
       </Reaction>
 

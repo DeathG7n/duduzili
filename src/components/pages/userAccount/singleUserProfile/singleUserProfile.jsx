@@ -73,9 +73,11 @@ const Index = () => {
   const postTypes = [
     data?.posts,
     data?.medias,
-    data?.saveds?.post,
+    data?.saveds,
     data?.drafts,
   ];
+
+  console.log(data?.saveds)
 
   const handleChangePostType = (num) => {
     setTypeId(num);
