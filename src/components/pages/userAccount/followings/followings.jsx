@@ -82,6 +82,7 @@ const Index = () => {
                    return <FollowCard key={id} item={item} />;
                   })
                 }
+                {followings?.followings?.length === 0 ? <h1>No Followings</h1> : ""}
               </ContentBox>
             )}
           </NewsFeedBox>
