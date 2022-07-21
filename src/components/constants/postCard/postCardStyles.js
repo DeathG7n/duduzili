@@ -68,21 +68,6 @@ export const ProfileDropDownContent = styled.div`
       border-radius: 50%;
     }
   }
-
-  > button{
-    width: 80%;
-    height: 37px;
-    align-self: center;
-    background-color: #f7fdfb;
-    color: #cdcaca;
-    border: 1px solid #29BB89;
-    margin-top: 20px;
-    font-weight: 600;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 20px;
-  }
 `;
 
 export const Name1 = styled.div`
