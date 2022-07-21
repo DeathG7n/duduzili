@@ -52,7 +52,7 @@ const Index = ({ handleOpenModal, handleOpenRepostModal }) => {
   const location = useLocation().pathname;
   const { data, getRequest, loading } = useGetRequest();
 
-  const extractLocation = location.substr(5);
+  const extractLocation = location.substring(5);
 
   // Get the single post and fetch the comments
   useEffect(() => {

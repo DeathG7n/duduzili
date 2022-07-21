@@ -22,6 +22,7 @@ export const initialValues = {
   hideTopBar: false,
   getEditPost: null,
   singleRepostData: null,
+  followings: null,
 };
 
 export const reducer = (state, action) => {
@@ -78,6 +79,14 @@ export const reducer = (state, action) => {
     return {
       ...state,
       getTopics: action.payload,
+    };
+  }
+  
+  // Fetch followings
+  else if (action.type === "FOLLOWINGS") {
+    return {
+      ...state,
+      followings: action.payload,
     };
   }
 

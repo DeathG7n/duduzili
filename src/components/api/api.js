@@ -143,6 +143,37 @@ export const useFollowGetRequest = () => {
   };
 };
 
+export const useGetFollowingsRequest = () => {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState(null);
+  const { dispatch } = DataContext();
+
+  const getFollowingsRequest = (endpoint) => {
+    setLoading(true);
+    API({
+      url: endpoint,
+      method: "GET",
+    })
+      .then((res) => {
+        setLoading(false);
+        console.log(res.data);
+        setData(res.data);
+        dispatch({
+          type: "FOLLOWINGS",
+          payload: res.data
+        });
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+      });
+  };
+
+  return {
+    getFollowingsRequest,
+  };
+};
+
 export const useGetLikeRequest = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
