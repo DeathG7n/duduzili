@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import {
   NavContainer,
   LogoBox,
@@ -18,6 +20,7 @@ import {
   ProfileImg,
   MobileProfileImg,
   Icon,
+  Notify,
   UserIcon,
   SearchComp,
   NotificationBox,
@@ -46,6 +49,7 @@ const Index = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [searchResult, setSearchResult] = useState("");
+  const [dropDown, setDropDown] = useState(false)
 
   const { searchRequest, data } = useSearchRequest();
 
@@ -57,6 +61,9 @@ const Index = () => {
 
   const handleOpenMenu = () => {
     setOpenMenu((props) => !props);
+  };
+  const handleDropDown = () => {
+    setDropDown(!dropDown);
   };
 
   const handleOpenSearch = () => {
@@ -122,14 +129,15 @@ const Index = () => {
                 <Link to="/user/feed"><LogoImg src={Logo} alt="logo" /></Link>
                 <LogoText>duduzili</LogoText>
             </LogoBox>
-          {/* <SearchBox onClick={handleOpenSearch}> */}
-            <IconBox onClick={handleSubmit}>
+           {/* <SearchBox onClick={handleOpenSearch}> */}
+            
+            <Form >
+              <IconBox onClick={handleSubmit}>
               <img style={{
                 width : "80px",
                 height: "70px",
               }} src={searchIcon} alt="search icon" />
-            </IconBox>
-            <Form >
+              </IconBox>
               <Input
                 placeholder="Search"
                 value={searchResult}
@@ -158,7 +166,7 @@ const Index = () => {
                 <NotificationBox ml="25px">
                   <Icon alt="icon" src={mail} />
                   {userData?.number_of_messages > 0 ? (
-                    <div className="notify">{userData?.number_of_messages}</div>
+                    <Notify className="notify">{userData?.number_of_messages}</Notify>
                   ) : (
                     ""
                   )}
@@ -169,9 +177,9 @@ const Index = () => {
                 <NotificationBox ml="25px">
                   <Icon alt="icon" src={bell} />
                   {userData?.number_of_notifications > 0 ? (
-                    <div className="notify">
+                    <Notify className="notify">
                       {userData?.number_of_notifications}
-                    </div>
+                    </Notify>
                   ) : (
                     ""
                   )}
@@ -195,19 +203,18 @@ const Index = () => {
                   {/* {`${userData?.user?.first_name || ""} ${userData?.user?.last_name || ""}`} */}
                   {truncate(
                     `${userData?.user?.first_name || ""} ${userData?.user?.last_name || ""}`,
-                    15
+                    10
                   )}
                   {checkNameLength.length >= 10 ? "..." : ""}
                 </p>
                 
                 </Link>
-                <img alt="icon" src={dropdown} style={{
-                  width: "20px",
-                  height: "10px",
-                  marginTop: "10px",
-                }}/>
+                {!dropDown ? <ExpandMoreIcon onClick={handleDropDown} sx={{ fontSize: 30 }} /> : <ExpandLessIcon onClick={handleDropDown} color="success" sx={{ fontSize: 30 }}/>}
+                
 
-                <DropDownBox className="dropdown">
+                <DropDownBox className="dropdown" style={{
+                  display: dropDown ? "block" : "none"
+                }}>
                   <DropDownMenu
                     firstName={userData?.user?.first_name || ""}
                     lastName={userData?.user?.last_name || ""}
@@ -240,12 +247,13 @@ const Index = () => {
                 Sign Up
               </Button>
               <ProfileIcon src={profileIcon} alt="profile icon" />
+              <Link to="/user/discover">
+                <UserIcon alt="human" src={user} />
+              </Link>
             </RegisterBox>
           )}
           {/* Show icon on mobile viewport */}
-          <Link to="/user/discover">
-            <UserIcon alt="human" src={user} />
-          </Link>
+          
         </NavBox>
       </NavContainer>
     </>

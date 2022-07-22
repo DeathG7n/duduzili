@@ -45,8 +45,8 @@ export const ProfileDropDown = styled.div`
   background-color: white;
   position: absolute;
   display: none;
-  bottom: -145px;
-  left: -50px;
+  bottom: -171px;
+  left: ${(props) => props.lf};
   box-shadow: 0px 16px 64px rgba(16, 34, 28, 0.32);
   border-radius: 8px;
   z-index: 1;
@@ -268,13 +268,13 @@ export const DropDownReaction = styled.div`
     cursor: pointer;
   }
 
-  :hover .dropdown {
-    display: block;
+  // :hover .dropdown {
+  //   display: block;
 
-    @media screen and (max-width: 800px) {
-      display: none;
-    }
-  }
+  //   @media screen and (max-width: 800px) {
+  //     display: none;
+  //   }
+  // }
 `;
 
 export const ShareDropDown = styled.div`

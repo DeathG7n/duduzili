@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import {
   Container,
@@ -68,13 +68,21 @@ const Index = ({
   // const [selectValue, setSelectValue] = useState(null);
   const [openMoreModal, setOpenMoreModal] = useState(false);
   const [openShareModal, setOpenShareModal] = useState(false);
+  const [bottom, setBottom] = useState("")
+  const [left, setLeft] = useState("")
+  const [dropDown, setDropDown] = useState(false)
   
+  const id = useRef()
   const handleOpenMobileModal = () => {
     setOpenMoreModal((props) => !props);
+    setDropDown(!dropDown)
+    console.log("help")
+    console.log(id.current)
   };
 
   const handleOpenMobileShareModal = () => {
     setOpenShareModal((props) => !props);
+    
   };
 
   const { deleteRequest } = useDeleteRequest();
@@ -96,15 +104,22 @@ const Index = ({
     handleOpenPostModal();
   };
   console.log(postFeed)
+
+  function changeDropDown(event, x , y) {
+    x = event.nativeEvent.offsetX
+    y = event.nativeEvent.offsetY
+    setBottom(y)
+    setLeft(x)
+  }
   return (
     <>
       {/* {openMoreModal && (
         <MobileMoreDropDown openModal={handleOpenMobileModal} />
-      )} */}
+      )}
 
       {openShareModal && (
         <MobileShareDropDown openModal={handleOpenMobileShareModal} />
-      )}
+      )} */}
 
       {postFeed === null ? (
         <SkeletonLoader num="2" />
@@ -114,14 +129,14 @@ const Index = ({
           {postFeed &&
             postFeed.map((item, idx, arr) => {
               return (
-                <Container key={idx}>
+                <Container key={idx} >
                   <TopBox>
-                    <ProfileBox>
+                    <ProfileBox >
                       <img src={item?.user?.photo_url || Person} alt="dp" />
                       <div>
                         {" "}
-                        <Name>
-                          <Link
+                        <Name onMouseOver={(e)=> changeDropDown(e)}>
+                          <Link 
                             to="/user/pro"
                             style={{ textDecoration: "#000", color: "#000", fontWeight: "600" }}
                           >
@@ -134,7 +149,7 @@ const Index = ({
                         <DateText>{`${item?.date} ago`}</DateText>
                       </div>
 
-                      <ProfileDropDown className="dropdown">
+                      <ProfileDropDown className="dropdown" lf={`${left-90}px`}>
                         <ProfileDropDownContent>
                           <div>
                             <img
@@ -186,19 +201,29 @@ const Index = ({
                     </ProfileBox>
 
                     <MoreBox
-                      onClick={() => {
-                        return handleOpenMobileModal();
-                      }}
+                      onClick={ handleOpenMobileModal }
+                    
                     >
+                      
                       <span></span>
                       <span></span>
                       <span></span>
 
-
+                      {/* <MobileMoreDropDown
+                      item={item}
+                      userAction={userAction}
+                      dropDown={dropDown}
+                      userData={userData}
+                      save={save}
+                      updateStateEditPost={updateStateEditPost}
+                      handleDeleteRequest={handleDeleteRequest}
+                      /> */}
                       {/* Opens more options modal when clicked */}
                       {/* Optionally display modal for me and general users */}
                       {item?.user?.id !== userData?.user?.id ? (
-                        <DropDown1 className="dropdown" height="230px">
+                        <DropDown1 className="dropdown" height="230px" style={{
+                          // display: dropDown ? "block" : "none"
+                        }} >
                           <DropDownContent>
                             <img src={user} alt="icon" />
                             <p>{item?.user?.is_following ? "Unfollow" : "Follow"} @{item?.user?.username}</p>
@@ -253,7 +278,9 @@ const Index = ({
                           </DropDownContent>
                         </DropDown1>
                       ) : (
-                        <DropDown1 className="dropdown" height="95px">
+                        <DropDown1 className="dropdown" height="95px" style={{
+                          // display: dropDown ? "block" : "none"
+                        }}>
                           <DropDownContent
                             onClick={() => updateStateEditPost(item?.id)}
                           >
@@ -350,7 +377,10 @@ const Index = ({
 
 export default Index;
 
-// Reactions component is seperated so the loop identifies each item as unique
+
+
+// Reactions component is separated so the loop identifies each item as unique
+
 const ReactionsComponent = ({
   item,
   handleOpenModal,
@@ -359,6 +389,7 @@ const ReactionsComponent = ({
   const [openShareModal, setOpenShareModal] = useState(false);
   const [isLiked, setIsLiked] = useState(item?.i_like_this_post);
   const [likes, setLikes] = useState(item?.total_likes);
+  const [shareDropDown, setShareDropDown] = useState(false)
 
   const { getLikeRequest, data } = useGetLikeRequest();
 
@@ -372,6 +403,8 @@ const ReactionsComponent = ({
 
   const handleOpenMobileShareModal = () => {
     setOpenShareModal((props) => !props);
+    setShareDropDown(!shareDropDown)
+    console.log("helps")
   };
 
   const sendLikeRequest = (id) => {
@@ -415,7 +448,9 @@ const ReactionsComponent = ({
         <img alt="icon" src={share} onClick={handleOpenMobileShareModal} />
         {/* <p>300</p> */}
 
-        <ShareDropDown className="dropdown">
+        <ShareDropDown className="dropdown" style={{
+          display: shareDropDown ? "block" : "none"
+        }}>
           <div>
             <img src={link} alt="icon" />
             <p>Copy link</p>

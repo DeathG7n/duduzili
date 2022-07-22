@@ -5,23 +5,23 @@ export const NavContainer = styled.div`
   height: 60px;
   background-color: white;
   display: flex;
-  justify-content: center;
+  align-items: center;
   box-shadow: 0px 4px 4px rgba(208, 226, 220, 0.4);
   position: fixed;
-  /* margin-bottom: 60px; */
   z-index: 100;
 `;
 
 
 export const NavBox = styled.div`
-  width: 85%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 4%;
   align-items: center;
 
-  @media screen and (max-width: 900px) {
-    width: 95%;
-  }
+  // @media screen and (max-width: 1100px) {
+  //   width: 95%;
+  // }
 `;
 
 export const LogoImg = styled.img`
@@ -29,40 +29,47 @@ export const LogoImg = styled.img`
   width: 30px;
   margin-bottom: 15px;
 
-  @media screen and (max-width: 600px) {
-    display: none;
+  @media screen and (max-width: 1100px) {
+    width: 20px
   }
 `;
 export const LogoBox = styled.div`
-    width: 170px;
+    width: 9%;
     display: flex;
     gap: 5px;
     justify-content : center;
     align-self: center;
     margin-top: 18px;
-    margin-left: 6px;
+    margin-left: 8%;
+   
+    
+
 `
 export const LogoText = styled.p`
     font-size: 20px;
     font-weight: 800;
     margin-top: -2px;
     cursor: pointer;
+
+    @media screen and (max-width: 1100px) {
+      font-size: 16px;
+    }
 `
 
 export const SearchBox = styled.div`
-  width: 50%;
-  background: #f1f5f4;
-  border: 1px solid #d0e2dc;
-  box-sizing: border-box;
-  border-radius: 24px;
-  display: flex;
-  align-items: center;
-  padding-left: 5px;
+  // width: 50%;
+  // background: #f1f5f4;
+  // border: 1px solid #d0e2dc;
+  // box-sizing: border-box;
+  // border-radius: 24px;
+  // display: flex;
+  // align-items: center;
+  // padding-left: 5px;
 
-  @media screen and (max-width: 900px) {
-    width: 70%;
-    border-radius: 10px;
-  }
+  // @media screen and (max-width: 1100px) {
+  //   width: 70%;
+  //   border-radius: 10px;
+  // }
 `;
 
 export const IconBox = styled.div`
@@ -71,25 +78,31 @@ export const IconBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  left: 385px;
+  position: relative;
+  left: 7%;
+  // margin-right: -8%;
+  
+  @media screen and (max-width: 1100px){
+    left: 9%;
+  }
+
 
   > img {
     width: 55px;
     height: 50px;
   }
-
-  @media screen and (max-width: 500px) {
-    width: 35px;
-  }
 `;
 
 export const Form = styled.form`
-  width: calc(100% - 40px);
+  display: flex;
+  align-items: center;
+  width: 45%;
+  margin-left: 1%;
+  margin-right: auto;
 `;
 
 export const Input = styled.input`
-  width: 650px;
+  width: 100%;
   height: 45px;
   border: 1px solid #d9dbe9;
   background: #f1f5f4;
@@ -101,11 +114,9 @@ export const Input = styled.input`
   border-radius: 24px;
   align-items: center;
   padding-left: 40px;
-  margin-left: 150px;
 
-  @media screen and (max-width: 900px) {
-    width: 70%;
-    border-radius: 10px;
+  @media screen and (max-width: 1100px) {
+    height: 40px;
   }
 
   :focus{
@@ -120,9 +131,9 @@ export const Input = styled.input`
 `;
 
 export const RegisterBox = styled.div`
-  width: 27%;
-  display: flex;
-  align-items: center;
+  // width: 27%;
+  // display: flex;
+  // align-items: center;
 `;
 
 export const Button = styled.button`
@@ -138,62 +149,72 @@ export const Button = styled.button`
 `;
 
 export const ProfileIcon = styled.img`
-  width: 60px;
-  height: 30px;
-  margin-left: 20px;
+  // width: 60px;
+  // height: 30px;
+  // margin-left: 20px;
 `;
 
 export const Icon = styled.img`
-margin-top: 10px;
+  margin-top: 10px;
   cursor: pointer;
   /* fill: "#fff"; */
   // filter: invert(1) sepia(1) saturate(5) hue-rotate(70deg);
+
+  @media screen and (max-width: 1100px) {
+    width: 20px;
+  }
+
 `;
 
 export const NotificationBox = styled.div`
   position: relative;
   /* width: 40px; */
-  margin-left: ${(props) => props.ml};
+  // margin-left: ${(props) => props.ml};
 
-  .notify {
-    position: absolute;
-    box-sizing: border-box;
-    top: -10px;
-    right: -7px;
-    /* padding: 2px; */
-    min-width: 20px;
-    min-height: 20px;
-    font-size: 13px;
-    border-radius: 50%;
-    background-color: red;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 `;
 
-export const NavigationBox = styled.div`
+export const Notify = styled.div`
+  position: absolute;
+  box-sizing: border-box;
+  top: -6px;
+  right: -7px;
+  min-width: 80%;
+  min-height: 40%;
+  font-size: 10px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  margin-left: 20px;
 
-  > img {
-    margin-left: 15px;
+
+  @media screen and (max-width: 1100px) {
+    width: 5px;
+    height: 5px;
   }
+`
 
-  @media screen and (max-width: 900px) {
-    display: none;
+export const NavigationBox = styled.div`
+  width: 29%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 6%;
+  align-items: center;
+  margin-left: auto;
+
+  
+
+  @media screen and (max-width: 1100px) {
+    gap: 5%;
   }
 `;
 
 export const ProfileDropDown = styled.div`
-  width: 500px;
+  width: 50%;
   display: flex;
-  // align-items: center;
+  align-items: center;
   margin-left: 10px;
-  position: relative;
   cursor: pointer;
 
   > p {
@@ -203,24 +224,24 @@ export const ProfileDropDown = styled.div`
   }
 
   > img {
-    margin-left: 15px;
+    margin-left: 1%;
   }
 
-  :hover .dropdown {
-    display: block;
-  }
   :hover p{
     color: #09ae82;
     transition: all 0.9s 
+  }
+
+  @media screen and (max-width: 1100px){
+    font-size: 12px;
   }
 `;
 
 export const DropDownBox = styled.div`
   position: absolute;
   z-index: 11;
-  top: 30px;
-  right: 280px;
-  display: none;
+  top: 41px;
+  right: 12px;
 `;
 
 export const ProfileImg = styled.img`
@@ -228,8 +249,9 @@ export const ProfileImg = styled.img`
   height: 27px;
   border-radius: 50%;
 
-  @media screen and (max-width: 900px) {
-    display: none;
+  @media screen and (max-width: 1100px) {
+    width: 20px;
+    height: 20px;
   }
 `;
 
@@ -239,9 +261,9 @@ export const MobileProfileImg = styled.img`
   border-radius: 50%;
   display: none;
 
-  @media screen and (max-width: 900px) {
-    display: block;
-  }
+  // @media screen and (max-width: 1100px) {
+  //   display: block;
+  // }
 `;
 
 export const UserIcon = styled.img`
@@ -250,9 +272,9 @@ export const UserIcon = styled.img`
   display: none;
   cursor: pointer;
 
-  @media screen and (max-width: 900px) {
-    display: block;
-  }
+  // @media screen and (max-width: 1100px) {
+  //   display: block;
+  // }
 `;
 
 export const SearchComp = styled.div`
