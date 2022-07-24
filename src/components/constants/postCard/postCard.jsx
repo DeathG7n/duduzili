@@ -65,25 +65,7 @@ const Index = ({
   handleOpenPostModal,
   handleOpenRepostModal,
 }) => {
-  // const [selectValue, setSelectValue] = useState(null);
-  const [openMoreModal, setOpenMoreModal] = useState(false);
-  const [openShareModal, setOpenShareModal] = useState(false);
-  const [bottom, setBottom] = useState("")
   const [left, setLeft] = useState("")
-  const [dropDown, setDropDown] = useState(false)
-  
-  const id = useRef()
-  const handleOpenMobileModal = () => {
-    setOpenMoreModal((props) => !props);
-    setDropDown(!dropDown)
-    console.log("help")
-    console.log(id.current)
-  };
-
-  const handleOpenMobileShareModal = () => {
-    setOpenShareModal((props) => !props);
-    
-  };
 
   const { deleteRequest } = useDeleteRequest();
 
@@ -107,25 +89,15 @@ const Index = ({
 
   function changeDropDown(event, x , y) {
     x = event.nativeEvent.offsetX
-    y = event.nativeEvent.offsetY
-    setBottom(y)
     setLeft(x)
   }
+
   return (
     <>
-      {/* {openMoreModal && (
-        <MobileMoreDropDown openModal={handleOpenMobileModal} />
-      )}
-
-      {openShareModal && (
-        <MobileShareDropDown openModal={handleOpenMobileShareModal} />
-      )} */}
-
       {postFeed === null ? (
         <SkeletonLoader num="2" />
       ) : (
         <>
-          
           {postFeed &&
             postFeed.map((item, idx, arr) => {
               return (
@@ -199,104 +171,15 @@ const Index = ({
                         </ProfileDropDownContent>
                       </ProfileDropDown>
                     </ProfileBox>
-
-                    <MoreBox
-                      onClick={ handleOpenMobileModal }
                     
-                    >
-                      
-                      <span></span>
-                      <span></span>
-                      <span></span>
-
-                      {/* <MobileMoreDropDown
-                      item={item}
-                      userAction={userAction}
-                      dropDown={dropDown}
-                      userData={userData}
-                      save={save}
-                      updateStateEditPost={updateStateEditPost}
-                      handleDeleteRequest={handleDeleteRequest}
-                      /> */}
-                      {/* Opens more options modal when clicked */}
-                      {/* Optionally display modal for me and general users */}
-                      {item?.user?.id !== userData?.user?.id ? (
-                        <DropDown1 className="dropdown" height="230px" style={{
-                          // display: dropDown ? "block" : "none"
-                        }} >
-                          <DropDownContent>
-                            <img src={user} alt="icon" />
-                            <p>{item?.user?.is_following ? "Unfollow" : "Follow"} @{item?.user?.username}</p>
-                          </DropDownContent>
-
-                          <DropDownContent
-                            onClick={() =>
-                              userAction(
-                                `save/${item?.id}/`,
-                                "Post saved successfully"
-                              )
-                            }
-                          >
-                            <img src={save} alt="icon" />
-                            <p>Save post</p>
-                          </DropDownContent>
-
-                          <DropDownContent
-                            onClick={() =>
-                              userAction(
-                                `mute/${item?.user?.id}/`,
-                                "User muted successfully"
-                              )
-                            }
-                          >
-                            <img src={volume} alt="icon" />
-                            <p>Mute @{item?.user?.username}</p>
-                          </DropDownContent>
-
-                          <DropDownContent
-                            onClick={() =>
-                              userAction(
-                                `block/${item?.user?.id}/`,
-                                "User blocked successfully"
-                              )
-                            }
-                          >
-                            <img src={blocked} alt="icon" />
-                            <p>Block @{item?.user?.username}</p>
-                          </DropDownContent>
-
-                          <DropDownContent
-                            onClick={() =>
-                              userAction(
-                                `report_post/${item?.id}/`,
-                                "Post reported successfully"
-                              )
-                            }
-                          >
-                            <img src={flag} alt="icon" />
-                            <p>Report post</p>
-                          </DropDownContent>
-                        </DropDown1>
-                      ) : (
-                        <DropDown1 className="dropdown" height="95px" style={{
-                          // display: dropDown ? "block" : "none"
-                        }}>
-                          <DropDownContent
-                            onClick={() => updateStateEditPost(item?.id)}
-                          >
-                            <img src={user} alt="icon" />
-                            <p>Edit Post</p>
-                          </DropDownContent>
-
-                          <DropDownContent
-                            onClick={() => handleDeleteRequest(item?.id)}
-                          >
-                            <img src={user} alt="icon" />
-                            <p>Delete Post</p>
-                          </DropDownContent>
-                        </DropDown1>
-                      )}
-                    </MoreBox>
+                    <MoreComponent
+                    item={item}
+                     userAction={userAction}
+                     userData={userData}
+                     save={save}
+                     updateStateEditPost={updateStateEditPost}
+                     handleDeleteRequest={handleDeleteRequest}
+                    />
                   </TopBox>
 
                   <Content>
@@ -483,3 +366,97 @@ export const Audio = ({ sourceUrl }) => {
     </>
   );
 };
+
+const MoreComponent = ({
+  item,
+  userAction,
+  userData,
+  save,
+  updateStateEditPost,
+  handleDeleteRequest,
+  handleOpenMobileModal
+}) =>{
+  const [dropDown, setDropDown] = useState(false)
+  return(
+    <MoreBox
+      onClick={ ()=>{setDropDown(!dropDown)} }
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+      {/* Opens more options modal when clicked */}
+      {/* Optionally display modal for me and general users */}
+      {item?.user?.id !== userData?.user?.id ? (
+        <DropDown1 className="dropdown" height="230px" style={{
+          display: dropDown ? "block" : "none"
+        }} >
+          <DropDownContent>
+            <img src={user} alt="icon" />
+            <p>{item?.user?.is_following ? "Unfollow" : "Follow"} @{item?.user?.username}</p>
+          </DropDownContent>
+          <DropDownContent
+            onClick={() =>
+              userAction(
+                `save/${item?.id}/`,
+                "Post saved successfully"
+              )
+            }
+          >
+            <img src={save} alt="icon" />
+            <p>Save post</p>
+          </DropDownContent>
+          <DropDownContent
+            onClick={() =>
+              userAction(
+                `mute/${item?.user?.id}/`,
+                "User muted successfully"
+              )
+            }
+          >
+            <img src={volume} alt="icon" />
+            <p>Mute @{item?.user?.username}</p>
+          </DropDownContent>
+          <DropDownContent
+            onClick={() =>
+              userAction(
+                `block/${item?.user?.id}/`,
+                "User blocked successfully"
+              )
+            }
+          >
+            <img src={blocked} alt="icon" />
+            <p>Block @{item?.user?.username}</p>
+          </DropDownContent>
+          <DropDownContent
+            onClick={() =>
+              userAction(
+                `report_post/${item?.id}/`,
+                "Post reported successfully"
+              )
+            }
+          >
+            <img src={flag} alt="icon" />
+            <p>Report post</p>
+          </DropDownContent>
+        </DropDown1>
+      ) : (
+        <DropDown1 className="dropdown" height="95px" style={{
+          display: dropDown ? "block" : "none"
+        }}>
+          <DropDownContent
+            onClick={() => updateStateEditPost(item?.id)}
+          >
+            <img src={user} alt="icon" />
+            <p>Edit Post</p>
+          </DropDownContent>
+          <DropDownContent
+            onClick={() => handleDeleteRequest(item?.id)}
+          >
+            <img src={user} alt="icon" />
+            <p>Delete Post</p>
+          </DropDownContent>
+        </DropDown1>
+      )}
+    </MoreBox>
+  )
+}
