@@ -92,6 +92,13 @@ const Index = ({
     setLeft(x)
   }
 
+  const checkMessageLength = postFeed?.map((c) => {
+    const message = JSON.stringify(c?.text)
+    if(message.length >= 200 ){
+      return "...Show More"
+    }
+  })
+
   return (
     <>
       {postFeed === null ? (
@@ -185,16 +192,15 @@ const Index = ({
                   <Content>
                     <ContentText>
                       <Link to={`/user${item?.post_url}`} className="link">
-                        {item?.text}
+                      {truncate(item?.text, 200)}
                         <span
                           style={{
                             color: "#d0e2dc",
                             fontWeight: 600,
-                            marginLeft: "10px",
+                            marginLeft: "2px",
                           }}
                         >
-                          {" "}
-                          {item?.text.length > 200 ? "See More" : ""}
+                          {checkMessageLength[idx]}
                         </span>
                       </Link>
                     </ContentText>
