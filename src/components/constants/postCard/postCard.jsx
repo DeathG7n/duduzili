@@ -95,7 +95,7 @@ const Index = ({
   const checkMessageLength = postFeed?.map((c) => {
     const message = JSON.stringify(c?.text)
     if(message.length >= 200 ){
-      return "...Show More"
+      return "... See More"
     }
   })
 

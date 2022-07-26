@@ -47,7 +47,7 @@ const FollowCard = ({ item }) => {
         border="1px solid #29BB89"
         width="130px"
         height="32px"
-        color="#fff"
+        color="#29BB89"
         br="20px"
         fw="600"
         onClick={() => sendFollowRequest(item.id)}

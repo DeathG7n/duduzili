@@ -35,50 +35,6 @@ const Index = () => {
               );
             })}
 
-            {/* <Body>
-              <div>
-                <CardImge alt="human" src={Person} />
-                <TextBox>
-                  <p>raymond</p>
-                  <span>@raymond01</span>
-                </TextBox>
-              </div>
-
-              <Button
-                bc="white"
-                border="1px solid #29BB89"
-                width="70px"
-                height="28px"
-                color="#29BB89"
-                br="20px"
-                fw="500"
-              >
-                Follow
-              </Button>
-            </Body>
-
-            <Body>
-              <div>
-                <CardImge alt="human" src={Person} />
-                <TextBox>
-                  <p>raymond</p>
-                  <span>@raymond01</span>
-                </TextBox>
-              </div>
-
-              <Button
-                bc="white"
-                border="1px solid #29BB89"
-                width="70px"
-                height="28px"
-                color="#29BB89"
-                br="20px"
-                fw="500"
-              >
-                Follow
-              </Button>
-            </Body> */}
-
             <ButtonBox>
               <Link
                 to="/user/discover"
