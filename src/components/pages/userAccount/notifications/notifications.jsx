@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import {
   Container,
@@ -40,7 +40,25 @@ const Index = () => {
     state: { notification, userData, message },
   } = DataContext();
 
+  const moreRef = useRef()
   const [dropDown, setDropDown] = useState(false)
+
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setDropDown(false);
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+  useOutsideAlerter(moreRef)
 
   
   const { markAllRequest, markRequest} = useMarkRequest()
@@ -73,7 +91,7 @@ const Index = () => {
               </div>
 
               <IconBox>
-                <img src={icon} alt="icon" style={{ cursor: "pointer" }} onClick={()=> setDropDown(!dropDown)}/>
+                <img src={icon} alt="icon" style={{ cursor: "pointer" }} onClick={()=> setDropDown(!dropDown)} ref={moreRef}/>
  
                 <DropDownBox className="dropdown" style={{display: dropDown ? "block" : "none"}}>
                   <DropDownContent>

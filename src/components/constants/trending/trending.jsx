@@ -19,7 +19,7 @@ const Index = () => {
     state: { trendingPosts },
   } = DataContext();
 
-  console.log(trendingPosts?.trending?.post.slice(0, 3));
+  console.log(trendingPosts?.trending);
 
   return (
     <>
@@ -32,7 +32,7 @@ const Index = () => {
             {trendingPosts?.trending?.post.slice(0, 2).map((item, id) => {
               return (
                 <Body key={id}>
-                  <img alt="post" src={item.photo_url} />
+                  <img alt="post" src={item.photo_url}/>
                   <TextBox>
                     <Link to={`/user${item.post_url}`} className="link">
                       <p>{truncate(item.text, 30)}...</p>

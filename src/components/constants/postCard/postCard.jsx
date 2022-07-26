@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import {
   Container,
@@ -273,6 +273,23 @@ const ReactionsComponent = ({
   const [isLiked, setIsLiked] = useState(item?.i_like_this_post);
   const [likes, setLikes] = useState(item?.total_likes);
   const [shareDropDown, setShareDropDown] = useState(false)
+  const moreRef = useRef()
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setShareDropDown(false);
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+  useOutsideAlerter(moreRef)
 
   const { getLikeRequest, data } = useGetLikeRequest();
 
@@ -328,7 +345,7 @@ const ReactionsComponent = ({
       </Reaction>
 
       <DropDownReaction ml="15%">
-        <img alt="icon" src={share} onClick={handleOpenMobileShareModal} />
+        <img alt="icon" src={share} onClick={handleOpenMobileShareModal} ref={moreRef}/>
         {/* <p>300</p> */}
 
         <ShareDropDown className="dropdown" style={{
@@ -377,9 +394,26 @@ const MoreComponent = ({
   handleOpenMobileModal
 }) =>{
   const [dropDown, setDropDown] = useState(false)
+  const moreRef = useRef()
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setDropDown(false);
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+  useOutsideAlerter(moreRef)
   return(
     <MoreBox
-      onClick={ ()=>{setDropDown(!dropDown)} }
+      onClick={ ()=>{setDropDown(!dropDown)}} ref={moreRef}
     >
       <span></span>
       <span></span>

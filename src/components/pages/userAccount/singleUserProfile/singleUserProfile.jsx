@@ -51,7 +51,7 @@ const Index = () => {
   const { getRequest, loading, data } = useGetRequest();
   const { getFollowRequest } = useFollowGetRequest();
 
-  const [isFollowing, setIsFollowing] = useState(data?.i_am_following_this_user);
+  const [isFollowing, setIsFollowing] = useState(data?.user?.i_am_following_this_user);
   const params = useParams();
   console.log(params.id);
 
@@ -71,12 +71,13 @@ const Index = () => {
   useEffect(() => {
     getRequest(`user/${params.id}/`);
     multipleRequest();
-  }, [params.id]);
+  }, [params.id, isFollowing]);
 
   const sendFollowRequest = (id) => {
     getFollowRequest(`follow/${id}/`, isFollowing);
     toggleFollowText();
   };
+
   const toggleFollowText = () => {
     setIsFollowing((props) => !props);
   };
@@ -149,7 +150,7 @@ const Index = () => {
                           fw="500"
                           onClick={()=>sendFollowRequest(data?.user.id)}
                         >
-                          {isFollowing ? "Unfollow" : "Follow"}
+                          {isFollowing ? "Follow" : "Unfollow"}
                         </Button>
                       ) : (
                         // Edit button for personal user

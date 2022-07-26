@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   Container,
@@ -52,6 +52,9 @@ const Index = () => {
   const [userName, setUserName] = useState("");
   const [dropDown, setDropDown] = useState(false)
 
+  const messageRef = useRef()
+  const moreRef = useRef()
+
   const {
     state: { conversations, userData },
   } = DataContext();
@@ -63,11 +66,32 @@ const Index = () => {
 
   const token = JSON.parse(localStorage.getItem("token") || null);
 
+  function postMessage(){
+    console.log(messageRef.current.value)
+  }
+
   const client = new WebSocket(
     `wss://duduzili.com/ws/chat/psalmskalu?token=${token}`
   );
 
   console.log(client)
+
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setDropDown(false);
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+  useOutsideAlerter(moreRef)
 
   const msgBody = {
     user: "psalmskalu",
@@ -131,9 +155,9 @@ const Index = () => {
               <h3>Messages</h3>
 
               <ImgBox>
-                <img src={Settings} alt="icons" style={{marginTop: "5px"}} onClick={()=> setDropDown(!dropDown)}/>
+                <img src={Settings} alt="icons" style={{marginTop: "5px"}} onClick={()=> setDropDown(!dropDown)} ref={moreRef}/>
 
-                <DropDownBox className="dropdown" style={{display: dropDown ? "block" : "none"}}>
+                <DropDownBox className="dropdown"  style={{display: dropDown ? "block" : "none"}}>
                   <DropDownContent>
                     <div style={{
                       display: "flex",
@@ -278,7 +302,7 @@ const Index = () => {
                           <h4>You</h4>
                           <h6>{item?.date}</h6>
                         </NameBox>
-                        <p>{item?.content}</p>
+                        <p>{item?.text}</p>
                       </ChatMessage>
                     );
                   })}
@@ -304,7 +328,7 @@ const Index = () => {
                   }} */}
                 {/* /> */}
               </GifBox>
-              <WriteMessage placeholder="Your message" />
+              <WriteMessage placeholder="Your message" ref={messageRef}/>
               <ButtonBox>
                 <Button
                   height="35px"
@@ -313,6 +337,7 @@ const Index = () => {
                   border="none"
                   br="32px"
                   color="white"
+                  onClick={postMessage}
                 >
                   Send
                 </Button>

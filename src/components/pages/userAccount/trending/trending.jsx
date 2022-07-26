@@ -58,7 +58,7 @@ const Index = () => {
                 {trendingPosts?.trending?.article.map((item, idx) => {
                   return (
                     <TrendPost
-                      bimg={item?.photo_url || Img1}
+                      bimg={item?.photo_url || Img1}  
                       key={idx}
                     >
                       <div className="holder">

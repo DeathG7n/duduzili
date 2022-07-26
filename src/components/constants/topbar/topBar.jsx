@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import {
@@ -50,6 +50,24 @@ const Index = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const [searchResult, setSearchResult] = useState("");
   const [dropDown, setDropDown] = useState(false)
+
+  const moreRef = useRef()
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setDropDown(false);
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+  useOutsideAlerter(moreRef)
 
   const { searchRequest, data } = useSearchRequest();
 
@@ -210,7 +228,7 @@ const Index = () => {
                   </p>
                   
                   </Link>
-                  {!dropDown ? <ExpandMoreIcon onClick={handleDropDown} sx={{ fontSize: 30 }} /> : <ExpandLessIcon onClick={handleDropDown} color="success" sx={{ fontSize: 30 }}/>}
+                  {!dropDown ? <ExpandMoreIcon onClick={handleDropDown} sx={{ fontSize: 30 }} ref={moreRef}/> : <ExpandLessIcon onClick={handleDropDown} color="success" sx={{ fontSize: 30 }} ref={moreRef}/>}
                   
 
                   <DropDownBox className="dropdown" style={{

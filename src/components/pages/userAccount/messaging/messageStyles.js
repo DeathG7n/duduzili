@@ -382,4 +382,8 @@ export const Button = styled.button`
   margin: ${(props) => props.margin};
   font-weight: 600;
   cursor: pointer;
+
+  :active{
+    background-color: #525354;
+  }
 `;
