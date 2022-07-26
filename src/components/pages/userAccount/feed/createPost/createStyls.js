@@ -92,7 +92,7 @@ export const ToolTipBox = styled.div`
   color: white;
   border-radius: 5px;
   top: 25px;
-  z-index: 10;
+  z-index: 1;
   left: 10px;
   opacity: 0;
   transition: all 0.4s ease-in;

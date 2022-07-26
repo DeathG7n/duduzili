@@ -230,3 +230,30 @@ export const NavigationBox = styled.div`
     /* border: 0.5px solid #29BB89 */
   }
 `;
+
+export const MediaBody = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  padding-top: 10px;
+`
+
+export const MediaCard = styled.div`
+  margin: 10px 8px;
+  width: 150px;
+
+  > video{
+    width: 100%;
+    height: 150px;
+  }
+  
+  > img{
+    width: 100%;
+    height: 150px;
+  }
+
+  > audio{
+    width: 100%;
+    height: 150px;
+  }
+`

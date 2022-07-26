@@ -40,6 +40,7 @@ import upload from "../../../assets/upload.png";
 import searchIcon from "../../../assets/search.png";
 import MobileMessageComponent from "./mobileView/mobileView";
 import {Rings} from "react-loader-spinner";
+import { truncate } from "../../../constants/textTruncate";
 
 import { DataContext } from "../../../api/context";
 import { useGetRequest } from "../../../api/api";
@@ -49,6 +50,7 @@ const Index = () => {
   const [userIndex, setUserIndex] = useState(0);
   const [userId, setUserId] = useState(null);
   const [userName, setUserName] = useState("");
+  const [dropDown, setDropDown] = useState(false)
 
   const {
     state: { conversations, userData },
@@ -72,6 +74,14 @@ const Index = () => {
     firstname: "Psalms",
     message: "Did you receive any message",
   };
+
+  // window.addEventListener("click", ()=>{
+  //   if(dropDown){
+  //     setDropDown(false)
+  //   }else{
+  //     return
+  //   }
+  // })
 
   useEffect(() => {
     getRequest(`messages/${userId || firstUser}/`);
@@ -103,6 +113,13 @@ const Index = () => {
 
   console.log(userName);
 
+  const checkMessageLength = conversations?.map((c) => {
+    const message = JSON.stringify(c?.last_message)
+    if(message.length >= 20 ){
+      return "..."
+    }
+  })
+
   return (
     <>
       {/* Message component for mobile view  */}
@@ -114,9 +131,9 @@ const Index = () => {
               <h3>Messages</h3>
 
               <ImgBox>
-                <img src={Settings} alt="icons" style={{marginTop: "5px"}}/>
+                <img src={Settings} alt="icons" style={{marginTop: "5px"}} onClick={()=> setDropDown(!dropDown)}/>
 
-                <DropDownBox className="dropdown">
+                <DropDownBox className="dropdown" style={{display: dropDown ? "block" : "none"}}>
                   <DropDownContent>
                     <div style={{
                       display: "flex",
@@ -160,20 +177,20 @@ const Index = () => {
                     onClick={() =>
                       changeUserIndex(
                         index,
-                        item?.sender?.id,
-                        item?.sender?.username
+                        item?.user_one?.id,
+                        item?.user_one?.username
                       )
                     }
                   >
                     <div>
                       <CardImge
                         alt="human"
-                        src={item?.sender?.photo_url || Person}
+                        src={item?.user_one?.photo_url || Person}
                       />
                       <TextBox>
                         <p>
-                          {`${item?.sender?.first_name || ""} ${
-                            item?.sender?.last_name || ""
+                          {`${item?.user_one?.first_name || ""} ${
+                            item?.user_one?.last_name || ""
                           }`}
                           <em
                             style={{
@@ -183,16 +200,18 @@ const Index = () => {
                               marginLeft: "7px",
                             }}
                           >
-                            {item?.sender?.username || ""}
+                            {item?.user_one?.username || ""}
                           </em>
                         </p>
-                        <span>{`${
-                          userData?.user?.id === item?.sender?.id ? "You" : ""
-                        } ${item?.content || ""}`}</span>
+                        <span> {truncate(`${
+                          userData?.user?.id === item?.user_one?.id ? "You" : ""
+                        } ${item?.last_message || ""}`, 20)} 
+                        {checkMessageLength[index]}
+                        </span>
                       </TextBox>
                     </div>
 
-                    <Text>{`${item?.date || ""} ago`}</Text>
+                    <Text>{`${item?.last_modified || ""} ago`}</Text>
                   </CardBody>
                 );
               })}
@@ -246,7 +265,7 @@ const Index = () => {
                           <span>{item?.sender?.username}</span>
                           <h6>{item?.date}</h6>
                         </NameBox>
-                        <p>{item?.content}</p>
+                        <p>{item?.text}</p>
                       </ChatMessage>
                     ) : (
                       <ChatMessage

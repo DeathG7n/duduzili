@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Container,
@@ -39,6 +39,9 @@ const Index = () => {
   const {
     state: { notification, userData, message },
   } = DataContext();
+
+  const [dropDown, setDropDown] = useState(false)
+
   
   const { markAllRequest, markRequest} = useMarkRequest()
   console.log(userData);
@@ -70,9 +73,9 @@ const Index = () => {
               </div>
 
               <IconBox>
-                <img src={icon} alt="icon" style={{ cursor: "pointer" }} />
+                <img src={icon} alt="icon" style={{ cursor: "pointer" }} onClick={()=> setDropDown(!dropDown)}/>
  
-                <DropDownBox className="dropdown">
+                <DropDownBox className="dropdown" style={{display: dropDown ? "block" : "none"}}>
                   <DropDownContent>
                     <div onClick={() => markAllNotifications()}>
                       <img src={TextEdit} alt="" style={{ width: "24px", height: "24px", marginTop: "1px", marginRight: "-15px"}}/>
@@ -99,7 +102,7 @@ const Index = () => {
               <h2>No Notifications</h2>
             ) : (
               notification?.notifications.map((item, ind) => {
-                console.log(item?.id);
+                console.log(item);
                 return (
                   <CardBody bc="#f7fcfa" key={ind} onClick={() => markSingleNotification(item?.id)}>
                     {/* Return empty on Notifications without post url */}
@@ -112,7 +115,7 @@ const Index = () => {
                             src={item?.sender?.photo_url || Person}
                           />
                           <TextBox>
-                            <p>{item?.sender?.first_name || ""}</p>
+                            <p>{`${item?.sender?.first_name} ${item?.sender?.last_name}` || ""}</p>
                             <span>{item.notice || ""}</span>
                           </TextBox>
                         </div>
@@ -129,7 +132,7 @@ const Index = () => {
                             src={item?.sender?.photo_url || Person}
                           />
                           <TextBox>
-                            <p>{item?.sender?.first_name || ""}</p>
+                            <p>{`${item?.sender?.first_name} ${item?.sender?.last_name}` || ""}</p>
                             <span>{item.notice || ""}</span>
                           </TextBox>
                         </div>

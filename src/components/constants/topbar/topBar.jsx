@@ -149,82 +149,88 @@ const Index = () => {
 
           {/* Toggle navbar view when user is logged in */}
           {location.includes("user") ? (
-            <NavigationBox>
-              <Link to="/user/feed">
-                <NotificationBox>
-                  <Icon alt="icon" src={home} />
-                </NotificationBox>
-              </Link>
-
-              <Link to="/user/trending">
-                <NotificationBox ml="25px">
-                  <Icon alt="icon" src={trending} />
-                </NotificationBox>
-              </Link>
-
-              <Link to="/user/messaging">
-                <NotificationBox ml="25px">
-                  <Icon alt="icon" src={mail} />
-                  {userData?.number_of_messages > 0 ? (
-                    <Notify className="notify">{userData?.number_of_messages}</Notify>
-                  ) : (
-                    ""
-                  )}
-                </NotificationBox>
-              </Link>
-
-              <Link to="/user/notifications">
-                <NotificationBox ml="25px">
-                  <Icon alt="icon" src={bell} />
-                  {userData?.number_of_notifications > 0 ? (
-                    <Notify className="notify">
-                      {userData?.number_of_notifications}
-                    </Notify>
-                  ) : (
-                    ""
-                  )}
-                </NotificationBox>
-              </Link>
-
-              <ProfileDropDown>
-                <ProfileImg
-                  alt="human"
-                  src={userData?.user?.photo_url || person}
-                />
-                <Link
-                  to={`/user/${userData?.user?.username}/${userData?.user?.id}`}
-                  style={{
-                    marginLeft: "10px",
-                    textDecoration: "none",
-                    color: "black",
-                    fontWeight: "800",
-                  }}>
-                    <p>
-                  {/* {`${userData?.user?.first_name || ""} ${userData?.user?.last_name || ""}`} */}
-                  {truncate(
-                    `${userData?.user?.first_name || ""} ${userData?.user?.last_name || ""}`,
-                    10
-                  )}
-                  {checkNameLength.length >= 10 ? "..." : ""}
-                </p>
-                
+            <>
+              <NavigationBox>
+                <Link to="/user/feed">
+                  <NotificationBox>
+                    <Icon alt="icon" src={home} />
+                  </NotificationBox>
                 </Link>
-                {!dropDown ? <ExpandMoreIcon onClick={handleDropDown} sx={{ fontSize: 30 }} /> : <ExpandLessIcon onClick={handleDropDown} color="success" sx={{ fontSize: 30 }}/>}
-                
 
-                <DropDownBox className="dropdown" style={{
-                  display: dropDown ? "block" : "none"
-                }}>
-                  <DropDownMenu
-                    firstName={userData?.user?.first_name || ""}
-                    lastName={userData?.user?.last_name || ""}
-                    username={userData?.user?.username || ""}
-                    id={userData?.user?.id}
-                    handleLogOut={handleLogOut}
+                <Link to="/user/trending">
+                  <NotificationBox ml="25px">
+                    <Icon alt="icon" src={trending} />
+                  </NotificationBox>
+                </Link>
+
+                <Link to="/user/messaging">
+                  <NotificationBox ml="25px">
+                    <Icon alt="icon" src={mail} />
+                    {userData?.number_of_messages > 0 ? (
+                      <Notify className="notify">{userData?.number_of_messages}</Notify>
+                    ) : (
+                      ""
+                    )}
+                  </NotificationBox>
+                </Link>
+
+                <Link to="/user/notifications">
+                  <NotificationBox ml="25px">
+                    <Icon alt="icon" src={bell} />
+                    {userData?.number_of_notifications > 0 ? (
+                      <Notify className="notify">
+                        {userData?.number_of_notifications}
+                      </Notify>
+                    ) : (
+                      ""
+                    )}
+                  </NotificationBox>
+                </Link>
+
+                <ProfileDropDown>
+                  <ProfileImg
+                    alt="human"
+                    src={userData?.user?.photo_url || person}
                   />
-                </DropDownBox>
-              </ProfileDropDown>
-            </NavigationBox>
+                  <Link
+                    to={`/user/${userData?.user?.username}/${userData?.user?.id}`}
+                    style={{
+                      marginLeft: "10px",
+                      textDecoration: "none",
+                      color: "black",
+                      fontWeight: "800",
+                    }}>
+                      <p>
+                    {/* {`${userData?.user?.first_name || ""} ${userData?.user?.last_name || ""}`} */}
+                    {truncate(
+                      `${userData?.user?.first_name || ""} ${userData?.user?.last_name || ""}`,
+                      10
+                    )}
+                    {checkNameLength.length >= 10 ? "..." : ""}
+                  </p>
+                  
+                  </Link>
+                  {!dropDown ? <ExpandMoreIcon onClick={handleDropDown} sx={{ fontSize: 30 }} /> : <ExpandLessIcon onClick={handleDropDown} color="success" sx={{ fontSize: 30 }}/>}
+                  
+
+                  <DropDownBox className="dropdown" style={{
+                    display: dropDown ? "block" : "none"
+                  }}>
+                    <DropDownMenu
+                      firstName={userData?.user?.first_name || ""}
+                      lastName={userData?.user?.last_name || ""}
+                      username={userData?.user?.username || ""}
+                      id={userData?.user?.id}
+                      handleLogOut={handleLogOut}
+                    />
+                  </DropDownBox>
+                </ProfileDropDown>
+              </NavigationBox>
+              <Link to="/user/discover">
+                <UserIcon alt="human" src={user} />
+              </Link>
+            </>
+            
           ) : (
             <RegisterBox>
               <Button

@@ -109,7 +109,7 @@ const Index = ({
                         {" "}
                         <Name onMouseOver={(e)=> changeDropDown(e)}>
                           <Link 
-                            to="/user/pro"
+                            to={`/user/${item?.user?.username}/${item?.user?.id}`}
                             style={{ textDecoration: "#000", color: "#000", fontWeight: "600" }}
                           >
                             {item?.user?.first_name}

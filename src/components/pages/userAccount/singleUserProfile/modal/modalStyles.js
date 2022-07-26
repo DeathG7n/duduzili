@@ -84,6 +84,7 @@ export const ProfileImg = styled.img`
   height: 100px;
   border-radius: 50%;
   margin-top: 150px;
+  position: relative;
 
   @media screen and (max-width: 650px) {
     display: none;

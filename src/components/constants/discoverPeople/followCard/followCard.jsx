@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from "react-router-dom"
 
 import { Body, TextBox, CardImge, Button } from "../discoverStyles";
 import { useFollowGetRequest } from "../../../api/api";
@@ -19,6 +20,9 @@ const FollowCard = ({ item }) => {
   };
 
   return (
+    <>
+    <Link
+      to={`/user/${item?.username}/${item?.id}`} style={{textDecoration: "none"}}>
     <Body key={item.id}>
       <div>
         <CardImge alt="human" src={item.photo_url || Person} />
@@ -41,6 +45,9 @@ const FollowCard = ({ item }) => {
         {isFollowing === true ? "Unfollow" : "Follow"}
       </Button>
     </Body>
+    </Link>
+    </>
+    
   );
 };
 

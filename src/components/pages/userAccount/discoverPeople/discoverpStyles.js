@@ -19,6 +19,7 @@ export const BodyBox = styled.div`
   @media screen and (max-width: 900px) {
     justify-content: center;
     width: 99%;
+    margin: 0;
   }
 `;
 
@@ -29,6 +30,7 @@ export const NewsFeedBox = styled.div`
 
   @media screen and (max-width: 900px) {
     width: 100%;
+    margin: 0;
   }
 `;
 

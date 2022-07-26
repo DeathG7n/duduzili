@@ -89,7 +89,6 @@ export const DropDownBox = styled.div`
   padding: 20px 0px;
   background-color: white;
   position: absolute;
-  display: none;
   top: 20px;
   right: 0%;
   box-shadow: 0px 16px 64px rgba(16, 34, 28, 0.32);
@@ -163,8 +162,8 @@ export const NonLinkBox = styled.div`
 `;
 
 export const CardImge = styled.img`
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
 
   @media screen and (max-width: 600px) {

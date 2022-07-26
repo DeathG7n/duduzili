@@ -19,11 +19,14 @@ import {
   NavigationBox,
   EditIcon,
   BioDescText,
+  MediaCard,
+  MediaBody
 } from "./profileStyles";
 
 import Trending from "../../../constants/trending/trending";
 import TagBox from "../../../constants/tagBox/tagBox";
 import NewsFeed from "../../../constants/postCard/postCard";
+import Audio from "../../../constants/postCard/postCard"
 import Modal from "./modal/modal";
 import DiscoverPeople from "../../../constants/discoverPeople/discoverPeople";
 
@@ -32,19 +35,23 @@ import Location from "../../../assets/map-pin.png";
 import editIcon from "../../../assets/edit.png";
 import { DataContext } from "../../../api/context";
 import { useParams, Link } from "react-router-dom";
-import { useGetRequest } from "../../../api/api";
+import { useGetRequest, useFollowGetRequest } from "../../../api/api";
 import SkeletonLoader from "../../../constants/skeletonLoaders/postCardLoader";
 
 const Index = () => {
   const [typeId, setTypeId] = useState(0);
   const [openModal, setOpenModal] = useState(false);
+  
+  
 
   const {
     state: { userData },
   } = DataContext();
   console.log(userData);
   const { getRequest, loading, data } = useGetRequest();
+  const { getFollowRequest } = useFollowGetRequest();
 
+  const [isFollowing, setIsFollowing] = useState(data?.i_am_following_this_user);
   const params = useParams();
   console.log(params.id);
 
@@ -64,7 +71,15 @@ const Index = () => {
   useEffect(() => {
     getRequest(`user/${params.id}/`);
     multipleRequest();
-  }, []);
+  }, [params.id]);
+
+  const sendFollowRequest = (id) => {
+    getFollowRequest(`follow/${id}/`, isFollowing);
+    toggleFollowText();
+  };
+  const toggleFollowText = () => {
+    setIsFollowing((props) => !props);
+  };
 
   const handleOpenModal = () => {
     setOpenModal((props) => !props);
@@ -77,7 +92,7 @@ const Index = () => {
     data?.drafts,
   ];
 
-  console.log(data?.saveds)
+  console.log(data)
 
   const handleChangePostType = (num) => {
     setTypeId(num);
@@ -132,8 +147,9 @@ const Index = () => {
                           color="#29BB89"
                           br="20px"
                           fw="500"
+                          onClick={()=>sendFollowRequest(data?.user.id)}
                         >
-                          Follow
+                          {isFollowing ? "Unfollow" : "Follow"}
                         </Button>
                       ) : (
                         // Edit button for personal user
@@ -236,7 +252,11 @@ const Index = () => {
                 </button>
               </NavigationBox>
               {/* News feed box below */}
-              <NewsFeed postFeed={postTypes[typeId]} />
+              {typeId === 1 ?
+                <Media data={data?.medias}/>
+               :  
+               <NewsFeed postFeed={postTypes[typeId]} />}
+              
             </NewsFeedBox>
             <DiscoverBox>
               <DiscoverPeople />
@@ -251,4 +271,45 @@ const Index = () => {
 };
 
 export default Index;
+
+
+const Media = ({data})=>{
+  const media = data.filter((d) => (d.audio !== null || d.photo !== null || d.video !== null))
+  console.log(media)
+  return(
+    <MediaBody>
+      {media && media.map((item)=>{
+      return(
+        <Link to={`/user${item?.post_url}`}>
+          <MediaCard>
+            {/* Render image */}
+            {item?.photo_url ? (
+              <img alt="post" src={item?.photo_url} />
+            ) : (
+              ""
+            )}
+            {/* Render audio */}
+            {item?.audio_url ? (
+              <Audio sourceUrl={item?.audio_url} />
+            ) : (
+              ""
+            )}
+            {/* Render video */}
+            {item?.video_url ? (
+              <video controls>
+                <source src={item?.video_url} type="video/mp4" />
+              </video>
+            ) : (
+              ""
+            )}
+          </MediaCard> 
+        </Link>
+      )
+    })
+    }
+    </MediaBody>
+    
+    
+  )
+}
 

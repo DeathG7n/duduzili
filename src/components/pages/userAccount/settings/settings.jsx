@@ -54,61 +54,54 @@ const Index = () => {
             <TitleBox>
               <h3>Settings</h3>
             </TitleBox>
-
-            <Menu>
-              <Link
-                to="/user/settings"
-                style={{ textDecoration: "none", color: "#10221c" }}
-              >
+            <Link
+              to="/user/settings"
+              style={{ textDecoration: "none", color: "#10221c" }}
+            >
+              <Menu>
                 <p>Account</p>
-              </Link>
+                <ArrowForwardIosIcon style={{ fontSize: "15px" }} />
+              </Menu>
+            </Link>
 
-              <ArrowForwardIosIcon style={{ fontSize: "15px" }} />
-            </Menu>
-
-            <Menu>
-              <Link
-                to="/user/settings/safety"
-                style={{ textDecoration: "none", color: "#10221c" }}
-              >
+            <Link
+              to="/user/settings/safety"
+              style={{ textDecoration: "none", color: "#10221c" }}
+            >
+              <Menu>
                 <p>Safety & Privacy</p>
-              </Link>
+                <ArrowForwardIosIcon style={{ fontSize: "15px" }} />
+              </Menu>
+            </Link>
 
-              <ArrowForwardIosIcon style={{ fontSize: "15px" }} />
-            </Menu>
-
-            <Menu>
-              <Link
-                to="/user/settings/feeds"
-                style={{ textDecoration: "none", color: "#10221c" }}
-              >
+            <Link
+              to="/user/settings/feeds"
+              style={{ textDecoration: "none", color: "#10221c" }}
+            >
+              <Menu>
                 <p>Feeds</p>
-              </Link>
+                <ArrowForwardIosIcon style={{ fontSize: "15px" }} />
+              </Menu>
+            </Link>
 
-              <ArrowForwardIosIcon style={{ fontSize: "15px" }} />
-            </Menu>
-
-            <Menu>
-              <Link
-                to="/user/settings/notification"
-                style={{ textDecoration: "none", color: "#10221c" }}
-              >
+            <Link
+              to="/user/settings/notification"
+              style={{ textDecoration: "none", color: "#10221c" }}
+            >
+              <Menu>
                 <p>Notifications</p>
-              </Link>
-
-              <ArrowForwardIosIcon style={{ fontSize: "15px" }} />
-            </Menu>
-
-            <Menu>
-              <Link
-                to="/user/settings/chat"
-                style={{ textDecoration: "none", color: "#10221c" }}
-              >
+                <ArrowForwardIosIcon style={{ fontSize: "15px" }} />
+              </Menu>
+            </Link>
+            <Link
+              to="/user/settings/chat"
+              style={{ textDecoration: "none", color: "#10221c" }}
+            >
+              <Menu>
                 <p>Chat & Messages</p>
-              </Link>
-
-              <ArrowForwardIosIcon style={{ fontSize: "15px" }} />
-            </Menu>
+                <ArrowForwardIosIcon style={{ fontSize: "15px" }} />
+              </Menu>
+            </Link>
           </SettingsBox>
           <BodyBox>
             <BodyTitleBox>

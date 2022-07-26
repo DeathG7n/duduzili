@@ -21,6 +21,7 @@ import Cancel from "../../../../assets/x.png";
 import arrowBack from "../../../../assets/arrow-right.png";
 import { useUpdateRequest } from "../../../../api/api";
 import { DataContext } from "../../../../api/context";
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
 const Index = ({ handleOpenModal, id }) => {
   const { loading, updateRequest } = useUpdateRequest();
@@ -92,7 +93,7 @@ const Index = ({ handleOpenModal, id }) => {
     }
   };
 
-  // console.log(URL.createObjectURL(formData.photo))
+  console.log(formData)
 
   return (
     <ModalContainer>
@@ -113,15 +114,12 @@ const Index = ({ handleOpenModal, id }) => {
         </ModalTitle>
         <Rule />
         <ModalBody>
-          <label for="photo">
+          <label htmlFor="photo" style={{position: "relative"}}>
             <ProfileImg
               alt="human"
-              src={
-                formData.photo === true
-                  ? URL.createObjectURL(formData.photo)
-                  : person
-              }
+              src={formData.photo !== null ? formData.photo : person}
             />
+            <CameraAltIcon sx={{color: "#29bb89"}} style={{position: "absolute", bottom: "40px", right: "35px"}}/>
           </label>
 
           <FormBox>

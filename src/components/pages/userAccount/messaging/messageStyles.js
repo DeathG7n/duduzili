@@ -70,8 +70,8 @@ export const TitleBox = styled.div`
 export const ImgBox = styled.div`
   position: relative;
 
-  :hover .dropdown {
-    display: block;
+  // :hover .dropdown {
+  //   display: block;
 
     @media screen and (max-width: 800px) {
       display: none;
@@ -84,7 +84,7 @@ export const DropDownBox = styled.div`
   padding: 20px 0px;
   background-color: white;
   position: absolute;
-  display: none;
+  // display: none;
   top: 20px;
   right: 0%;
   box-shadow: 0px 16px 64px rgba(16, 34, 28, 0.32);

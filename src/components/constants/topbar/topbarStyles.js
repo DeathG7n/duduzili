@@ -19,9 +19,10 @@ export const NavBox = styled.div`
   gap: 4%;
   align-items: center;
 
-  // @media screen and (max-width: 1100px) {
-  //   width: 95%;
-  // }
+  @media screen and (min-width: 375px)and (max-width: 675px) {
+    display: flex;
+    padding: 0 10px;
+  }
 `;
 
 export const LogoImg = styled.img`
@@ -42,6 +43,9 @@ export const LogoBox = styled.div`
     margin-top: 18px;
     margin-left: 8%;
    
+    @media screen and (min-width: 375px)and (max-width: 675px) {
+      display: none;
+    }
     
 
 `
@@ -80,7 +84,6 @@ export const IconBox = styled.div`
   align-items: center;
   position: relative;
   left: 7%;
-  // margin-right: -8%;
   
   @media screen and (max-width: 1100px){
     left: 9%;
@@ -91,6 +94,10 @@ export const IconBox = styled.div`
     width: 55px;
     height: 50px;
   }
+
+  @media screen and (min-width: 375px)and (max-width: 675px) {
+    left: 14%;
+  }
 `;
 
 export const Form = styled.form`
@@ -99,6 +106,12 @@ export const Form = styled.form`
   width: 45%;
   margin-left: 1%;
   margin-right: auto;
+
+  @media screen and (min-width: 375px)and (max-width: 675px) {
+    width: 80%;
+    margin: 0;
+    justify-content: flex-start;
+  }
 `;
 
 export const Input = styled.input`
@@ -127,6 +140,7 @@ export const Input = styled.input`
   ::placeholder{
     color: #a3c1be;
   }
+  
 
 `;
 
@@ -208,6 +222,9 @@ export const NavigationBox = styled.div`
   @media screen and (max-width: 1100px) {
     gap: 5%;
   }
+  @media screen and (min-width: 375px)and (max-width: 675px) {
+    display: none;
+  }
 `;
 
 export const ProfileDropDown = styled.div`
@@ -261,9 +278,11 @@ export const MobileProfileImg = styled.img`
   border-radius: 50%;
   display: none;
 
-  // @media screen and (max-width: 1100px) {
-  //   display: block;
-  // }
+  @media screen and (min-width: 375px)and (max-width: 675px) {
+    display: block;
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 export const UserIcon = styled.img`
@@ -272,9 +291,11 @@ export const UserIcon = styled.img`
   display: none;
   cursor: pointer;
 
-  // @media screen and (max-width: 1100px) {
-  //   display: block;
-  // }
+  @media screen and (min-width: 375px)and (max-width: 675px) {
+    display: block;
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 export const SearchComp = styled.div`
