@@ -102,6 +102,7 @@ const Index = () => {
     setSearchResult(e.target.value);
     
   };
+  console.log(userData)
   // Redirect user to search results pages
   const changeRoute = () => {
     handleOpenSearch();
@@ -233,7 +234,7 @@ const Index = () => {
                   </p>
                   
                   </Link>
-                  {!dropDown ? <ExpandMoreIcon onClick={handleDropDown} sx={{ fontSize: 30 }}/> : <ExpandLessIcon onClick={handleDropDown} color="success" sx={{ fontSize: 30 }}/>}
+                  {!dropDown ? <ExpandMoreIcon onClick={handleDropDown} sx={{ fontSize: 30 }}/> : <ExpandLessIcon onClick={handleDropDown}  sx={{ fontSize: 30, color:"#29BB89" }}/>}
                   
 
                   <DropDownBox className="dropdown" style={{
@@ -245,6 +246,7 @@ const Index = () => {
                       username={userData?.user?.username || ""}
                       id={userData?.user?.id}
                       handleLogOut={handleLogOut}
+                      online={userData?.user?.is_online}
                     />
                   </DropDownBox>
                 </ProfileDropDown>

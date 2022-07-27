@@ -24,6 +24,7 @@ export const initialValues = {
   singleRepostData: null,
   followings: null,
   followers: null,
+  isOnline: null
 };
 
 export const reducer = (state, action) => {
@@ -44,6 +45,7 @@ export const reducer = (state, action) => {
       ...state,
       userData: action.payload,
       isLoggedIn: true,
+      isOnline: action.payload?.user?.is_online
     };
   }
   // Fetch all news feed posts

@@ -169,7 +169,7 @@ export const Text = styled.p`
 
 export const MessageTitleBox = styled.div`
   width: 100%;
-  padding: 26px 15px;
+  padding: 23px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -233,6 +233,7 @@ export const SearchInput = styled.input`
 export const MessageHeader = styled.div`
   display: flex;
   align-items: center;
+  margin: -15px 0 -8px 0;
 
   > h3 {
     font-size: 17px;
@@ -240,9 +241,9 @@ export const MessageHeader = styled.div`
     margin-left: 10px;
   }
 
-  > p {
-    color: #49665c;
-    font-size: 15px;
+  > em {
+    color: black;
+    font-size: 13px;
     margin-left: 10px;
   }
 `;
@@ -257,7 +258,7 @@ export const ProfileImg = styled.img`
 export const ChatBody = styled.div`
   width: 100%;
   box-sizing: border-box;
-  padding: 15px;
+  padding: 15px 0;
   overflow-x: scroll;
   height: calc(650px - 173px);
 `;
@@ -267,6 +268,7 @@ export const ChatMessage = styled.div`
   box-sizing: border-box;
   border-radius: 16px 16px 16px 0px;
   padding: 15px;
+  margin: 0 15px;
   max-width: 300px;
   box-sizing: border-box;
   overflow-wrap: break-word;
@@ -333,18 +335,17 @@ export const WriteBox = styled.div`
   position: absolute;
   bottom: 0px;
   border-top: 1px solid #d0e2dc;
-  padding: 10px 10px 40px 0px;
+  padding: 10px 20px 40px 20px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 15px;
+  gap: 20px;
   box-sizing: border-box;
 `;
 
 export const WriteMessage = styled.input`
-  // width: calc(100% - 260px);
-  width: 60%;
+  width: 70%;
   height: 40px;
   background: #e6ebea;
   outline: none;

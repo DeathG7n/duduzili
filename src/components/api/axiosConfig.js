@@ -12,8 +12,8 @@ export const API = axios.create({
 });
 
 // Interceptors add token to authorization requests
-API.interceptors.request.use((config) => {
-    const token = JSON.parse(localStorage.getItem("token"));
+API.interceptors.request.use(async(config) => {
+    const token = await JSON.parse(localStorage.getItem("token"));
     console.log(token)
     if (token) {
       config.headers.authorization = `Token ${token}`;

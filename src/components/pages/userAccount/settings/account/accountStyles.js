@@ -14,6 +14,7 @@ export const Content = styled.div`
 
 export const TextBox = styled.div`
   margin-left: 7px;
+  width: 55%;
 
   > p {
     color: black;

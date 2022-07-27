@@ -32,10 +32,9 @@ const Index = () => {
 
       <Content mt="30px">
         <TextBox>
-          <p>Personalize recommendation based on your activity</p>
+          <p>Personalize recommendation based on your activities</p>
           <span>
-            Allow search engines like Google to link to your profile in their
-            search results.
+            Personalize your recommendation based on your activities
           </span>
         </TextBox>
 

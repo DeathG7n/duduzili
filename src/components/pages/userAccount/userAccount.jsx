@@ -19,6 +19,8 @@ import Followers from "./followersPage/followersPage"
 import Followings from "./followings/followings"
 import Repost from "./repostPage/repost"
 import SavedPost from "./savedPost/savedPost"
+import About from "../../constants/static pages/about"
+import Help from "../../constants/static pages/help"
 
 
 import TopBar from "../../constants/topbar/topBar";
@@ -146,6 +148,10 @@ const Index = () => {
           <Route exact path="profile" element={<Profile />} />
 
           <Route exact path="discover" element={<DiscoverPeople />} />
+
+          <Route exact path="about" element={<About />} />
+
+          <Route exact path="help" element={<Help />} />
 
           <Route exact path="article/new" element={<PostArticle />} />
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   NavBox,
@@ -22,13 +22,28 @@ import help from "../../../assets/help.png";
 
 import { Link } from "react-router-dom";
 import Switch from "../../swich";
+import { DataContext } from "../../../api/context";
+import { useUserActions } from "../../../api/api";
+import { useEffect } from "react";
 
 // TODO fill in the footer links into the array and loop them
 
 // const links = [];
 
-const Index = ({ firstName, lastName, handleLogOut, username, id }) => {
+const Index = ({ firstName, lastName, handleLogOut, username, id}) => {
+  const {userAction} = useUserActions()
+  const {state:{isOnline}} = DataContext()
+  const [online, setOnline] = useState(isOnline)
+  const flag = online ? "no" : "yes"
+  console.log(online)
+  console.log(flag)
 
+  useEffect(()=>{
+    userAction(
+      `change_status/${flag}/`,
+      "Status changed successfully"
+    )
+  }, [online])
   return (
     <NavBox>
       <CardBody>
@@ -79,10 +94,10 @@ const Index = ({ firstName, lastName, handleLogOut, username, id }) => {
         </ListBox>
       </ListContainer>
 
-      <TextStatus>
-        <p>Online Status</p>
+      <TextStatus onClick={()=> setOnline(!online)}>
+        <p>Online Status </p>
 
-        <Switch checkedValue={true} />
+        <Switch checkedValue={online} />
       </TextStatus>
 
       <Footer>

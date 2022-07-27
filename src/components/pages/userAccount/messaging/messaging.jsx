@@ -71,8 +71,11 @@ const Index = () => {
   }
 
   const client = new WebSocket(
-    `wss://duduzili.com/ws/chat/psalmskalu?token=${token}`
+    `wss://duduzili-staging-server.com.ng/ws/chat/psalmskalu?token=${token}`
   );
+
+  const profileID = conversations?.find((c) => c?.user_one?.id === userId || c?.user_two?.id === userId)
+  console.log(profileID)
 
   console.log(client)
 
@@ -92,20 +95,12 @@ const Index = () => {
     }, [ref]);
   }
   useOutsideAlerter(moreRef)
-
+ console.log(data)
   const msgBody = {
     user: "psalmskalu",
     firstname: "Psalms",
     message: "Did you receive any message",
   };
-
-  // window.addEventListener("click", ()=>{
-  //   if(dropDown){
-  //     setDropDown(false)
-  //   }else{
-  //     return
-  //   }
-  // })
 
   useEffect(() => {
     getRequest(`messages/${userId || firstUser}/`);
@@ -136,6 +131,7 @@ const Index = () => {
   // };
 
   console.log(userName);
+  console.log(userId)
 
   const checkMessageLength = conversations?.map((c) => {
     const message = JSON.stringify(c?.last_message)
@@ -201,15 +197,15 @@ const Index = () => {
                     onClick={() =>
                       changeUserIndex(
                         index,
-                        item?.user_one?.id,
-                        item?.user_one?.username
+                        userData?.user?.id === item?.user_one?.id ?item?.user_two?.id : item?.user_one?.id,
+                        userData?.user?.id === item?.user_one?.id ? item?.user_two?.username : item?.user_one?.username
                       )
                     }
                   >
                     <div>
                       <CardImge
                         alt="human"
-                        src={item?.user_one?.photo_url || Person}
+                        src={(userData?.user?.id === item?.user_one?.id ? item?.user_two?.photo_url : item?.user_one?.photo_url) || Person}
                       />
                       <TextBox>
                         <p>
@@ -242,19 +238,6 @@ const Index = () => {
           </MessagesBox>
 
           <ChatBox>
-            <MessageTitleBox>
-              {/* <MessageHeader>
-                <ProfileImg
-                  alt="human"
-                  src={user?.sender?.photo_url || Person}
-                />
-                <h3>{user?.sender?.first_name}</h3>
-                <p>{user?.sender?.username}</p>
-              </MessageHeader>
-
-              <img src={dots} alt="three dots" style={{ cursor: "pointer" }} /> */}
-            </MessageTitleBox>
-
             <>
               {loading ? (
                 <div
@@ -270,26 +253,37 @@ const Index = () => {
                     color="#29bb89"
                     height={60}
                     width={60}
-                    //   timeout={3000}
                   />
                 </div>
               ) : (
                 <ChatBody>
+                  <MessageTitleBox>
+                    {profileID && <MessageHeader>
+                      <ProfileImg
+                        alt="human"
+                        src={(userData?.user?.id === profileID?.user_one?.id ? profileID?.user_two?.photo_url : profileID?.user_one?.photo_url) || Person} />
+                      <h3>{userData?.user?.id === profileID?.user_one?.id ? profileID?.user_two?.first_name : profileID?.user_one?.first_name}</h3>
+                      <em>{userData?.user?.id === profileID?.user_one?.id ? profileID?.user_two?.username : profileID?.user_one?.username}</em>
+                    </MessageHeader>}
+                    {/* {profileID && <img src={dots} alt="three dots" style={{ cursor: "pointer" }} />} */}
+                  </MessageTitleBox>
                   {data?.messages.map((item) => {
                     return item?.receiver?.id !== userId ? (
-                      <ChatMessage
-                        bc="white"
-                        border="1px solid #d0e2dc"
-                        mt="15px"
-                        key={item?.id}
-                      >
-                        <NameBox>
-                          <h4>{item?.sender?.first_name} </h4>
-                          <span>{item?.sender?.username}</span>
-                          <h6>{item?.date}</h6>
-                        </NameBox>
-                        <p>{item?.text}</p>
-                      </ChatMessage>
+                      <>
+                        <ChatMessage
+                          bc="white"
+                          border="1px solid #d0e2dc"
+                          mt="15px"
+                          key={item?.id}
+                        >
+                            <NameBox>
+                              <h4>{item?.sender?.first_name} </h4>
+                              <span>{item?.sender?.username}</span>
+                              <h6>{item?.date}</h6>
+                            </NameBox>
+                            <p>{item?.text}</p>
+                          </ChatMessage>
+                      </>
                     ) : (
                       <ChatMessage
                         bc="#E6FAEB"

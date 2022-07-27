@@ -17,6 +17,8 @@ import Chat from "./chat/chat";
 import Feed from "./feeds/feeds";
 import Safety from "./safety/safety";
 import Notifications from "./nofications/notifications";
+import Blocked from "./blocked/blocked";
+import Muted from "./muted/muted";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import EmailModal from "./account/modal/emailModal/emailModal";
@@ -98,7 +100,25 @@ const Index = () => {
               style={{ textDecoration: "none", color: "#10221c" }}
             >
               <Menu>
-                <p>Chat & Messages</p>
+                <p>Messages</p>
+                <ArrowForwardIosIcon style={{ fontSize: "15px" }} />
+              </Menu>
+            </Link>
+            <Link
+              to="/user/settings/blocked"
+              style={{ textDecoration: "none", color: "#10221c" }}
+            >
+              <Menu>
+                <p>Blocked Users</p>
+                <ArrowForwardIosIcon style={{ fontSize: "15px" }} />
+              </Menu>
+            </Link>
+            <Link
+              to="/user/settings/muted"
+              style={{ textDecoration: "none", color: "#10221c" }}
+            >
+              <Menu>
+                <p>Muted Users</p>
                 <ArrowForwardIosIcon style={{ fontSize: "15px" }} />
               </Menu>
             </Link>
@@ -110,11 +130,15 @@ const Index = () => {
                   {location.includes("safety")
                     ? "Safety"
                     : location.includes("chat")
-                    ? "Chat"
+                    ? "Messages"
                     : location.includes("feeds")
                     ? "Feeds"
                     : location.includes("notification")
                     ? "Notifications"
+                    : location.includes("blocked")
+                    ? "Blocked Users"
+                    : location.includes("muted")
+                    ? "Muted Users"
                     : "Account"}
                 </h3>
               </BodyHeader>
@@ -133,7 +157,12 @@ const Index = () => {
 
                 <Route exact path="notification" element={<Notifications />} />
 
+                <Route exact path="blocked" element={<Blocked />} />
+
+                <Route exact path="muted" element={<Muted />} />
+
                 <Route exact path="safety" element={<Safety />} />
+
                 <Route path="*" element={<Navigate to="/" /> } />
               </Routes>
             </BodyContent>
