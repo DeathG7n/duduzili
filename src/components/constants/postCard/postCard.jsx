@@ -38,6 +38,8 @@ import MobileMoreDropDown from "./dropdowns/moreDropDown/moreDropDown";
 import MobileShareDropDown from "./dropdowns/shareDropDown/shareDropDown";
 import RepostCard from "../repostCard/repostCard";
 import { LinkPreview } from "@dhaiwat10/react-link-preview";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import user from "../../assets/user.png";
 import flag from "../../assets/flag.png";
@@ -160,21 +162,8 @@ const Index = ({
                               )}
                             </Name1>
                           </div>
-                          {userData?.user?.username !== item?.user?.username ? <Button onClick={()=>{
-
-                          }}>{item?.user?.is_following ? "Unfollow" : "Follow"}</Button> : <button style={{
-                            width: "80%",
-                            height: "37px",
-                            alignSelf: "center",
-                            backgroundColor: "#f7fdfb",
-                            border: "1px solid #29BB89",
-                            color: "#cdcaca",
-                            marginTop: "20px",
-                            fontWeight: "600",
-                            fontSize: "15px",
-                            cursor: "no-drop",
-                            borderRadius: "20px",
-                          }}>{item?.user?.is_following ? "Unfollow" : "Follow"}</button>}
+                          {userData?.user?.username !== item?.user?.username ? 
+                          <Button onClick={()=>{}}>{item?.user?.is_following ? "Unfollow" : "Follow"}</Button> : ""}
                         </ProfileDropDownContent>
                       </ProfileDropDown>
                     </ProfileBox>
@@ -486,13 +475,15 @@ const MoreComponent = ({
           <DropDownContent
             onClick={() => updateStateEditPost(item?.id)}
           >
-            <img src={user} alt="icon" />
+            {/* <img src={user} alt="icon" /> */}
+            <EditIcon sx={{fontSize: "15px"}}/>
             <p>Edit Post</p>
           </DropDownContent>
           <DropDownContent
             onClick={() => handleDeleteRequest(item?.id)}
           >
-            <img src={user} alt="icon" />
+            {/* <img src={user} alt="icon" /> */}
+            <DeleteIcon sx={{fontSize: "15px"}}/>
             <p>Delete Post</p>
           </DropDownContent>
         </DropDown1>

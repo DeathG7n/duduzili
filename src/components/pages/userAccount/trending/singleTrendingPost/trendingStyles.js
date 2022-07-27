@@ -130,4 +130,9 @@ export const Button = styled.button`
   font-weight: ${(props) => props.fw};
   font-size: 14px;
   cursor: pointer;
+
+  :hover{
+    background-color: #29BB89;
+    color: white;
+  }
 `;

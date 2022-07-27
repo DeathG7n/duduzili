@@ -30,6 +30,7 @@ const Index = () => {
           <CardTitle>Discover People</CardTitle>
           <CardBody>
             {discoverPeople?.users.slice(0, 3).map((item) => {
+              console.log(item)
               return (
                 <FollowCard item={item} key={item.id} />
               );

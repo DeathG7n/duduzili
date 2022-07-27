@@ -16,9 +16,9 @@ const FollowCard = ({ item }) => {
   };
 
   const toggleFollowText = () => {
-    setIsFollowing((props) => !props);
+    setIsFollowing(!isFollowing);
   };
-
+   console.log(isFollowing)
   return (
     <>
     <Link

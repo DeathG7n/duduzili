@@ -15,7 +15,6 @@ export const BodyContainer = styled.div`
 
 export const PostContainer = styled.div`
     display: flex;
-    justify-content: center;
     flex-direction: column;
 `
 export const TitleBox = styled.div`
@@ -23,6 +22,7 @@ export const TitleBox = styled.div`
   text-indent: 10px;
   background-color: #fff;
   padding-bottom: 10px;
+  margin-top: 15px;
   margin-bottom: 40px;
 
   h1{
@@ -112,7 +112,7 @@ export const DiscoverBox = styled.div`
   width: 20%;
   box-sizing: border-box;
   margin-right: -50px;
-  margin-top: -15px;
+  // margin-top: -15px;
 
   @media screen and (max-width: 900px) {
     display: none;

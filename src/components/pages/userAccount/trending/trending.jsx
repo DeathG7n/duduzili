@@ -61,8 +61,8 @@ const Index = () => {
                       bimg={item?.photo_url || Img1}  
                       key={idx}
                     >
-                      <div className="holder">
-                        <Tag bc="#29BB89">
+                      <div className="holder" style={{background: "#0f131280", height:"90%"}}>
+                        <Tag bc="#ff2222">
                           <Link
                             to={`/user/trending/post/${item.id}`}
                             className="link"

@@ -213,9 +213,8 @@ const Index = () => {
                       />
                       <TextBox>
                         <p>
-                          {`${item?.user_one?.first_name || ""} ${
-                            item?.user_one?.last_name || ""
-                          }`}
+                          {userData?.user?.id === item?.user_one?.id ? `${item?.user_two?.first_name || ""} ${
+                            item?.user_two?.last_name || ""}`: `${item?.user_one?.first_name || ""} ${item?.user_one?.last_name || ""}`}
                           <em
                             style={{
                               color: "#49665c",
@@ -224,7 +223,7 @@ const Index = () => {
                               marginLeft: "7px",
                             }}
                           >
-                            {item?.user_one?.username || ""}
+                            {userData?.user?.id === item?.user_one?.id ? item?.user_two?.username || "" :item?.user_one?.username || ""}
                           </em>
                         </p>
                         <span> {truncate(`${

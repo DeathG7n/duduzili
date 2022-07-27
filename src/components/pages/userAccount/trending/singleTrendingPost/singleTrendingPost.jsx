@@ -61,11 +61,11 @@ const Index = () => {
             <TrendContainer>
               <TrendPost bimg={Img1}>
                 <div className="holder">
-                  <Tag bc="#29BB89">
+                  <Tag bc="#ff2222">
                     <p>{convertData?.topic?.title}</p>
                   </Tag>
 
-                  <TagContent>
+                  <TagContent> 
                     <h4>{convertData?.title}</h4>
                     {/* <p>
                       {truncate(

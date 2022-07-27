@@ -45,7 +45,7 @@ export const ProfileDropDown = styled.div`
   background-color: white;
   position: absolute;
   display: none;
-  bottom: -171px;
+  top: 25px;
   left: ${(props) => props.lf};
   box-shadow: 0px 16px 64px rgba(16, 34, 28, 0.32);
   border-radius: 8px;
@@ -92,7 +92,7 @@ export const Button = styled.button`
   height: 37px;
   align-self: center;
   background-color: #f7fdfb;
-  color: white;
+  color: #29bb89;
   border: 1px solid #29BB89;
   margin-top: 20px;
   font-weight: 600;
@@ -102,8 +102,8 @@ export const Button = styled.button`
   border-radius: 20px;
 
   :hover{
-    color: #29BB89;
-    background-color: #198754;
+    color: white;
+    background-color: #29bb89;
   }
 `;
 

@@ -51,9 +51,10 @@ const Index = () => {
   const { getRequest, loading, data } = useGetRequest();
   const { getFollowRequest } = useFollowGetRequest();
 
-  const [isFollowing, setIsFollowing] = useState(data?.user?.i_am_following_this_user);
+  const [isFollowing, setIsFollowing] = useState(data?.user?.is_following);
   const params = useParams();
-  console.log(params.id);
+  console.log(data?.user?.is_following);
+  console.log(isFollowing);
 
   const multipleRequest = async () => {
     let promise = await Promise.all([
@@ -79,7 +80,7 @@ const Index = () => {
   };
 
   const toggleFollowText = () => {
-    setIsFollowing((props) => !props);
+    setIsFollowing(prevState => !prevState);
   };
 
   const handleOpenModal = () => {
@@ -150,7 +151,7 @@ const Index = () => {
                           fw="500"
                           onClick={()=>sendFollowRequest(data?.user.id)}
                         >
-                          {isFollowing ? "Follow" : "Unfollow"}
+                          {isFollowing ? "Unfollow" : "Follow"}
                         </Button>
                       ) : (
                         // Edit button for personal user

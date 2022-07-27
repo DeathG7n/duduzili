@@ -89,8 +89,13 @@ const Index = () => {
   };
 
   const handleLogOut = () => {
-    dispatch({ type: "LOGOUT" });
-    history("/")
+    const logOut = window.confirm("Do you want to logout")
+    if(logOut){
+      dispatch({ type: "LOGOUT" })
+      history("/")
+    } else{
+      return
+    }
   };
 
   const handleChange = (e) => {
@@ -205,7 +210,7 @@ const Index = () => {
                   </NotificationBox>
                 </Link>
 
-                <ProfileDropDown>
+                <ProfileDropDown ref={moreRef}>
                   <ProfileImg
                     alt="human"
                     src={userData?.user?.photo_url || person}
@@ -228,7 +233,7 @@ const Index = () => {
                   </p>
                   
                   </Link>
-                  {!dropDown ? <ExpandMoreIcon onClick={handleDropDown} sx={{ fontSize: 30 }} ref={moreRef}/> : <ExpandLessIcon onClick={handleDropDown} color="success" sx={{ fontSize: 30 }} ref={moreRef}/>}
+                  {!dropDown ? <ExpandMoreIcon onClick={handleDropDown} sx={{ fontSize: 30 }}/> : <ExpandLessIcon onClick={handleDropDown} color="success" sx={{ fontSize: 30 }}/>}
                   
 
                   <DropDownBox className="dropdown" style={{

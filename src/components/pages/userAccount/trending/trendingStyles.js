@@ -92,7 +92,6 @@ export const TrendContainer = styled.div`
   }
 
   ::-webkit-scrollbar-thumb {
-
     background-color: #29bb89;
   }
 `;
@@ -110,6 +109,8 @@ export const TrendPost = styled.div`
 
   .holder {
     padding: 10px 15px;
+    height: 220px;
+    border-radius: 8px;
   }
 `;
 
@@ -120,6 +121,7 @@ export const Tag = styled.div`
   box-sizing: border-box;
   min-width: 50px;
   width: fit-content;
+  margin-top: 50px;
 
   > p {
     text-align: center;
@@ -164,4 +166,9 @@ export const Button = styled.button`
   font-weight: ${(props) => props.fw};
   font-size: 14px;
   cursor: pointer;
+
+  :hover{
+    background-color: #29BB89;
+    color: white;
+  }
 `;
