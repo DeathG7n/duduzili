@@ -7,6 +7,7 @@ export const NavBox = styled.div`
   box-shadow: 0px 16px 64px rgba(16, 34, 28, 0.32);
   border-radius: 8px;
   transition: all 0.9s ease-in;
+  color: #29bb89;
 `;
 
 export const Body = styled.div`
@@ -120,7 +121,7 @@ export const Tagbox = styled.div`
   > div {
     height: 3px;
     width: 3px;
-    background-color: blue;
+    background-color: #29bb89;
     border-radius: 50%;
   }
 

@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
 import { Card, ContentBox, Links } from "./tagStyles";
 
@@ -6,8 +7,8 @@ const Index = () => {
   return (
     <Card>
       <ContentBox>
-        <Links>Help</Links>
-        <Links>About</Links>
+        <Link to="/user/help"><Links>Help</Links></Link>
+        <Link to="/user/about"><Links>About</Links></Link>
         <Links>Careers</Links>
         <Links>Blog</Links>
         <Links>Press</Links>

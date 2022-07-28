@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 import {
   Container,
@@ -10,6 +10,8 @@ import {
   SocialBox,
   Socials,
   SocialText,
+  ConfirmContainer,
+  ConfirmBox
 } from "./accountStyles";
 
 import { useGetRequest } from "../../../../api/api"
@@ -19,21 +21,28 @@ import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import AppleIcon from '@mui/icons-material/Apple';
 
-const Index = ({ handleOpenEmailModal, handleOpenPasswordModal}) => {
+const Index = ({ handleOpenEmailModal, handleOpenPasswordModal , handleOpenDeleteModal, handleOpenDeactivateModal}) => {
   const{dispatch} = DataContext()
   const { getRequest, data }=useGetRequest()
   const history = useNavigate()
   const handleLogOut = () => {
-    dispatch({ type: "LOGOUT" });
-    history("/")
+    const logOut = window.confirm("Do you want to logout")
+    if(logOut){
+      dispatch({ type: "LOGOUT" })
+      history("/")
+    } else{
+      return
+    }
   };
   useEffect(()=>{
     // pending not completed by the backend
     getRequest("accounts_settings_page/")
   },[])
+  
 
   return (
     <>
+        
       <Container>
         <Content mt="20px">
           <TextBox>
@@ -115,6 +124,7 @@ const Index = ({ handleOpenEmailModal, handleOpenPasswordModal}) => {
             hc="white"
             hbc= "#BD2000"
             fs= "16px"
+            onClick={handleOpenDeactivateModal}
           >
             Deactivate Account
           </Button>
@@ -137,6 +147,7 @@ const Index = ({ handleOpenEmailModal, handleOpenPasswordModal}) => {
             hc="white"
             hbc= "#BD2000"
             fs= "16px"
+            onClick={handleOpenDeleteModal}
           >
             Delete Account
           </Button>
@@ -173,9 +184,13 @@ const Index = ({ handleOpenEmailModal, handleOpenPasswordModal}) => {
 
           <SocialText ml="70px">Connect Apple Account</SocialText>
         </SocialBox>
+        
       </Container>
     </>
   );
 };
 
 export default Index;
+
+
+

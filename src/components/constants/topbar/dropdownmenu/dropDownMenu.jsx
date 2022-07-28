@@ -101,50 +101,76 @@ const Index = ({ firstName, lastName, handleLogOut, username, id}) => {
       </TextStatus>
 
       <Footer>
-        <Tagbox>
-          <div></div>
-          <p>Help</p>
-        </Tagbox>
+        <Link to="/user/help" style={{textDecoration: "none"}}>
+          <Tagbox>
+            <div></div>
+            <p>Help</p>
+          </Tagbox>
+        </Link>
+        
+        <Link to="/user/about" style={{textDecoration: "none"}}>
+          <Tagbox>
+            <div></div>
+            <p>About</p>
+          </Tagbox>
+        </Link>
+        
 
-        <Tagbox>
-          <div></div>
-          <p>About</p>
-        </Tagbox>
+        <Link to="/" style={{textDecoration: "none"}}>
+          <Tagbox>
+            <div></div>
+            <p>Careers</p>
+          </Tagbox>
+        </Link>
+        
 
-        <Tagbox>
-          <div></div>
-          <p>Careers</p>
-        </Tagbox>
+        <Link to="/" style={{textDecoration: "none"}}>
+          <Tagbox>
+            <div></div>
+            <p>Terms</p>
+          </Tagbox>
+        </Link>
+        
 
-        <Tagbox>
-          <div></div>
-          <p>Terms</p>
-        </Tagbox>
+        <Link to="/" style={{textDecoration: "none"}}>
+          <Tagbox>
+            <div></div>
+            <p>Privacy</p>
+          </Tagbox>
+        </Link>
+        
 
-        <Tagbox>
-          <div></div>
-          <p>Privacy</p>
-        </Tagbox>
+        <Link to="/" style={{textDecoration: "none"}}>
+          <Tagbox>
+            <div></div>
+            <p>Blog</p>
+          </Tagbox>
+        </Link>
+        
 
-        <Tagbox>
-          <div></div>
-          <p>Blog</p>
-        </Tagbox>
+        <Link to="/" style={{textDecoration: "none"}}>
+          <Tagbox>
+            <div></div>
+            <p>Policy</p>
+          </Tagbox>
+        </Link>
+        
 
-        <Tagbox>
-          <div></div>
-          <p>Policy</p>
-        </Tagbox>
+        <Link to="/" style={{textDecoration: "none"}}>
+          <Tagbox>
+            <div></div>
+            <p>Press</p>
+          </Tagbox>
+        </Link>
+        
 
-        <Tagbox>
-          <div></div>
-          <p>Press</p>
-        </Tagbox>
+        <Link to="/" style={{textDecoration: "none"}}>
+          <Tagbox>
+            <div></div>
+            <p>Advertise</p>
+        `</Tagbox>
+        </Link>
 
-        <Tagbox>
-          <div></div>
-          <p>Advertise</p>
-        </Tagbox>
       </Footer>
     </NavBox>
     //  </NavContainer>

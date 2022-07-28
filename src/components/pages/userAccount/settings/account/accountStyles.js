@@ -93,3 +93,23 @@ export const SocialText = styled.p`
    color: #29BB89;
    font-weight: 400;
 `
+export const ConfirmContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 30;
+`
+export const ConfirmBox = styled.div`
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 25%;
+  left: 25%;
+  text-align: center;
+  background: white;
+`

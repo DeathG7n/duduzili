@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import {
   Container,
@@ -23,6 +23,8 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import EmailModal from "./account/modal/emailModal/emailModal";
 import PasswordModal from "./account/modal/passwordModal/passwordModal";
+import DeleteConfirm  from "./account/modal/deleteModal/deleteModal";
+import DeactivateConfirm  from "./account/modal/deactivateModal/deactivateModal";
 import SettingsMobileView from "./mobileView/index"
 
 const Index = () => {
@@ -30,6 +32,8 @@ const Index = () => {
 
   const [openEmailModal, setOpenEmailModal] = useState(false);
   const [openPasswordModal, setOpenPasswordModal] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [openDeactivateModal, setOpenDeactivateModal] = useState(false);
 
   const handleOpenEmailModal = () => {
     setOpenEmailModal((props) => !props);
@@ -39,6 +43,25 @@ const Index = () => {
     setOpenPasswordModal((props) => !props);
   };
 
+  const handleOpenDeleteModal = () => {
+    setOpenDeleteModal((props) => !props);
+  };
+
+  const handleOpenDeactivateModal = () => {
+    setOpenDeactivateModal((props) => !props);
+  };
+  const deactiveRef = useRef()
+  const deleteRef = useRef()
+  const inputRef = useRef()
+
+  function isConfirm() {
+    if(inputRef.current.value){
+      alert(inputRef.current.value)
+    } else{
+      return
+    }
+  }
+
   return (
     <>
       {/* Open modals when prompted */}
@@ -46,7 +69,19 @@ const Index = () => {
       {openPasswordModal && (
         <PasswordModal handleOpenModal={handleOpenPasswordModal} />
       )}
-
+      {openDeleteModal && <DeleteConfirm 
+          deleteRef={deleteRef}
+          inputRef={inputRef}
+          isConfirm={isConfirm}
+          handleOpenModal={handleOpenDeleteModal}
+      />}
+       {openDeactivateModal && <DeactivateConfirm 
+          deactiveRef={deactiveRef}
+          inputRef={inputRef}
+          isConfirm={isConfirm}
+          handleOpenModal={handleOpenDeactivateModal}
+        />
+}
       {/* Mobile view settings component */}
       <SettingsMobileView />
 
@@ -149,6 +184,8 @@ const Index = () => {
                 <Route exact path="/" element={<Account
                     handleOpenEmailModal={handleOpenEmailModal}
                     handleOpenPasswordModal={handleOpenPasswordModal}
+                    handleOpenDeactivateModal={handleOpenDeactivateModal}
+                    handleOpenDeleteModal={handleOpenDeleteModal}
                   />} />
 
                 <Route exact path="chat" element={<Chat />} />
