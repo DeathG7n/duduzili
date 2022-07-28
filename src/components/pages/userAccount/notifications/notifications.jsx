@@ -89,9 +89,9 @@ const Index = () => {
                 {/* <img alt="arrow icon" src={arrow} onClick={routeBack} /> */}
                 <h3>Notifications</h3>
               </div>
-
-              <IconBox>
-                <img src={icon} alt="icon" style={{ cursor: "pointer" }} onClick={()=> setDropDown(!dropDown)} ref={moreRef}/>
+              
+              <IconBox ref={moreRef}>
+                <img src={icon} alt="icon" style={{ cursor: "pointer" }} onClick={()=> setDropDown(!dropDown)} />
  
                 <DropDownBox className="dropdown" style={{display: dropDown ? "block" : "none"}}>
                   <DropDownContent>

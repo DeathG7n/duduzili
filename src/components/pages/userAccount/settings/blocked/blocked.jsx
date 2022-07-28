@@ -10,7 +10,7 @@ export default function Blocked() {
   const [unMuted, setUnMuted] = useState(false)
 
   useEffect(()=>{
-        getRequest('blocked_list/')
+      getRequest('blocked_list/')
     },[unMuted])
     
     const blockedUsers = data?.blocked.map((b) =>{

@@ -150,8 +150,8 @@ const Index = () => {
             <TitleBox>
               <h3>Messages</h3>
 
-              <ImgBox>
-                <img src={Settings} alt="icons" style={{marginTop: "5px"}} onClick={()=> setDropDown(!dropDown)} ref={moreRef}/>
+              <ImgBox ref={moreRef}>
+                <img src={Settings} alt="icons" style={{marginTop: "5px"}} onClick={()=> setDropDown(!dropDown)} />
 
                 <DropDownBox className="dropdown"  style={{display: dropDown ? "block" : "none"}}>
                   <DropDownContent>
