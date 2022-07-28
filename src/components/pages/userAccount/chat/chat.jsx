@@ -42,8 +42,16 @@ import gif from "../../../assets/gifs.png";
 import upload from "../../../assets/upload.png";
 import openUpIcon from "../../../assets/openup.png";
 import cancelIcon from "../../../assets/x.png";
+import ChatBubbleOutlineTwoToneIcon from '@mui/icons-material/ChatBubbleOutlineTwoTone';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import { DataContext } from "../../../api/context";
+import { truncate } from "../../../constants/textTruncate";
 
 const Index = () => {
+  const {
+    state: { conversations, userData },
+  } = DataContext();
   const [openChats, setOpenChats] = useState(false);
   const [openSingleChat, setOpenSingleChat] = useState(false);
   const [openWriteMessage, setOpenWriteMessage] = useState(false);
@@ -51,6 +59,13 @@ const Index = () => {
   const handleOpenChat = () => {
     setOpenChats((props) => !props);
   };
+
+  const checkMessageLength = conversations?.map((c) => {
+    const message = JSON.stringify(c?.last_message)
+    if(message.length >= 20 ){
+      return "..."
+    }
+  })
 
   return (
     <>
@@ -60,19 +75,8 @@ const Index = () => {
               Chat
             </ChatTitle>
           <IconBox>
-            
-            <img src={chatIcon} alt="icon" style={{
-              width: "35px"
-            }} />
-            <img
-              src={dropdown}
-              alt="icon"
-              style={{ 
-                marginLeft: "20px",
-                width: "30px"
-               }}
-              onClick={handleOpenChat}
-            />
+            <ChatBubbleOutlineTwoToneIcon sx={{fontSize: "35px", color: "#29bb89"}}/>
+            <ExpandLessIcon onClick={handleOpenChat} style={{marginLeft: "20px"}} sx={{fontSize: "40px"}} />
           </IconBox>
         </OpenBox>
       )}
@@ -83,15 +87,8 @@ const Index = () => {
             <h3 style={{fontSize: "24px"}}>Chat</h3>
 
             <HeaderIconBox>
-              <img src={cross} alt="icons" style={{
-              width: "30px"
-              }}/>
-              <img
-                src={Settings}
-                alt="icons"
-                style={{ marginLeft: "20px", height: "8px", width: "20px" }}
-                onClick={handleOpenChat}
-              />
+              <ChatBubbleOutlineTwoToneIcon sx={{fontSize: "35px", color: "#29bb89"}}/>
+              <ExpandMoreIcon onClick={handleOpenChat} style={{marginLeft: "20px"}} sx={{fontSize: "40px", color: "#29bb89"}} />
             </HeaderIconBox>
           </HeaderBox>
 
@@ -103,14 +100,15 @@ const Index = () => {
           </SearchBox>
 
           <ChatListBox>
-            {[...Array(8)].map(() => {
+            {conversations?.map((item, index) => {
               return (
-                <CardBody>
+                <CardBody key={index}>
                   <div>
-                    <CardImge alt="human" src={Person} />
+                    <CardImge alt="human" src={(userData?.user?.id === item?.user_one?.id ? item?.user_two?.photo_url : item?.user_one?.photo_url) || Person} />
                     <TextBox>
                       <p>
-                        Mirabel Lyn
+                        {userData?.user?.id === item?.user_one?.id ? `${item?.user_two?.first_name || ""} ${
+                            item?.user_two?.last_name || ""}`: `${item?.user_one?.first_name || ""} ${item?.user_one?.last_name || ""}`}
                         <em
                           style={{
                             color: "#49665c",
@@ -119,14 +117,18 @@ const Index = () => {
                             marginLeft: "7px",
                           }}
                         >
-                          @mirabel01
+                          {userData?.user?.id === item?.user_one?.id ? item?.user_two?.username || "" :item?.user_one?.username || ""}
                         </em>
                       </p>
-                      <span>You: hi, i am duduzilli</span>
+                      <span> {truncate(`${
+                          userData?.user?.id === item?.user_one?.id ? "You" : ""
+                        } ${item?.last_message || ""}`, 20)} 
+                        {checkMessageLength[index]}
+                        </span>
                     </TextBox>
                   </div>
 
-                  <Text>12:04pm</Text>
+                  <Text>{`${item?.last_modified || ""} ago`}</Text>
                 </CardBody>
               );
             })}

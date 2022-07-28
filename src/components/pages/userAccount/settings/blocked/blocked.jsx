@@ -11,7 +11,7 @@ export default function Blocked() {
 
   useEffect(()=>{
         getRequest('blocked_list/')
-    },[])
+    },[unMuted])
     
     const blockedUsers = data?.blocked.map((b) =>{
         return(
@@ -34,13 +34,13 @@ export default function Blocked() {
                   fs= "14px"
                   hbc="#29BB89"
                   hc="white"
-                //   onClick={() =>
-                //     {setUnMuted(!unMuted)
-                //     userAction(
-                //       `unmute/${b?.id}/`,
-                //       "User unmuted successfully"
-                //     )}
-                //   }
+                  onClick={() =>
+                    {setUnMuted(!unMuted)
+                    userAction(
+                      `unblock/${b?.id}/`,
+                      "User unblocked successfully"
+                    )}
+                  }
                 > Unblock
                 </Button>
             </Content>

@@ -7,14 +7,13 @@ const Index = () => {
   return (
     <Card>
       <ContentBox>
-        <Link to="/user/help"><Links>Help</Links></Link>
-        <Link to="/user/about"><Links>About</Links></Link>
+        <Link to="/user/help" style={{textDecoration: "none", color: "black"}}><Links>Help</Links></Link>
+        <Link to="/user/about" style={{textDecoration: "none", color: "black"}}><Links>About</Links></Link>
         <Links>Careers</Links>
         <Links>Blog</Links>
         <Links>Press</Links>
         <Links>Advertising</Links>
-        <Links>Policy</Links>
-        <Links>Privacy</Links>
+        <Link to="/user/policy" style={{textDecoration: "none", color: "black"}}><Links>Privacy Policy</Links></Link>
         <Links>Terms</Links>
       </ContentBox>
     </Card>

@@ -73,10 +73,12 @@ const Index = ({ firstName, lastName, handleLogOut, username, id}) => {
           </ListBox>
         </Link>
 
+        <Link to="/user/help" style={{textDecoration: "none"}}>
         <ListBox>
           <ListImg width="26px" height="26px" alt="" src={help} />
           <p>Help</p>
         </ListBox>
+        </Link>
 
         <ListBox>
           <ListImg ml="5px" width="20px" height="25px" alt="" src={saved} />
@@ -132,10 +134,10 @@ const Index = ({ firstName, lastName, handleLogOut, username, id}) => {
         </Link>
         
 
-        <Link to="/" style={{textDecoration: "none"}}>
+        <Link to="/user/policy" style={{textDecoration: "none"}}>
           <Tagbox>
             <div></div>
-            <p>Privacy</p>
+            <p>Privacy Policy</p>
           </Tagbox>
         </Link>
         
@@ -144,14 +146,6 @@ const Index = ({ firstName, lastName, handleLogOut, username, id}) => {
           <Tagbox>
             <div></div>
             <p>Blog</p>
-          </Tagbox>
-        </Link>
-        
-
-        <Link to="/" style={{textDecoration: "none"}}>
-          <Tagbox>
-            <div></div>
-            <p>Policy</p>
           </Tagbox>
         </Link>
         

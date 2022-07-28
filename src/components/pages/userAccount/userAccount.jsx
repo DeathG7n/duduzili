@@ -21,6 +21,7 @@ import Repost from "./repostPage/repost"
 import SavedPost from "./savedPost/savedPost"
 import About from "../../constants/static pages/about"
 import Help from "../../constants/static pages/help"
+import Privacy from "../../constants/static pages/privacy"
 
 
 import TopBar from "../../constants/topbar/topBar";
@@ -152,6 +153,8 @@ const Index = () => {
           <Route exact path="about" element={<About />} />
 
           <Route exact path="help" element={<Help />} />
+
+          <Route exact path="policy" element={<Privacy />} />
 
           <Route exact path="article/new" element={<PostArticle />} />
 

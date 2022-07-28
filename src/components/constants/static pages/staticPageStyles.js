@@ -6,9 +6,27 @@ export const Body = styled.div`
     margin: 20px;
     padding: 5px 30px;
     display: flex;
+    gap: 20px;
     flex-direction: column;
     text-align: center;
-    overflow-x: hidden;
+    overflow: hidden;
+`
+export const PBody = styled.div`
+    width: 46vw;
+    margin-left: -80px;
+    padding: 5px 30px 30px 30px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+
+    h5, h3{
+        color: #49665c;
+    }
+
+    p{
+        color: #49665c;
+        font-size: 12px;
+    }
 `
 export const LogoImg = styled.img`
     width: 100px;
@@ -27,9 +45,9 @@ export const IconBox = styled.div`
 `
 export const HelpImg = styled.img`
     width: 100%;
-    height: 100%;
+    height: 80%;
 `
-export const HelpTitle = styled.h2`
+export const HelpTitle = styled.h1`
     color: #2fdea2;
 `
 export const FaqCard = styled.div`
@@ -39,6 +57,7 @@ export const FaqCard = styled.div`
     align-items: center;
     border-bottom: 1px solid #b0b0b0;
     background-color: white;
+    cursor: pointer;
 `
 export const FaqAnswer = styled.div`
     margin-top: 5px;
@@ -55,4 +74,33 @@ export const FaqContainer = styled.div`
 `
 export const FaqQuestion = styled.div`
     display: flex;
+    align-self: flex-start;
+`
+export const TitleBox = styled.div`
+  width: 100%;
+  text-indent: 10px;
+  background-color: #fff;
+  padding-bottom: 10px;
+  text-align: left;
+
+  h1{
+    color: #29bb89;
+    font-weight: 100;
+    font-size: 26px;
+  }
+  @media screen and (max-width: 900px) {
+    justify-content: center;
+    width: 99%;
+  }
+`;
+
+export const MainBody = styled.div`
+
+`
+export const Sections = styled.div`
+    margin: 10px 0;
+
+    ol{
+        margin: 10px 30px;
+    }
 `

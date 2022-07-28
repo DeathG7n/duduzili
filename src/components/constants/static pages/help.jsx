@@ -22,11 +22,11 @@ export default function Help() {
     <Container style={{overflowX: "hidden"}}>
         <BodyContainer>
             <Body>
+                <HelpTitle>Help Centre for Duduzili</HelpTitle>
                 <HelpImg src={Background} alt="image"/>
             </Body>
-            <DiscoverBox style={{width: "40%", display: "flex", flexDirection: "column", alignItems: "center",gap: "10px", padding: "10px 0" }}>
-                <HelpTitle>Help Centre for Duduzili</HelpTitle>
-                <p>Commonly asked questions and answers.</p>
+            <DiscoverBox style={{width: "40%", display: "flex", flexDirection: "column", alignItems: "center",gap: "10px", padding: "40px 0" }}>
+                <h3>Commonly asked questions and answers.</h3>
                 <FaqContainer>
                     {helpData.map((item, id)=>{
                     return(
@@ -45,10 +45,10 @@ export const Faq = ({item})=>{
     const [showAnswer, setShowAnswer] = useState(false)
     return(
         <>
-            <FaqCard>
-                <FaqQuestion style={{borderBottom: showAnswer ? "1px solid #b0b0b0" : "none" }}>
+            <FaqCard onClick={()=>setShowAnswer(!showAnswer)}>
+                <FaqQuestion style={{borderBottom: showAnswer ? "1px solid #b0b0b0" : "none" }} onClick={()=>setShowAnswer(!showAnswer)}>
                     <h4>{item?.question}</h4>
-                    {showAnswer ? <ArrowDropUpIcon onClick={()=>setShowAnswer(!showAnswer)}/> : <ArrowDropDownIcon onClick={()=>setShowAnswer(!showAnswer)}/>}
+                    {showAnswer ? <ArrowDropUpIcon/> : <ArrowDropDownIcon />}
                 </FaqQuestion>
                 
                 <FaqAnswer style={{display: showAnswer ? "block" : "none"}}>

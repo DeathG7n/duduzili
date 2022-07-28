@@ -169,7 +169,7 @@ const Index = ({
                     </ProfileBox>
                     
                     <MoreComponent
-                    item={item}
+                     item={item}
                      userAction={userAction}
                      userData={userData}
                      save={save}
@@ -386,7 +386,6 @@ const MoreComponent = ({
   save,
   updateStateEditPost,
   handleDeleteRequest,
-  handleOpenMobileModal
 }) =>{
   const [dropDown, setDropDown] = useState(false)
   const moreRef = useRef()
@@ -446,11 +445,11 @@ const MoreComponent = ({
             <p>Mute @{item?.user?.username}</p>
           </DropDownContent>
           <DropDownContent
-            onClick={() =>
+            onClick={() =>{
               userAction(
                 `block/${item?.user?.id}/`,
                 "User blocked successfully"
-              )
+              )}
             }
           >
             <img src={blocked} alt="icon" />
