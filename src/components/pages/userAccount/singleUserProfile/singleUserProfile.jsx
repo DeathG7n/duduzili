@@ -26,7 +26,7 @@ import {
 import Trending from "../../../constants/trending/trending";
 import TagBox from "../../../constants/tagBox/tagBox";
 import NewsFeed from "../../../constants/postCard/postCard";
-import Audio from "../../../constants/postCard/postCard"
+import {Audio} from "../../../constants/postCard/postCard"
 import Modal from "./modal/modal";
 import DiscoverPeople from "../../../constants/discoverPeople/discoverPeople";
 
@@ -292,7 +292,7 @@ const Media = ({data})=>{
             )}
             {/* Render audio */}
             {item?.audio_url ? (
-              <Audio sourceUrl={item?.audio_url} />
+              <Audio sourceUrl={item?.audio_url} h="150px"/>
             ) : (
               ""
             )}

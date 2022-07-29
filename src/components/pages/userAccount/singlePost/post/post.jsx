@@ -41,6 +41,7 @@ import {Rings} from "react-loader-spinner";
 import { LinkPreview } from "@dhaiwat10/react-link-preview";
 import { extractLinkText } from "../../../../constants/extractLinkText";
 import { Link } from "react-router-dom";
+import {Audio} from "../../../../constants/postCard/postCard"
 
 const Index = ({ handleOpenModal, handleOpenRepostModal }) => {
   const {
@@ -125,9 +126,7 @@ const Index = ({ handleOpenModal, handleOpenRepostModal }) => {
 
                 {/* Render video */}
                 {singleUserData?.audio_url ? (
-                  <audio controls>
-                    <source src={singleUserData?.audio_url} type="audio/mpeg" />
-                  </audio>
+                  <Audio sourceUrl={singleUserData?.audio_url} h="350px" m="20px"/>
                 ) : (
                   ""
                 )}

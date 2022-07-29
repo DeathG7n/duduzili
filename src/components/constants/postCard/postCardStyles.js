@@ -348,11 +348,11 @@ export const AudioBox = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 350px;
+  height: ${(props) => props.h};
   width: 100%;
   display: flex;
   align-items: flex-end;
-  margin-top: 20px;
+  margin-top: ${(props) => props.m};
 
   > audio {
     width: 100%;
