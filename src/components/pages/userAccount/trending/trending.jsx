@@ -70,7 +70,7 @@ const Index = () => {
                             <p>{item?.topic?.title}</p>
                           </Link>
                         </Tag>
-
+ 
                         <TagContent>
                           <h4>{item.title}</h4>
                           <p>{truncate(item.text, 100) + "..."}</p>

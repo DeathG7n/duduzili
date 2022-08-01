@@ -43,7 +43,7 @@ const Index = ({ firstName, lastName, handleLogOut, username, id}) => {
       `change_status/${flag}/`,
       "Status changed successfully"
     )
-  }, [online])
+  }, [flag])
   return (
     <NavBox>
       <CardBody>

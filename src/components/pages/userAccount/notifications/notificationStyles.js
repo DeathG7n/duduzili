@@ -32,9 +32,15 @@ export const NewsFeedBox = styled.div`
   border-radius: 8px;
   margin-left: 105px;
 
+
+  h2{
+    margin-left: 20px;
+  }
+
   @media screen and (max-width: 900px) {
-    width: 100%;
-    margin-top: 0px;
+    width: 90%;
+    margin-top: 10px;
+    margin-left: -5%;
   }
 `;
 

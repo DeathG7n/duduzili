@@ -68,12 +68,9 @@ export const MessageBox = styled.div`
 `;
 
 export const TrendContainer = styled.div`
-  // width: 100%;
+  //width: 100%;
   display: flex;
   gap: 15px;
-  // grid-gap: 15px;
-  // grid-auto-flow: column;
-  // grid-auto-columns: 60%;
   align-items: center;
   overflow-x: scroll;
   box-sizing: border-box;
@@ -112,6 +109,7 @@ export const TrendPost = styled.div`
     height: 220px;
     border-radius: 8px;
   }
+
 `;
 
 export const Tag = styled.div`

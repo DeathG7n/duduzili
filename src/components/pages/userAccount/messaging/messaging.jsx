@@ -74,7 +74,7 @@ const Index = () => {
     `wss://duduzili-staging-server.com.ng/ws/chat/psalmskalu?token=${token}`
   );
 
-  const profileID = conversations?.find((c) => c?.user_one?.id === userId || c?.user_two?.id === userId)
+  const profileID = conversations?.conversations?.find((c) => c?.user_one?.id === userId || c?.user_two?.id === userId)
   console.log(profileID)
 
   console.log(client)
@@ -133,7 +133,7 @@ const Index = () => {
   console.log(userName);
   console.log(userId)
 
-  const checkMessageLength = conversations?.map((c) => {
+  const checkMessageLength = conversations?.conversations?.map((c) => {
     const message = JSON.stringify(c?.last_message)
     if(message.length >= 20 ){
       return "..."
@@ -189,7 +189,7 @@ const Index = () => {
             {/* </SearchBox> */}
 
             <MessageList>
-              {conversations?.map((item, index) => {
+              {conversations?.conversations?.map((item, index) => {
                 // console.log(index);
                 return (
                   <CardBody

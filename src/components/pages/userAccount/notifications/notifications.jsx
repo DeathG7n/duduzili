@@ -162,49 +162,9 @@ const Index = () => {
                 );
               })
             )}
-
-            {/* <CardBody>
-              <div>
-                <CardImge alt="human" src={Person} />
-                <TextBox>
-                  <p>Anitasteve</p>
-                  <span>Wants to chat with you</span>
-                  <br />
-                  <ButtonBox>
-                    <Button
-                      bc="white"
-                      border="1px solid #29BB89"
-                      width="70px"
-                      height="28px"
-                      color="#29BB89"
-                      br="20px"
-                      fw="500"
-                    >
-                      Accept
-                    </Button>
-
-                    <Button
-                      bc="white"
-                      border="1px solid #769C8F"
-                      width="70px"
-                      height="28px"
-                      color="#769C8F"
-                      br="20px"
-                      fw="500"
-                      margin="0px 0px 0px 13px"
-                    >
-                      Decline
-                    </Button>
-                  </ButtonBox>
-                </TextBox>
-              </div>
-
-              <Text>2 minutes ago</Text>
-            </CardBody> */}
           </NewsFeedBox>
           <TrendingBox>
             <Discover />
-            {/* <Trending /> */}
             <TagBox />
           </TrendingBox>
         </BodyBox>

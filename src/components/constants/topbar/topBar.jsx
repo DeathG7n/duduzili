@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import { Person } from "@mui/icons-material";
 import {
   NavContainer,
   LogoBox,
@@ -21,7 +22,7 @@ import {
   MobileProfileImg,
   Icon,
   Notify,
-  UserIcon,
+  UserBox,
   SearchComp,
   NotificationBox,
 } from "./topbarStyles";
@@ -251,9 +252,12 @@ const Index = () => {
                   </DropDownBox>
                 </ProfileDropDown>
               </NavigationBox>
-              <Link to="/user/discover">
-                <UserIcon alt="human" src={user} />
+              <UserBox>
+                <Link to="/user/discover">
+                <Person sx={{fontSize: "35px"}} style={{marginTop: "5px"}} />
               </Link>
+              </UserBox>
+              
             </>
             
           ) : (
@@ -278,9 +282,11 @@ const Index = () => {
                 Sign Up
               </Button>
               <ProfileIcon src={profileIcon} alt="profile icon" />
-              <Link to="/user/discover">
-                <UserIcon alt="human" src={user} />
-              </Link>
+              <UserBox>
+                <Link to="/user/discover">
+                  <Person sx={{fontSize: "35px"}} style={{marginTop: "5px"}} />
+                </Link>
+              </UserBox>
             </RegisterBox>
           )}
           {/* Show icon on mobile viewport */}

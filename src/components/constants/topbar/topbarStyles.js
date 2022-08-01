@@ -19,7 +19,7 @@ export const NavBox = styled.div`
   gap: 4%;
   align-items: center;
 
-  @media screen and (min-width: 375px)and (max-width: 675px) {
+  @media screen and (min-width: 0px)and (max-width: 675px) {
     display: flex;
     padding: 0 10px;
   }
@@ -43,7 +43,7 @@ export const LogoBox = styled.div`
     margin-top: 18px;
     margin-left: 8%;
    
-    @media screen and (min-width: 375px)and (max-width: 675px) {
+    @media screen and (min-width: 0px)and (max-width: 675px) {
       display: none;
     }
     
@@ -82,11 +82,11 @@ export const IconBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  left: 7%;
+  position: absolute;
+  left: 1%;
   
   @media screen and (max-width: 1100px){
-    left: 9%;
+    left: 1%;
   }
 
 
@@ -95,8 +95,8 @@ export const IconBox = styled.div`
     height: 50px;
   }
 
-  @media screen and (min-width: 375px)and (max-width: 675px) {
-    left: 14%;
+  @media screen and (min-width: 0px)and (max-width: 675px) {
+    left: 1%;
   }
 `;
 
@@ -106,8 +106,9 @@ export const Form = styled.form`
   width: 45%;
   margin-left: 1%;
   margin-right: auto;
+  position: relative;
 
-  @media screen and (min-width: 375px)and (max-width: 675px) {
+  @media screen and (min-width: 0px)and (max-width: 675px) {
     width: 80%;
     margin: 0;
     justify-content: flex-start;
@@ -148,6 +149,14 @@ export const RegisterBox = styled.div`
   // width: 27%;
   // display: flex;
   // align-items: center;
+`;
+
+export const UserBox = styled.div`
+  display: none;
+
+  @media screen and (min-width: 0px)and (max-width: 675px) {
+    display: block;
+  }
 `;
 
 export const Button = styled.button`
@@ -222,7 +231,7 @@ export const NavigationBox = styled.div`
   @media screen and (max-width: 1100px) {
     gap: 5%;
   }
-  @media screen and (min-width: 375px)and (max-width: 675px) {
+  @media screen and (min-width: 0px)and (max-width: 675px) {
     display: none;
   }
 `;
@@ -278,7 +287,7 @@ export const MobileProfileImg = styled.img`
   border-radius: 50%;
   display: none;
 
-  @media screen and (min-width: 375px)and (max-width: 675px) {
+  @media screen and (min-width: 0px)and (max-width: 675px) {
     display: block;
     width: 30px;
     height: 30px;
@@ -291,7 +300,7 @@ export const UserIcon = styled.img`
   display: none;
   cursor: pointer;
 
-  @media screen and (min-width: 375px)and (max-width: 675px) {
+  @media screen and (min-width: 0px)and (max-width: 675px) {
     display: block;
     width: 30px;
     height: 30px;

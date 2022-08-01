@@ -60,7 +60,7 @@ const Index = () => {
     setOpenChats((props) => !props);
   };
 
-  const checkMessageLength = conversations?.map((c) => {
+  const checkMessageLength = conversations?.conversations?.map((c) => {
     const message = JSON.stringify(c?.last_message)
     if(message.length >= 20 ){
       return "..."
@@ -100,7 +100,7 @@ const Index = () => {
           </SearchBox>
 
           <ChatListBox>
-            {conversations?.map((item, index) => {
+            {conversations?.conversations?.map((item, index) => {
               return (
                 <CardBody key={index}>
                   <div>
