@@ -11,6 +11,7 @@ import {
   Button,
   TrendContainer,
   TrendPost,
+  Holder,
   Tag,
   TagContent,
 } from "./trendingStyles";
@@ -61,7 +62,7 @@ const Index = () => {
                       bimg={item?.photo_url || Img1}  
                       key={idx}
                     >
-                      <div className="holder" style={{background: "#0f131280", height:"90%"}}>
+                      <Holder className="holder" style={{ }}>
                         <Tag bc="#ff2222">
                           <Link
                             to={`/user/trending/post/${item.id}`}
@@ -72,10 +73,10 @@ const Index = () => {
                         </Tag>
  
                         <TagContent>
-                          <h4>{item.title}</h4>
+                          <h4>{truncate(item.title, 50)}{item?.title?.length > 50 ? "..." : ""}</h4>
                           <p>{truncate(item.text, 100) + "..."}</p>
                         </TagContent>
-                      </div>
+                      </Holder>
                     </TrendPost>
                   );
                 })}

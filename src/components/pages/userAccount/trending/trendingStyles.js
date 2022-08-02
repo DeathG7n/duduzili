@@ -68,13 +68,14 @@ export const MessageBox = styled.div`
 `;
 
 export const TrendContainer = styled.div`
-  //width: 100%;
+  width: auto;
   display: flex;
   gap: 15px;
-  align-items: center;
-  overflow-x: scroll;
+  // align-items: center;
+  overflow: auto;
+  white-space: nowrap;
   box-sizing: border-box;
-  padding: 5px 5px 60px 5px;
+  padding: 20px 5px;
   margin-bottom: 40px;
   background-color: white;
 
@@ -94,23 +95,32 @@ export const TrendContainer = styled.div`
 `;
 
 export const TrendPost = styled.div`
-  width: 90%;
+  width: 45%;
   border-radius: 8px;
   box-sizing: border-box;
-  display: flex;
-  align-items: center;
+  flex: 0 0 auto;
+  // display: flex;
+  // align-items: center;
+  display: inline-block;
   background: url(${(props) => props.bimg}) center center no-repeat;
   background-repeat: no-repeat;
   background-size: cover;
   height: 220px;
-
-  .holder {
-    padding: 10px 15px;
-    height: 220px;
-    border-radius: 8px;
+  
+  @media screen and (min-width: 0px)and (max-width: 675px) {
+    width: 74%;
   }
 
 `;
+
+export const Holder = styled.div`
+  padding: 10px 15px 10px 15px;
+  border-radius: 8px;
+  background: #0f131280;
+  height: 91%;
+  width: auto;
+`
+
 
 export const Tag = styled.div`
   padding: 2px 10px;
@@ -138,7 +148,9 @@ export const Tag = styled.div`
 `;
 
 export const TagContent = styled.div`
+  width: 100%;
   margin-top: 10px;
+  white-space: normal;
 
   > h4 {
     color: white;

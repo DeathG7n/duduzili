@@ -67,6 +67,10 @@ const Index = () => {
   const token = JSON.parse(localStorage.getItem("token") || null);
 
   function postMessage(){
+    client.send(messageRef.current.value);
+    client.onmessage = (event) => {
+      console.log(event.data);
+    };
     console.log(messageRef.current.value)
   }
 
@@ -106,15 +110,16 @@ const Index = () => {
     getRequest(`messages/${userId || firstUser}/`);
     client.onopen = () => {
       console.log("Web socket connected");
-      // client.send(JSON.stringify(msgBody));
     };
 
-    // client.onmessage = (event) => {
-    //   console.log(event.data);
-    // };
+    client.onmessage = (event) => {
+      console.log(event.data);
+    };
 
-    return () => client.close();
+    // return () => client.close();
   }, [userId]);
+
+
 
   // Get the array index of user and the user id
   const changeUserIndex = (index, id, name) => {
@@ -269,7 +274,6 @@ const Index = () => {
                   </MessageTitleBox>
                   {data?.messages.map((item) => {
                     return item?.receiver?.id !== userId ? (
-                      <>
                         <ChatMessage
                           bc="white"
                           border="1px solid #d0e2dc"
@@ -283,7 +287,6 @@ const Index = () => {
                             </NameBox>
                             <p>{item?.text}</p>
                           </ChatMessage>
-                      </>
                     ) : (
                       <ChatMessage
                         bc="#E6FAEB"

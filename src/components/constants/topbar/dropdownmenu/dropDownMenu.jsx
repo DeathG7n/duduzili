@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   NavBox,
@@ -24,7 +24,7 @@ import { Link } from "react-router-dom";
 import Switch from "../../swich";
 import { DataContext } from "../../../api/context";
 import { useUserActions } from "../../../api/api";
-import { useEffect } from "react";
+
 
 // TODO fill in the footer links into the array and loop them
 

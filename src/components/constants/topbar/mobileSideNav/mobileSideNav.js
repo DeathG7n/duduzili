@@ -21,12 +21,27 @@ import saved from "../../../assets/saved.png";
 import help from "../../../assets/help.png";
 
 import { DataContext } from "../../../api/context"
+import { useUserActions } from "../../../api/api";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Switch from "../../swich";
 
 const Index = ({ openMenu, handleLogOut, username, id }) => {
   const { state: {userData} }=DataContext()
   console.log(userData?.user)
+  const {userAction} = useUserActions()
+  const {state:{isOnline}} = DataContext()
+  const [online, setOnline] = useState(isOnline)
+  const flag = online ? "no" : "yes"
+  console.log(online)
+  console.log(flag)
+
+  useEffect(()=>{
+    userAction(
+      `change_status/${flag}/`,
+      "Status changed successfully"
+    )
+  }, [flag])
 
   return (
     <NavContainer>
@@ -69,15 +84,22 @@ const Index = ({ openMenu, handleLogOut, username, id }) => {
               <p>Settings</p>
             </ListBox>
           </Link>
-
-          <ListBox>
-            <ListImg width="26px" height="26px" alt="" src={help} />
-            <p>Help</p>
-          </ListBox>
+ 
+          <Link to="/user/help" style={{textDecoration: "none"}}>
+            <ListBox>
+              <ListImg width="26px" height="26px" alt="" src={help} />
+              <p>Help</p>
+            </ListBox>
+          </Link>
 
           <ListBox>
             <ListImg ml="5px" width="20px" height="25px" alt="" src={saved} />
-            <p>Saved</p>
+              <Link
+                to={"/user/saved-posts"}
+                style={{ textDecoration: "none", color: "#29bb89", marginLeft: "13px" }}
+              >
+                Saved
+              </Link>
           </ListBox>
 
           <ListBox onClick={handleLogOut}>
@@ -86,10 +108,10 @@ const Index = ({ openMenu, handleLogOut, username, id }) => {
           </ListBox>
         </ListContainer>
 
-        <TextStatus>
-          <p>Online Status</p>
+        <TextStatus onClick={()=> setOnline(!online)}>
+          <p>Online Status </p>
 
-          <Switch checkedValue={true} />
+          <Switch checkedValue={online} />
         </TextStatus>
       </NavBox>
     </NavContainer>
