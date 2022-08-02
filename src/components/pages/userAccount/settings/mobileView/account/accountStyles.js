@@ -6,6 +6,7 @@ export const Container = styled.div`
   padding-top: 30px;
   box-sizing: border-box;
   background: #fff;
+  margin-top: 30px;
 `;
 
 export const Content = styled.div`
@@ -41,6 +42,7 @@ export const Accounts = styled.div`
   align-items: center; 
   box-sizing: border-box;
   width: 100%;  
+  background: #fff;
 
   >img{
   }
@@ -77,3 +79,11 @@ export const SocialText = styled.p`
   font-size: 15px;
   font-weight: 400;
 `;
+
+export const Text = styled.div`
+  height: 67vh;
+  font-size: 20px;
+  padding: 5px;
+  background: #fff;
+  border-bottom: 1px solid #d0e2dc;
+`

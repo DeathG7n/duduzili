@@ -1,19 +1,10 @@
-import React, { useState } from 'react'
-import { BodyContainer, Container, DiscoverBox } from '../../pages/userAccount/feed/feedStyles'
 import {
     PBody,
     TitleBox,
     MainBody,
     Sections,
-    HelpImg,
-    HelpTitle,
-    FaqCard,
-    FaqAnswer,
-    FaqContainer,
-    FaqQuestion,
-    LogoImg,
-    Title,
-    IconBox
+    BodyContainer,
+    Container
 } from "./staticPageStyles"
 
 export default function Help() {

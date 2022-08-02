@@ -5,9 +5,9 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   display: none;
+  margin-top: 52px;
 
   @media screen and (max-width: 900px) {
-    display: block;
     display: flex;
     justify-content: center;
   }
@@ -22,7 +22,7 @@ export const ContentBox = styled.div`
   border: 1px solid #d0e2dc;
   box-sizing: border-box;
   border-radius: 8px;
-  /* padding: 15px; */
+  padding-bottom: 60px;
   background-color: #fff;
 
   @media screen and (max-width: 900px) {

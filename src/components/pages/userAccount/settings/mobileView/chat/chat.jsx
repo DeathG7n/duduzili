@@ -10,7 +10,7 @@ const Index = () => {
   const { getRequest, data } = useGetRequest();
 
   useEffect(() => {
-    getRequest("message_settings_page/");
+    getRequest("message_settings_page/"); 
   }, []);
 
   const history = useNavigate();
@@ -20,7 +20,7 @@ const Index = () => {
         <img
           src={arrowBack}
           alt="arrow back icon"
-          onClick={() => history.goBack()}
+          onClick={() => history(-1)}
         />
         <p>Message</p>
       </TitleText>

@@ -12,23 +12,27 @@ export const StyleButton = styled.button`
   cursor: pointer;
   margin: 25px 0px;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (min-width: 0px) and (max-width: 750px) {
     margin: 25px 0px 10px 0px;
+    font-size: 26px;
+    height: 70px;
   }
 `;
+
 
 export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
   padding: 5px 0px;
   box-sizing: border-box;
   background-color : #F7FCFA;
 
-  @media screen and (max-width: 600px) {
-    padding: 35px 15px;
-    align-items: flex-start;
+  @media screen and (min-width: 0px) and (max-width: 750px) {
+    padding: 0 15px 400px 15px;
+    width: 100vh;
+    height: 1500px;
   }
 
   > div {
@@ -45,16 +49,11 @@ export const FormBox = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
-  @media screen and (max-width: 600px) {
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
+    
 `;
 
 export const InputBox = styled.div`
- 
- position: relative;
+  position: relative;
 `
 
 export const Form = styled.form`
@@ -73,6 +72,13 @@ export const Input = styled.input`
   outline: none;
   margin-top: ${(props) => props.mt};
   align-self: center;
+  padding-left: 40px;
+
+  @media screen and (min-width: 0px) and (max-width: 750px) {
+    width: 90vh;
+    height: 70px;
+    font-size: 24px;
+  }
 
 
   :focus{
@@ -131,12 +137,11 @@ export const GoogleButton = styled.button`
 `;
 
 export const LogoImg = styled.img`
-  
   width: 30px;
   margin-bottom: 15px;
 
-  @media screen and (max-width: 600px) {
-    display: none;
+  @media screen and (min-width: 0px) and (max-width: 750px){
+    width: 50px;
   }
 `;
 export const LogoBox = styled.div`
@@ -145,7 +150,6 @@ export const LogoBox = styled.div`
     gap: 15px;
     justify-content : center;
     align-self: center;
-    margin-top : -161px;
     margin-bottom: 45px;
 `
 
@@ -163,15 +167,13 @@ export const TitleText = styled.h2`
   color: #49665C;
   font-weight: 700;
   margin-top: 0px;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
   font-size: 30px;
   line-height: 34px;
   letter-spacing: 1px;
 
-  @media screen and (max-width: 600px) {
-    margin-top: 40px;
-    margin-bottom: 0px;
-    font-size: 22px;
+  @media screen and (min-width: 0px) and (max-width: 750px) {
+    // font-size: 22px;
   }
 `;
 export const LogoText = styled.p`
@@ -179,12 +181,20 @@ export const LogoText = styled.p`
     color: #49665C;
     font-weight: 800;
     margin-top: -2px;
+
+    @media screen and (min-width: 0px) and (max-width: 750px){
+      font-size: 30px;
+    }
 `
 export const ResetText = styled.p`
     font-size: 16px;
     color: #49665C;
     text-align: center;
-    margin: -25px -70px 15px -70px;
+    width: 540px;
+
+    @media screen and (min-width: 0px) and (max-width: 750px) {
+      font-size: 18px;
+    }
 `
 
 export const BottomText = styled.p`
@@ -194,9 +204,8 @@ export const BottomText = styled.p`
   font-size: 13px;
   line-height: 28px;
 
-  @media screen and (max-width: 600px) {
-    text-align: left;
-    margin-top: ${(props) => props.smmt};
+  @media screen and (min-width: 0px) and (max-width: 750px) {
+    font-size: 18px;
   }
 `;
 
@@ -233,6 +242,10 @@ export const ForgotText = styled.p`
   margin-top: 20px;
   margin-bottom: -5px;
   cursor: pointer;
+
+  @media screen and (min-width: 0px) and (max-width: 750px){
+    font-size: 18px;
+  }
 `;
 
 export const LinkText = styled.p`
@@ -240,6 +253,10 @@ export const LinkText = styled.p`
   font-size: 13px;
   margin-left: ${(props) => props.ml};
   margin-left: ${(props) => props.mr};
+
+  @media screen and (min-width: 0px) and (max-width: 750px){
+    font-size: 18px;
+  }
 `;
 
 export const VisibilityIconBox = styled.div`

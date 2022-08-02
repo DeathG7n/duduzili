@@ -51,7 +51,7 @@ export default function Blocked() {
     
     return (
       <>
-        {data?.blocked?.length !== 0 ? blockedUsers : <div>You don't have any blocked users.</div>}
+        {data && data?.blocked?.length !== 0 ? blockedUsers : <div>You don't have any blocked users.</div>}
       </>
     )
 }

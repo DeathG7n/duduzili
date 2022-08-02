@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { BodyContainer, Container, DiscoverBox } from '../../pages/userAccount/feed/feedStyles'
 import  {helpData}  from './helpdata.js'
 import {
+    Container,
     Body,
     HelpImg,
     HelpTitle,
@@ -9,6 +9,8 @@ import {
     FaqAnswer,
     FaqContainer,
     FaqQuestion,
+    BodyContainer,
+    DiscoverBox,
     LogoImg,
     Title,
     IconBox
@@ -25,7 +27,7 @@ export default function Help() {
                 <HelpTitle>Help Centre for Duduzili</HelpTitle>
                 <HelpImg src={Background} alt="image"/>
             </Body>
-            <DiscoverBox style={{width: "40%", display: "flex", flexDirection: "column", alignItems: "center",gap: "10px", padding: "40px 0" }}>
+            <DiscoverBox>
                 <h3>Commonly asked questions and answers.</h3>
                 <FaqContainer>
                     {helpData.map((item, id)=>{

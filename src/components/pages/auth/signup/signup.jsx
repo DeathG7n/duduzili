@@ -6,15 +6,11 @@ import {
   LogoImg,
   LogoBox,
   LogoText,
-  LogoIcon,
-  GoogleButton,
   Input,
   FormBox,
   ErrorText,
   TitleText,
   BottomText,
-  AltTextBox,
-  VisibilityIconBox,
   InputBox,
 } from "./signupStyles";
 import { useFormik } from "formik";
@@ -66,31 +62,12 @@ const Index = () => {
       
       <Container>
         <div>
-          
           <FormBox>
-            <LogoBox
-            style={{
-              marginTop : "-8px"
-            }}
-            >
+            <LogoBox>
               <LogoImg src={Logo} alt="logo" />
               <LogoText>duduzili</LogoText>
             </LogoBox>
-            <LogoIcon src={Logo2} alt="logo" />
-            <TitleText
-            style={{
-              marginBottom : "60px",
-            }}
-            >Sign up</TitleText>
-            {/* <GoogleButton>
-              <img src={Google} alt="logo" />
-              <p>CONTINUE WITH GOOGLE</p>
-            </GoogleButton>
-            <AltTextBox>
-              <hr></hr>
-              <p>OR</p>
-              <hr></hr>
-            </AltTextBox> */}
+            <TitleText>Sign up</TitleText>
             <Input
               type="text"
               placeholder="Firstname"
@@ -98,7 +75,6 @@ const Index = () => {
               value={values.first_name}
               onChange={handleChange}
               style={{
-                paddingLeft : "40px",
                 marginBottom : "5px"
               }}
             />
@@ -113,7 +89,6 @@ const Index = () => {
               value={values.last_name}
               onChange={handleChange}
               style={{
-                paddingLeft : "40px",
                 marginBottom : "5px"
               }}
             />
@@ -129,7 +104,6 @@ const Index = () => {
               value={values.email}
               onChange={handleChange}
               style={{
-                paddingLeft : "40px",
                 marginBottom : "5px"
               }}
             />
@@ -137,15 +111,6 @@ const Index = () => {
               <ErrorText>{errors.email}</ErrorText>
             )}
             <InputBox>
-              {/* {type === true ? (
-                <VisibilityIconBox onClick={handleSetType}>
-                  <VisibilityOffIcon style={{ color: "#769C8F" }} />
-                </VisibilityIconBox>
-              ) : (
-                <VisibilityIconBox onClick={handleSetType}>
-                  <VisibilityIcon style={{ color: "#769C8F" }} />
-                </VisibilityIconBox>
-              )} */}
               <Input
                 type={type === true ? "password" : "text"}
                 placeholder="Password"
@@ -154,9 +119,6 @@ const Index = () => {
                 name="password"
                 value={values.password}
                 onChange={handleChange}
-                style={{
-                  paddingLeft : "20px"
-                }}
               />
             </InputBox>
             {errors.password && touched.password && (

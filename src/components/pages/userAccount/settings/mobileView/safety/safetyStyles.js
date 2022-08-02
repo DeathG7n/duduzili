@@ -6,6 +6,7 @@ export const Container = styled.div`
   padding-top: 30px;
   box-sizing: border-box;
   background: #fff;
+  margin-top: 30px;
 `;
 
 export const Content = styled.div`

@@ -79,25 +79,14 @@ const Index = () => {
         open={openSnackbar}
       />
 
-      <Container>
-        {/* <div > */}
+      <Container >
           <FormBox>
             <LogoBox>
                 <LogoImg src={Logo} alt="logo" />
                 <LogoText>duduzili</LogoText>
             </LogoBox>
             
-            {/* <LogoIcon src={Logo2} alt="logo" /> */}
             <TitleText>Sign In</TitleText>
-            {/* <GoogleButton>
-              <img src={Google} alt="logo" />
-              <p>CONTINUE WITH GOOGLE</p>
-            </GoogleButton> */}
-            {/* <AltTextBox>
-              <hr></hr>
-              <p>OR</p>
-              <hr></hr>
-            </AltTextBox> */}
             <Input
               type="email"
               placeholder="Email Address or Username"
@@ -110,15 +99,6 @@ const Index = () => {
             )}
 
             <InputBox>
-              {/* {type === true ? (
-                <VisibilityIconBox onClick={handleSetType}>
-                  <VisibilityOffIcon style={{ color: "#769C8F" }} />
-                </VisibilityIconBox>
-              ) : (
-                <VisibilityIconBox onClick={handleSetType}>
-                  <VisibilityIcon style={{ color: "#769C8F" }} />
-                </VisibilityIconBox>
-              )} */}
 
               <Input
                 type={type === true ? "password" : "text"}
@@ -162,7 +142,6 @@ const Index = () => {
               </Link>
             </BottomText>
           </FormBox>
-        {/* </div> */}
       </Container>
     </>
   );

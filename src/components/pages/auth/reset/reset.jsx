@@ -15,27 +15,20 @@ import {
   ResetText,
 } from "../signup/signupStyles";
 import Logo from "../../../assets/new-logo.png";
-import Logo2 from "../../../assets/logoIcon.png";
 
 const Index = () => {
   return (
     <Container>
       <div>
         <FormBox>
-          <LogoBox
-          style={{
-            marginTop : "-146px",
-            marginBottom: "50px"
-          }}>
+          <LogoBox>
               <LogoImg src={Logo} alt="logo" />
               <LogoText>duduzili</LogoText>
           </LogoBox>
-          {/* <LogoIcon src={Logo2} alt="logo" /> */}
           <TitleText>Reset Password</TitleText>
 
-          {/* <Input type="password" placeholder="New Password" mt="30px" smmt="20px" /> */}
           <ResetText>
-          Tell us the email address associated with your duduzili account, and we’ll send you an email with a link to reset your password.
+            Tell us the email address associated with your duduzili account, and we’ll send you an email with a link to reset your password.
           </ResetText>
           <Input type="email" placeholder="Email Address" mt="17px" smmt="10px" />
 
@@ -45,7 +38,14 @@ const Index = () => {
             <span
               style={{cursor: "pointer", color: "#29bb89" }}
             >
-              Get help?{" "}
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: "#29bb89",
+                }}
+                to="/user/help"
+              > Get help?{" "}</Link>
+             
             </span>
           </BottomText>
           <div

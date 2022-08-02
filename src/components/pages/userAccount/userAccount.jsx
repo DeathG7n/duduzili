@@ -36,6 +36,8 @@ import MFeedsComponent from "./settings/mobileView/feeds/feeds";
 import MChat from "./settings/mobileView/chat/chat";
 import MSafety from "./settings/mobileView/safety/safety";
 import MNotifications from "./settings/mobileView/nofications/notifications";
+import MBlocked from "./settings/mobileView/blocked/blocked";
+import MMuted from "./settings/mobileView/muted/muted";
 import SnackBar from "../../constants/successSnackbar";
 
 import { DataContext } from "../../api/context";
@@ -137,6 +139,10 @@ const Index = () => {
           <Route exact path="msettings/safety" element={<MSafety />} />
 
           <Route exact path="msettings/notification" element={<MNotifications />} />
+
+          <Route exact path="msettings/blocked" element={<MBlocked />} />
+
+          <Route exact path="msettings/muted" element={<MMuted />} />
 
           <Route exact path="notifications" element={<Notifications />} />
 

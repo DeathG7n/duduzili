@@ -21,7 +21,7 @@ export const ContentBox = styled.div`
   box-sizing: border-box;
   border-radius: 8px;
   /* padding: 15px; */
-  background-color: #ffffff;
+  background-color: #ffffff; 
 `;
 
 export const SettingsBox = styled.div`

@@ -23,7 +23,7 @@ const Index = ({ handleOpenEmailModal, handleOpenPasswordModal }) => {
           <img
             src={arrowBack}
             alt="arrow back icon"
-            onClick={() => history.goBack()}
+            onClick={() => history(-1)}
           />
           <h4>Accounts</h4>
         </Accounts>

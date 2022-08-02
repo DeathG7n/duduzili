@@ -20,7 +20,7 @@ const Index = () => {
         <img
           src={arrowBack}
           alt="arrow back icon"
-          onClick={() => history.goBack()}
+          onClick={() => history(-1)}
         />
         <p>Notifications</p>
       </TitleText>
