@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import { useNavigate } from "react-router-dom"
 import {
@@ -23,19 +23,35 @@ import dots from "../../../../../assets/dot.png";
 import gif from "../../../../../assets/gifs.png";
 import upload from "../../../../../assets/upload.png";
 import arrowBack from "../../../../../assets/arrow-right.png";
+import { useGetRequest } from "../../../../../api/api";
 
 const Index = () => {
   const history = useNavigate()
+
+  const{getRequest, data} = useGetRequest()
+
+  const userId = localStorage.getItem("userId")
+
+  useEffect(() => {
+    getRequest(`messages/${userId }/`);
+  }, [userId]);
+  
+  const profileImage = data?.messages[0]?.receiver?.id === userId ? data?.messages[0]?.receiver?.photo_url : data?.messages[0]?.sender?.photo_url
+
+  const profileName = data?.messages[0]?.receiver?.id === userId ? data?.messages[0]?.receiver?.first_name : data?.messages[0]?.sender?.first_name
+
+  const profileUsername = data?.messages[0]?.receiver?.id === userId ? data?.messages[0]?.receiver?.username : data?.messages[0]?.sender?.username
+
   return (
     <Container>
       <ContentBox>
         <ChatBox>
           <MessageTitleBox>
             <MessageHeader>
-              <ArrowImg src={arrowBack} alt="arrow back icon" onClick={()=>history.goBack()} />
-              <ProfileImg alt="human" src={Person} />
-              <h3>Mirabel Lyn</h3>
-              <p>@mirabel101</p>
+              <ArrowImg src={arrowBack} alt="arrow back icon" onClick={()=>history(-1)} />
+              <ProfileImg alt="human" src={profileImage} />
+              <h3>{profileName}</h3>
+              <em>@{profileUsername}</em>
             </MessageHeader>
 
             <img
@@ -46,30 +62,32 @@ const Index = () => {
           </MessageTitleBox>
 
           <ChatBody>
-            <ChatMessage bc="white" border="1px solid #d0e2dc">
-              <NameBox>
-                <h4>Mirabel Lyn </h4>
-                <span>@mirabel101</span>
-                <h6>2hours ago</h6>
-              </NameBox>
-              <p>
-                Thanks for downloading my product design system. hope to talk
-                soon.
-              </p>
-            </ChatMessage>
+            {data?.messages?.map((item, index)=>{
+              return item?.receiver?.id !== userId ? (
+                <ChatMessage bc="white" border="1px solid #d0e2dc" mt="15px">
+                  <NameBox>
+                    <h4>{item?.sender?.first_name} </h4>
+                    <span>{item?.sender?.username}</span>
+                    <h6>{item?.date}</h6>
+                  </NameBox>
+                  <p>{item?.text}</p>
+                </ChatMessage>
+              ):( <ChatMessage
+                    bc="#E6FAEB"
+                    width="70%"
+                    mt="15px"
+                    bs="0px 4px 4px rgba(0, 0, 0, 0.25)"
+                  >
+                  <NameBox>
+                    <h4>You</h4>
+                    <h6>{item?.date}</h6>
+                  </NameBox>
+                  <p>{item?.text}</p>
+            </ChatMessage>)
+            })}
+            
 
-            <ChatMessage
-              bc="#E6FAEB"
-              width="70%"
-              mt="15px"
-              bs="0px 4px 4px rgba(0, 0, 0, 0.25)"
-            >
-              <NameBox>
-                <h4>You</h4>
-                <h6>2hours ago</h6>
-              </NameBox>
-              <p>The dark mode features is super nice.</p>
-            </ChatMessage>
+           
           </ChatBody>
 
           <WriteBox>

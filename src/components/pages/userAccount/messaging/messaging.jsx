@@ -62,6 +62,7 @@ const Index = () => {
   console.log(conversations, data);
 
   const user = conversations && conversations[userIndex];
+
   const firstUser = user?.sender?.id;
 
   const token = JSON.parse(localStorage.getItem("token") || null);
@@ -135,8 +136,8 @@ const Index = () => {
   //   client.send(sendData);
   // };
 
-  console.log(userName);
-  console.log(userId)
+  // console.log(userName);
+  // console.log(userId)
 
   const checkMessageLength = conversations?.conversations?.map((c) => {
     const message = JSON.stringify(c?.last_message)

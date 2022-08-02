@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  margin-top: 50px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -24,7 +25,7 @@ export const ContentBox = styled.div`
   border-radius: 8px;
   /* padding: 15px; */
   background-color: #ffffff;
-  overflow-y: hidden;
+  overflow-x: hidden;
 
   @media screen and (max-width: 700px) {
     flex-direction: column;
@@ -60,6 +61,7 @@ export const TitleBox = styled.div`
 
 export const ImgBox = styled.div`
   display: flex;
+  position: relative;
 `;
 
 export const CardBody = styled.div`
@@ -104,3 +106,22 @@ export const Text = styled.p`
   font-weight: 400;
   font-size: 12px;
 `;
+
+export const DropDownBox = styled.div`
+  position: absolute;
+  background-color: white;
+  z-index: 2;
+  width: 200px;
+  padding: 20px 5px;
+  left: -190px;
+  top: 15px;
+  box-shadow: 0px 16px 64px rgba(16, 34, 28, 0.32);
+  border-radius: 8px;
+`
+export const DropDownContent = styled.div`
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+`
+export const DropDownText = styled.div``
+  

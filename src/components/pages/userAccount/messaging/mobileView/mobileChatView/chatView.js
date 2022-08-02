@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  margin-top: 50px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -66,7 +67,7 @@ export const MessageHeader = styled.div`
   }
   }
 
-  > p {
+  > em {
     color: #49665c;
     font-size: 15px;
     margin-left: 10px;
@@ -89,7 +90,7 @@ export const ProfileImg = styled.img`
 `;
 
 export const ChatBody = styled.div`
-  padding: 15px;
+  padding: 0px 15px 10px 15px;
   height: calc(100vh - 230px);
   overflow-x: scroll;
 `;
