@@ -38,7 +38,7 @@ const Index = () => {
       {repostModal && <RepostModal handleOpenModal={handleOpenRepostModal} />}
 
       <Container>
-        <BodyContainer>
+        <BodyContainer> 
           <BodyBox>
             <NewsFeedBox>
               <Post

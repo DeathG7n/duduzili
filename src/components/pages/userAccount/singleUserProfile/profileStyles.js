@@ -23,6 +23,7 @@ export const BodyBox = styled.div`
   @media screen and (max-width: 900px) {
     justify-content: center;
     width: 99%;
+    margin-left: 0px;
   }
 `;
 
@@ -133,6 +134,33 @@ export const BioDescText = styled.p`
     margin-left: 5px;
   }
 `;
+export const FollowIcon = styled.p`
+  color: white;
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-right: 10px;
+  font-weight: 600;
+  display: none;
+  border-radius: 50%;
+  background-color: #469f80;
+  text-align: center;
+
+  :hover{
+    background-color: white;
+    color: #469f80;
+  }
+
+  :active{
+    background-color: white;
+    color: #469f80;
+  }
+
+  @media screen and (max-width: 650px) {
+    display: block;
+  }
+`;
 
 export const LocationBox = styled.div`
   display: flex;
@@ -241,19 +269,26 @@ export const MediaBody = styled.div`
 export const MediaCard = styled.div`
   margin: 10px 8px;
   width: 150px;
+  height: 150px;
 
   > video{
     width: 100%;
-    height: 150px;
+    height: 100%;
   }
   
   > img{
     width: 100%;
-    height: 150px;
+    height: 100%;
   }
 
   > audio{
     width: 100%;
-    height: 150px;
+    height: 100%;
+  }
+
+  @media screen and (max-width: 750px){
+    width: 80px;
+    height: 80px;
+    margin: 5px 4px;
   }
 `

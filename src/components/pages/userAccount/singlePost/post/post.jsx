@@ -126,7 +126,7 @@ const Index = ({ handleOpenModal, handleOpenRepostModal }) => {
 
                 {/* Render video */}
                 {singleUserData?.audio_url ? (
-                  <Audio sourceUrl={singleUserData?.audio_url} h="350px" m="20px"/>
+                  <Audio sourceUrl={singleUserData?.audio_url} h="350px" m="20px" mh="260px"/>
                 ) : (
                   ""
                 )}
@@ -336,7 +336,7 @@ export const PostReactions = ({
       </Reaction>
 
       <Reaction ml="13%">
-        <img alt="icon" src={share} />
+        <img alt="icon" src={share} /> 
       </Reaction>
     </ReactionBox>
   );

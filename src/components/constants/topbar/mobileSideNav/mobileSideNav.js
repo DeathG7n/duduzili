@@ -1,4 +1,4 @@
-import React from "react";
+import {useRef} from "react";
 
 import {
   NavContainer,
@@ -41,11 +41,29 @@ const Index = ({ openMenu, handleLogOut, username, id }) => {
       `change_status/${flag}/`,
       "Status changed successfully"
     )
-  }, [flag])
+  }, [flag]) 
+
+  const moreRef = useRef()
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          openMenu();
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+  useOutsideAlerter(moreRef)
 
   return (
     <NavContainer>
-      <NavBox>
+      <NavBox ref={moreRef}>
         <CardBody>
           <Body>
             <div>

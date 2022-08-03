@@ -20,7 +20,8 @@ import {
   EditIcon,
   BioDescText,
   MediaCard,
-  MediaBody
+  MediaBody,
+  FollowIcon
 } from "./profileStyles";
 
 import Trending from "../../../constants/trending/trending";
@@ -141,20 +142,25 @@ const Index = () => {
                       </div>
 
                       {userData?.user?.id !== data?.user.id ? (
-                        <Button
-                          bc="white"
-                          border="1px solid #29BB89"
-                          width="120px"
-                          height="28px"
-                          color="#29BB89"
-                          br="20px"
-                          fw="500"
-                          onClick={()=>sendFollowRequest(data?.user.id)}
-                        >
-                          {isFollowing ? "Unfollow" : "Follow"}
-                        </Button>
+                        <>
+                          <FollowIcon onClick={()=>sendFollowRequest(data?.user.id)}> {isFollowing ? "-" : "+"}</FollowIcon>
+                          <Button
+                            bc="white"
+                            border="1px solid #29BB89"
+                            width="120px"
+                            height="28px"
+                            color="#29BB89"
+                            br="20px"
+                            fw="500"
+                            onClick={()=>sendFollowRequest(data?.user.id)}
+                          >
+                            {isFollowing ? "Unfollow" : "Follow"}
+                          </Button>
+                        </>
                       ) : (
                         // Edit button for personal user
+                        <>
+                        <EditIcon alt="icon" src={editIcon} onClick={handleOpenModal} />
                         <Button
                           bc="white"
                           border="1px solid #29BB89"
@@ -167,9 +173,10 @@ const Index = () => {
                         >
                           Edit Profile
                         </Button>
+                        </>
                       )}
 
-                      <EditIcon alt="icon" src={editIcon} />
+                      
                     </Body>
 
                     <BioDescText>
@@ -292,7 +299,7 @@ const Media = ({data})=>{
             )}
             {/* Render audio */}
             {item?.audio_url ? (
-              <Audio sourceUrl={item?.audio_url} h="150px"/>
+              <Audio sourceUrl={item?.audio_url} h="150px" mh="80px"/>
             ) : (
               ""
             )}

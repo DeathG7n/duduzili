@@ -10,12 +10,16 @@ export const ModalContainer = styled.div`
   box-sizing: border-box;
   position: fixed;
   z-index: 10;
+  
+  @media screen and (max-width: 750px){
+    margin-top: 50px;
+  }
+  
 `;
 
 export const ModalBox = styled.div`
   width: 450px;
   height: 500px;
-  /* overflow-y: scroll; */
   background-color: white;
   box-sizing: border-box;
   border-radius: 16px;
@@ -74,8 +78,7 @@ export const ModalBody = styled.div`
   box-sizing: border-box;
 
   @media screen and (max-width: 650px) {
-    height: unset;
-    padding: 20px;
+    padding: 70px 20px 70px 20px;
   }
 `;
 
@@ -87,7 +90,7 @@ export const ProfileImg = styled.img`
   position: relative;
 
   @media screen and (max-width: 650px) {
-    display: none;
+    margin-top: 0px;
   }
 `;
 

@@ -110,7 +110,7 @@ const Index = ({ handleOpenModal, id }) => {
             <img src={Cancel} alt="cancel" />
           </ModalContent>
 
-          <Button>Save</Button>
+          <Button onClick={handleSubmit}>{!loading ? "Save" : "Saving..."}</Button>
         </ModalTitle>
         <Rule />
         <ModalBody>

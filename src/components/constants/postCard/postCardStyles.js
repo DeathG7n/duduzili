@@ -360,6 +360,6 @@ export const AudioBox = styled.div`
   }
 
   @media screen and (max-width: 600px) {
-    height: 260px;
+    height: ${(props) => props.mh}
   }
 `;

@@ -214,7 +214,7 @@ const Index = ({
 
                         {/* Render audio */}
                         {item?.audio_url ? (
-                          <Audio sourceUrl={item?.audio_url} h="350px" m="20px"/>
+                          <Audio sourceUrl={item?.audio_url} h="350px" m="20px" mh="260px"/>
                         ) : (
                           ""
                         )}
@@ -361,12 +361,12 @@ const ReactionsComponent = ({
   );
 };
 
-export const Audio = ({ sourceUrl, h, m }) => {
+export const Audio = ({ sourceUrl, h, m, mh }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
     <>
-      <AudioBox bg={isPlaying ? Play : Pause} h={h} m={m}>
+      <AudioBox bg={isPlaying ? Play : Pause} h={h} m={m} mh={mh}>
         <audio
           controls
           onPlay={() => setIsPlaying(true)}
