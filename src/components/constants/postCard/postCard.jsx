@@ -92,6 +92,8 @@ const Index = ({
 
   const { userAction } = useUserActions();
 
+
+
   const updateStateEditPost = async (id) => {
     await dispatch({ type: "GETPOST_ID", payload: id });
     await dispatch({ type: "GET_EDITPOST" });
@@ -113,6 +115,20 @@ const Index = ({
 
   return (
     <>
+    {openMoreModal && (
+      <MobileMoreDropDown 
+      openModal={handleOpenMobileModal} 
+      userAction={userAction}
+      userData={userData}
+      save={save}
+      updateStateEditPost={ updateStateEditPost}
+      handleDeleteRequest={handleDeleteRequest}
+      />
+    )}
+
+    {openShareModal && (
+      <MobileShareDropDown openModal={handleOpenMobileShareModal} />
+    )}
       {postFeed === null ? (
         <SkeletonLoader num="2" />
       ) : (
@@ -122,21 +138,7 @@ const Index = ({
             postFeed.map((item, idx, arr) => {
               return (
                 <Container key={idx} >
-                  {openMoreModal && (
-                    <MobileMoreDropDown 
-                    openModal={handleOpenMobileModal} 
-                    item={item}
-                    userAction={userAction}
-                    userData={userData}
-                    save={save}
-                    updateStateEditPost={ updateStateEditPost}
-                    handleDeleteRequest={handleDeleteRequest}
-                    />
-                  )}
-
-                  {openShareModal && (
-                    <MobileShareDropDown openModal={handleOpenMobileShareModal} />
-                  )}
+                  
                   <TopBox>
                     <ProfileBox >
                       <img src={item?.user?.photo_url || Person} alt="dp" />
@@ -461,7 +463,7 @@ const MoreComponent = ({
     setDropDown(!dropDown)
     openModal()
     localStorage.setItem("item", JSON.stringify(item))
-    console.log(item)
+    localStorage.setItem("itemId", JSON.stringify(item?.id))
   }
   return(
     <MoreBox

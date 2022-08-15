@@ -37,7 +37,7 @@ const Index = () => {
             <TitleBox>
               <div>
                 <img alt="arrow icon" src={arrow} onClick={routeBack} />
-                <h3>People who reposted</h3>
+                <h3>People who commented</h3>
               </div>
             </TitleBox>
 

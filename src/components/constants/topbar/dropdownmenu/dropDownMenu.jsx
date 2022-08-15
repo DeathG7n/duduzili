@@ -35,15 +35,14 @@ const Index = ({ firstName, lastName, handleLogOut, username, id}) => {
   const {state:{isOnline}} = DataContext()
   const [online, setOnline] = useState(isOnline)
   const flag = online ? "no" : "yes"
-  console.log(online)
-  console.log(flag)
 
-  useEffect(()=>{
+  function toggleOnline(){
+    setOnline(!online)
     userAction(
       `change_status/${flag}/`,
       "Status changed successfully"
     )
-  }, [flag])
+  }
   return (
     <NavBox>
       <CardBody>
@@ -98,7 +97,7 @@ const Index = ({ firstName, lastName, handleLogOut, username, id}) => {
         </ListBox>
       </ListContainer>
 
-      <TextStatus onClick={()=> setOnline(!online)}>
+      <TextStatus onClick={()=> toggleOnline()}>
         <p>Online Status </p>
 
         <Switch checkedValue={online} />

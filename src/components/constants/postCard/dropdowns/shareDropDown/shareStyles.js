@@ -2,12 +2,10 @@ import styled from "styled-components";
 
 export const DropDownBox = styled.div`
   width: 100%;
-  height: calc(100vh - 70px);
+  height: 100vh;
   background-color: rgba( 0 0 0 /0.6);
   position: fixed;
   box-sizing: border-box;
-  display: flex;
-  align-items: flex-end;
   z-index: 14;
 `;
 
@@ -18,6 +16,9 @@ export const ShareDropDown = styled.div`
   border-top-left-radius: 12px;
   padding: 15px 10px;
   box-sizing: border-box;
+  position: absolute;
+  bottom: 60px;
+  
 
   > div {
     display: flex;

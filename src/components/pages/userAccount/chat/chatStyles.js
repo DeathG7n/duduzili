@@ -192,7 +192,7 @@ export const MessageHeader = styled.div`
     margin-left: 10px;
   }
 
-  > p {
+  > em {
     color: #49665c;
     font-size: 11px;
     margin-left: 10px;
@@ -219,12 +219,13 @@ export const ChatMessage = styled.div`
   box-sizing: border-box;
   border-radius: 16px 16px 16px 0px;
   padding: 15px;
-  max-width: 350px;
+  width: fit-content;
+  min-width: 100px;
+  max-width: 300px;
   overflow-wrap: break-word;
   white-space: pre-wrap;
   padding: 15px;
   background-color: ${(props) => props.bc};
-  width: ${(props) => props.width};
   margin-top: ${(props) => props.mt};
   box-shadow: ${(props) => props.bs};
 
@@ -232,6 +233,21 @@ export const ChatMessage = styled.div`
     color: #49665c;
     font-size: 12px;
     margin-top: 10px;
+  }
+
+  >img{
+    margin-top: 10px;
+    width: 250px;
+  }
+
+  >video{
+    margin-top: 10px;
+    width: 250px;
+  }
+
+  >audio{
+    margin-top: 10px;
+    width: 250px;
   }
 `;
 

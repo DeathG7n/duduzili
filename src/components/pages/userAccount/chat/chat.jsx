@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import {
   OpenBox,
@@ -30,6 +30,7 @@ import {
   MessageBox,
   WriteMessageBox,
 } from "./chatStyles";
+import { ArrowImg } from "../messaging/mobileView/mobileChatView/chatView";
 import chatIcon from "../../../assets/cross.png";
 import dropdown from "../../../assets/openup.png";
 import Settings from "../../../assets/dropdown1.png";
@@ -47,6 +48,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { DataContext } from "../../../api/context";
 import { truncate } from "../../../constants/textTruncate";
+import { useGetRequest } from "../../../api/api"
 
 const Index = () => {
   const {
@@ -59,6 +61,35 @@ const Index = () => {
   const handleOpenChat = () => {
     setOpenChats((props) => !props);
   };
+  const handleOpenSingleChat = () => {
+    setOpenSingleChat((props) => !props);
+  };
+
+  const scrollRef = useRef()
+
+  const{getRequest, data} = useGetRequest()
+
+  const userId = localStorage.getItem("userId")
+
+  const changeUserIndex = (id) => {
+    localStorage.setItem("userId", id)
+  };
+
+  useEffect(() => {
+    getRequest(`messages/${userId }/`);
+  }, [userId]);
+  
+  console.log(scrollRef.current)
+
+  useEffect(()=>{
+    scrollRef.current?.scrollIntoView({behavior: "smooth"})
+  })
+
+  const profileImage = data?.messages[0]?.receiver?.id === userId ? data?.messages[0]?.receiver?.photo_url : data?.messages[0]?.sender?.photo_url
+
+  const profileName = data?.messages[0]?.receiver?.id === userId ? data?.messages[0]?.receiver?.first_name : data?.messages[0]?.sender?.first_name
+
+  const profileUsername = data?.messages[0]?.receiver?.id === userId ? data?.messages[0]?.receiver?.username : data?.messages[0]?.sender?.username
 
   const checkMessageLength = conversations?.conversations?.map((c) => {
     const message = JSON.stringify(c?.last_message)
@@ -102,7 +133,11 @@ const Index = () => {
           <ChatListBox>
             {conversations?.conversations?.map((item, index) => {
               return (
-                <CardBody key={index}>
+                <CardBody key={index} onClick={()=>{
+                  handleOpenSingleChat()
+                  changeUserIndex(
+                    userData?.user?.id === item?.user_one?.id ? item?.user_two?.id : item?.user_one?.id)
+                  }}>
                   <div>
                     <CardImge alt="human" src={(userData?.user?.id === item?.user_one?.id ? item?.user_two?.photo_url : item?.user_one?.photo_url) || Person} />
                     <TextBox>
@@ -141,40 +176,49 @@ const Index = () => {
         <MessageBox>
           <MessageTitleBox>
             <MessageHeader>
-              <img src={backIcon} alt="icon" style={{ height: "25px" }} />
-              <ProfileImg alt="human" src={Person} />
-              <h3>Mirabel Lyn</h3>
-              <p>@mirabel101</p>
+              <ArrowImg src={backIcon} alt="arrow back icon" onClick={handleOpenSingleChat} />
+              <ProfileImg alt="human" src={profileImage} />
+              <h3>{profileName}</h3>
+              <em>@{profileUsername}</em>
             </MessageHeader>
+
 
             <img src={dots} alt="three dots" style={{ cursor: "pointer" }} />
           </MessageTitleBox>
 
           <ChatBody>
-            <ChatMessage bc="white" border="1px solid #d0e2dc">
-              <NameBox>
-                <h4>Mirabel Lyn </h4>
-                <span>@mirabel101</span>
-                <h6>2hours ago</h6>
-              </NameBox>
-              <p>
-                Thanks for downloading my product design system. hope to talk
-                soon.
-              </p>
-            </ChatMessage>
-
-            <ChatMessage
-              bc="#E6FAEB"
-              width="70%"
-              mt="15px"
-              bs="0px 4px 4px rgba(0, 0, 0, 0.25)"
-            >
-              <NameBox>
-                <h4>You</h4>
-                <h6>2hours ago</h6>
-              </NameBox>
-              <p>The dark mode features is super nice.</p>
-            </ChatMessage>
+          {data?.messages?.map((item, index)=>{
+              return item?.receiver?.id !== userId ? (
+                <ChatMessage bc="white" border="1px solid #d0e2dc" mt="15px" ref={scrollRef} key={index}>
+                  <NameBox>
+                    <h4>{item?.sender?.first_name} </h4>
+                    <span>{item?.sender?.username}</span>
+                    <h6>{item?.date}</h6>
+                  </NameBox>
+                  {item?.video && <video controls> <source src={item?.video}/></video>}
+                  {item?.photo && <img src={item?.photo}/>}
+                  {item?.audio && <audio controls> <source src={item?.audio}/></audio>}
+                  <p>{item?.text}</p>
+                  
+                </ChatMessage>
+              ):( <ChatMessage
+                    bc="#E6FAEB"
+                    width="70%"
+                    mt="15px"
+                    bs="0px 4px 4px rgba(0, 0, 0, 0.25)"
+                    key={index}
+                    ref={scrollRef}
+                  >
+                  <NameBox>
+                    <h4>You</h4>
+                    <h6>{item?.date}</h6>
+                  </NameBox>
+                  {item?.video && <video controls> <source src={item?.video}/></video>}
+                  {item?.photo && <img src={item?.photo} alt="image"/>}
+                  {item?.audio && <audio controls> <source src={item?.audio}/></audio>}
+                  <p>{item?.text}</p>
+            </ChatMessage>)
+            })}
           </ChatBody>
 
           <WriteBox>

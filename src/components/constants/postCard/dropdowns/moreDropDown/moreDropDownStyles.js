@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
 export const DropDownBox = styled.div`
-  width: 100%;
-  height: calc(100vh - 70px);
+  width: 100vw;
+  height: 100vh;
   background-color: rgba( 0 0 0 /0.6);
   position: fixed;
   box-sizing: border-box;
-  display: flex;
-  align-items: flex-end;
   z-index: 14;
 `;
 
@@ -18,6 +16,8 @@ export const DropDown1 = styled.div`
   border-top-left-radius: 12px;
   padding: 15px 10px;
   box-sizing: border-box;
+  position: absolute;
+  bottom: 75px;
 `;
 
 export const DropDownContent = styled.div`
@@ -47,3 +47,15 @@ export const Button = styled.button`
   cursor: pointer;
   margin-top: 30px;
 `;
+
+export const MoreBox = styled.div`
+
+  > span {
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    margin-left: 3px;
+    margin-bottom: 40px;
+    background-color: red;
+  }
+`

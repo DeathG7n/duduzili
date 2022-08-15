@@ -15,6 +15,7 @@ import volume from "../../../../assets/volume.png";
 import mail from "../../../../assets/mail.png";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useFollowGetRequest } from "../../../../api/api";
 
 const Index = ({
   userAction,
@@ -24,8 +25,21 @@ const Index = ({
   handleDeleteRequest,
   openModal
 }) =>{
+  const postItem = localStorage.getItem("item")
+  const item = JSON.parse(postItem)
   const moreRef = useRef()
   const [windowSize, setWindowSize] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(item.is_following);
+  const { getFollowRequest } = useFollowGetRequest();
+
+  const sendFollowRequest = (id) => {
+    toggleFollowText();
+    getFollowRequest(`follow/${id}/`);
+  };
+
+  const toggleFollowText = () => {
+    setIsFollowing((props) => !props);
+  };
 
   useEffect(() => {
     if (window.innerWidth >= 800) {
@@ -34,8 +48,7 @@ const Index = ({
       setWindowSize(true);
     }
   });
-  const postItem = localStorage.getItem("item")
-  const item = JSON.parse(postItem)
+  
   function useOutsideAlerter(ref) {
     useEffect(() => {
       function handleClickOutside(event) {
@@ -52,15 +65,20 @@ const Index = ({
     }, [ref]);
   }
   useOutsideAlerter(moreRef)
+
+  console.log(item)
   return(
-    <>
+    <MoreBox>
+      <span></span>
+      <span></span>
+      <span></span>
     {windowSize && (
       <DropDownBox >
         {item?.user?.id !== userData?.user?.id ? (
         <DropDown1 className="dropdown" height="230px" ref={moreRef}>
-          <DropDownContent>
+          <DropDownContent onClick={() => sendFollowRequest(item?.user?.id)}>
             <img src={user} alt="icon" />
-            <p>{item?.user?.is_following ? "Unfollow" : "Follow"} @{item?.user?.username}</p>
+            <p>{isFollowing ? "Unfollow" : "Follow"} @{item?.user?.username}</p>
           </DropDownContent>
           <DropDownContent
             onClick={() =>
@@ -106,6 +124,7 @@ const Index = ({
             <img src={flag} alt="icon" />
             <p>Report post</p>
           </DropDownContent>
+          <Button onClick={openModal}>Cancel</Button>
         </DropDown1>
       ) : (
         <DropDown1 className="dropdown" height="95px" ref={moreRef}>
@@ -128,7 +147,7 @@ const Index = ({
       )}
       </DropDownBox>
     )}
-    </>
+    </MoreBox>
     
     
   )

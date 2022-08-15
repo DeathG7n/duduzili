@@ -45,7 +45,7 @@ import {Rings} from "react-loader-spinner";
 import { truncate } from "../../../constants/textTruncate";
 
 import { DataContext } from "../../../api/context";
-import { useGetRequest } from "../../../api/api";
+import { useGetRequest, useMarkRequest } from "../../../api/api";
 
 const Index = () => {
   const { data, loading, getRequest } = useGetRequest();
@@ -62,7 +62,8 @@ const Index = () => {
   const {
     state: { conversations, userData },
   } = DataContext();
-  console.log(data)
+  
+  
 
   
 
@@ -226,7 +227,7 @@ const Index = () => {
                 return (
                   <CardBody
                     key={item?.id}
-                    onClick={() =>
+                    onClick={() =>{
                       changeUserIndex(
                         index,
                         userData?.user?.id === item?.user_one?.id ?item?.user_two?.id : item?.user_one?.id,
@@ -234,6 +235,7 @@ const Index = () => {
                         userData?.user?.id === item?.user_one?.id ? item?.user_two?.photo_url : item?.user_one?.photo_url,
                         userData?.user?.id === item?.user_one?.id ? item?.user_two?.first_name : item?.user_one?.first_name
                         )
+                      }
                     }
                   >
                     <div>
@@ -347,7 +349,20 @@ const Index = () => {
 export default Index;
 
 export const Messages =({item, userId})=> {
+  const {
+    state: { conversations, userData },
+  } = DataContext();
+
+  const { markAllRequest, markRequest} = useMarkRequest()
   
+  useEffect(()=>{
+    markAllRequest(`messages/mark_as_read/${userData?.user?.id}/`)
+  }, [item])
+
+  const markSingleMessage = (id) => {
+    markRequest(`message/mark_as_read/${id}/`)
+  }
+ console.log(conversations)
   return item?.receiver?.id !== userId ? (
     <ChatMessage
       bc="white"
