@@ -20,6 +20,10 @@ export const ProfileBox = styled.div`
   position: relative;
   margin-left: 30px;
 
+  @media screen and (max-width: 800px) {
+    margin-left: 5px;
+  }
+
   > img {
     width: 50px;
     height: 50px;
@@ -153,10 +157,6 @@ export const DropDown1 = styled.div`
   padding-bottom: 10px;
   z-index: 2;
 
-
-  @media screen and (max-width: 700px) {
-    width: 250px;
-  }
 `;
 
 export const DropDownContent = styled.div`
@@ -194,6 +194,10 @@ export const ContentText = styled.p`
   padding: 0px 18px;
   margin-bottom: 15px;
   margin-left: 30px;
+
+  @media screen and (max-width: 800px) {
+    margin-left: 5px;
+  }
 
   > span {
     color: #29bb89;
@@ -234,6 +238,7 @@ export const ReactionBox = styled.div`
   @media screen and (max-width: 700px) {
     justify-content: space-between;
     width: 95%;
+    margin-left: 5px;
   }
 `;
 

@@ -20,6 +20,11 @@ import logout from "../../../assets/logout.png";
 import saved from "../../../assets/saved.png";
 import help from "../../../assets/help.png";
 
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import PrivacyTipOutlinedIcon from '@mui/icons-material/PrivacyTipOutlined';
+import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
+import StickyNote2OutlinedIcon from '@mui/icons-material/StickyNote2Outlined';
+
 import { DataContext } from "../../../api/context"
 import { useUserActions } from "../../../api/api";
 import { useEffect, useState } from "react";
@@ -83,7 +88,7 @@ const Index = ({ openMenu, handleLogOut, username, id }) => {
           </Body>
           <Button onClick={openMenu}>
             <Link
-              to={`/user/${username}/${id}`}
+              to={`/user/${username}`}
               style={{ textDecoration: "none", color: "#29bb89" }}
             >
               View Profile
@@ -92,33 +97,57 @@ const Index = ({ openMenu, handleLogOut, username, id }) => {
         </CardBody>
 
         <ListContainer>
-          <Link
-            to="/user/settings"
-            style={{ textDecoration: "none" }}
-            onClick={openMenu}
-          >
-            <ListBox>
-              <ListImg width="25px" height="25px" alt="" src={settings} />
-              <p>Settings</p>
-            </ListBox>
-          </Link>
- 
-          <Link to="/user/help" style={{textDecoration: "none"}}>
-            <ListBox>
-              <ListImg width="26px" height="26px" alt="" src={help} />
-              <p>Help</p>
-            </ListBox>
-          </Link>
-
+        <Link to="/user/settings" style={{ textDecoration: "none" }}>
           <ListBox>
-            <ListImg ml="5px" width="20px" height="25px" alt="" src={saved} />
-              <Link
-                to={"/user/saved-posts"}
-                style={{ textDecoration: "none", color: "#29bb89", marginLeft: "13px" }}
-              >
-                Saved
-              </Link>
+            <ListImg width="25px" height="25px" alt="" src={settings} />
+            <p>Settings</p>
           </ListBox>
+        </Link>
+
+        <ListBox>
+          <ListImg width="20px" height="25px" alt="" src={saved} />
+          <Link
+            to={"/user/saved-posts"}
+            style={{ textDecoration: "none", color: "#10221c", marginLeft: "15px" }}
+          >
+            Saved
+          </Link>
+        </ListBox>
+
+        <Link to="/help" style={{textDecoration: "none"}}>
+        <ListBox>
+          <ListImg width="26px" height="26px" alt="" src={help} />
+          <p>Help</p>
+        </ListBox>
+        </Link>
+
+        <Link to="/about" style={{textDecoration: "none"}}>
+        <ListBox>
+          <InfoOutlinedIcon sx={{color: "#80a397", fontSize: "30px"}}/>
+          <p>About</p>
+        </ListBox>
+        </Link>
+
+        <Link to="/" style={{textDecoration: "none"}}>
+        <ListBox>
+          <StickyNote2OutlinedIcon sx={{color: "#80a397", fontSize: "30px"}}/>
+          <p>Terms</p>
+        </ListBox>
+        </Link>
+
+        <Link to="/policy" style={{textDecoration: "none"}}>
+        <ListBox>
+          <PrivacyTipOutlinedIcon sx={{color: "#80a397", fontSize: "30px"}}/>
+          <p>Privacy Policy</p>
+        </ListBox>
+        </Link>
+
+        <Link to="/" style={{textDecoration: "none"}}>
+        <ListBox>
+          <BookOutlinedIcon sx={{color: "#80a397", fontSize: "30px"}}/>
+          <p>Blog</p>
+        </ListBox>
+        </Link>
 
           <ListBox onClick={handleLogOut}>
             <ListImg width="25px" height="20px" alt="" src={logout} />

@@ -4,6 +4,10 @@ export const Container = styled.div`
   width: 100%;
   padding-bottom: 15px;
   margin-top: 60px;
+
+  @media screen and (max-width: 900px){
+    margin-top: 0;
+  }
 `;
 
 export const BodyContainer = styled.div`

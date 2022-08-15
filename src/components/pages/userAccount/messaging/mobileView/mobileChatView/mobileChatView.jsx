@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useRef} from "react";
 
 import { useNavigate } from "react-router-dom"
 import {
@@ -27,6 +27,7 @@ import { useGetRequest } from "../../../../../api/api";
 
 const Index = () => {
   const history = useNavigate()
+  const scrollRef = useRef()
 
   const{getRequest, data} = useGetRequest()
 
@@ -35,6 +36,11 @@ const Index = () => {
   useEffect(() => {
     getRequest(`messages/${userId }/`);
   }, [userId]);
+  console.log(scrollRef.current)
+
+  useEffect(()=>{
+    scrollRef.current?.scrollIntoView({behavior: "smooth"})
+  })
   
   const profileImage = data?.messages[0]?.receiver?.id === userId ? data?.messages[0]?.receiver?.photo_url : data?.messages[0]?.sender?.photo_url
 
@@ -61,27 +67,36 @@ const Index = () => {
             />
           </MessageTitleBox>
 
-          <ChatBody>
+          <ChatBody >
             {data?.messages?.map((item, index)=>{
               return item?.receiver?.id !== userId ? (
-                <ChatMessage bc="white" border="1px solid #d0e2dc" mt="15px">
+                <ChatMessage bc="white" border="1px solid #d0e2dc" mt="15px" ref={scrollRef} key={index}>
                   <NameBox>
                     <h4>{item?.sender?.first_name} </h4>
                     <span>{item?.sender?.username}</span>
                     <h6>{item?.date}</h6>
                   </NameBox>
+                  {item?.video && <video controls> <source src={item?.video}/></video>}
+                  {item?.photo && <img src={item?.photo}/>}
+                  {item?.audio && <audio controls> <source src={item?.audio}/></audio>}
                   <p>{item?.text}</p>
+                  
                 </ChatMessage>
               ):( <ChatMessage
                     bc="#E6FAEB"
                     width="70%"
                     mt="15px"
                     bs="0px 4px 4px rgba(0, 0, 0, 0.25)"
+                    key={index}
+                    ref={scrollRef}
                   >
                   <NameBox>
                     <h4>You</h4>
                     <h6>{item?.date}</h6>
                   </NameBox>
+                  {item?.video && <video controls> <source src={item?.video}/></video>}
+                  {item?.photo && <img src={item?.photo}/>}
+                  {item?.audio && <audio controls> <source src={item?.audio}/></audio>}
                   <p>{item?.text}</p>
             </ChatMessage>)
             })}

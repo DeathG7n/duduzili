@@ -88,6 +88,9 @@ export const useGetRequest = () => {
         if (endpoint === "conversations/") {
           dispatch({ type: "CONVERSATIONS", payload: res.data });
         }
+        if (endpoint .includes("user")) {
+          dispatch({ type: "SINGLE_USER", payload: res.data });
+        }
 
         if (endpoint === "discover_people/") {
           dispatch({ type: "DISCOVER_PEOPLE", payload: res.data });
@@ -232,7 +235,7 @@ export const usePostComment = () => {
         cb();
 
         // reload after completion of request
-        reload();
+        // reload();
       })
       .catch((err) => {
         setLoading(false);
@@ -430,5 +433,6 @@ export const useMarkRequest = () => {
   return {
     loading,
     markRequest,
+    markAllRequest
   };
 };

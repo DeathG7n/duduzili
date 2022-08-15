@@ -11,18 +11,19 @@ export const Container = styled.div`
     display: block;
     display: flex;
     justify-content: center;
+    margin-top: 0;
   }
 `;
 
 export const ContentBox = styled.div`
   width: 900px;
-  height: calc(100vh - 70px);
+  height: 100vh;
   display: flex;
   margin-top: 15px;
   border: 1px solid #d0e2dc;
   box-sizing: border-box;
   border-radius: 8px;
-  /* padding: 15px; */
+  padding-bottom: 15px; 
   background-color: #ffffff;
   overflow-y: hidden;
 
@@ -91,7 +92,7 @@ export const ProfileImg = styled.img`
 
 export const ChatBody = styled.div`
   padding: 0px 15px 10px 15px;
-  height: calc(100vh - 230px);
+  height: 80vh;
   overflow-x: scroll;
 `;
 
@@ -100,12 +101,13 @@ export const ChatMessage = styled.div`
   box-sizing: border-box;
   border-radius: 16px 16px 16px 0px;
   padding: 15px;
-  max-width: 350px;
+  width: fit-content;
+  min-width: 100px;
+  max-width: 300px;
   overflow-wrap: break-word;
   white-space: pre-wrap;
   padding: 15px;
   background-color: ${(props) => props.bc};
-  width: ${(props) => props.width};
   margin-top: ${(props) => props.mt};
   box-shadow: ${(props) => props.bs};
 
@@ -113,6 +115,21 @@ export const ChatMessage = styled.div`
     color: #49665c;
     font-size: 12px;
     margin-top: 10px;
+  }
+
+  >img{
+    margin-top: 10px;
+    width: 250px;
+  }
+
+  >video{
+    margin-top: 10px;
+    width: 250px;
+  }
+
+  >audio{
+    margin-top: 10px;
+    width: 250px;
   }
 `;
 

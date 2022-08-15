@@ -31,6 +31,7 @@ export const NewsFeedBox = styled.div`
   @media screen and (max-width: 900px) {
     width: 100%;
     margin: 0;
+    padding-bottom: 30px;
   }
 `;
 

@@ -35,11 +35,6 @@ const Index = () => {
 
             <DiscoverCard />
           </NewsFeedBox>
-
-          {/* <DiscoverBox>
-            <Trending />
-            <Tags />
-          </DiscoverBox> */}
         </BodyBox>
       </BodyContainer>
     </Container>

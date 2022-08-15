@@ -20,7 +20,7 @@ export const CardBody = styled.div`
 
 export const Body = styled.div`
   display: flex;
-  padding: 15px 18px 40px 18px;
+  padding: 15px 18px 20px 18px;
   justify-content: space-between;
   align-items: center;
   background-color: white;
@@ -29,6 +29,14 @@ export const Body = styled.div`
   > div {
     display: flex;
     align-items: center;
+
+    @media screen and (max-width: 900px){
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 900px){
+      flex-direction: column;
   }
 `;
 
@@ -37,6 +45,11 @@ export const CardImge = styled.img`
   height: 70px;
   border-radius: 50%;
   margin-right: 20px;
+
+  @media screen and (max-width: 900px){
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 export const TextBox = styled.div`
@@ -66,7 +79,7 @@ export const Button = styled.button`
   height: ${(props) => props.height};
   background-color: ${(props) => props.bc};
   color: ${(props) => props.color};
-  border: ${(props) => props.border};
+  border: ${(props) => props.border}; 
   border-radius: ${(props) => props.br};
   margin: ${(props) => props.margin};
   font-weight: ${(props) => props.fw};
@@ -77,6 +90,11 @@ export const Button = styled.button`
   :hover{
     background-color: #29BB89;
     color: white;
+  }
+
+
+  @media screen and (max-width: 900px){
+    margin: ${(props) => props.smargin};
   }
 `;
 

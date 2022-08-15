@@ -11,14 +11,19 @@ import {
   CardImge,
   NonLinkBox,
   TextBox,
-  // Button,
   IconBox,
   Text,
   DropDownBox,
   DropDownContent,
   DropDownText,
-  // ButtonBox,
+  MoDropDownContent
 } from "./notificationStyles";
+import { 
+  DropDown,
+  MDropDownBox,
+  MDropDownContent,
+  Button
+} from "../messaging/mobileView/messageMobileStyles";
 import Trending from "../../../constants/trending/trending";
 import Messetting from "../../../assets/messetting.png";
 import TextEdit from "../../../assets/textedit.png";
@@ -42,6 +47,14 @@ const Index = () => {
 
   const moreRef = useRef()
   const [dropDown, setDropDown] = useState(false)
+  const [windowSize, setWindowSize] = useState(false)
+  useEffect(() => {
+    if (window.innerWidth <= 800) {
+      setWindowSize(false);
+    } else {
+      setWindowSize(true);
+    }
+  });
 
   function useOutsideAlerter(ref) {
     useEffect(() => {
@@ -62,7 +75,7 @@ const Index = () => {
 
   
   const { markAllRequest, markRequest} = useMarkRequest()
-  console.log(userData);
+  console.log(notification);
 
   const history = useNavigate();
 
@@ -75,25 +88,24 @@ const Index = () => {
   }
   
   const markSingleNotification = (id) => {
-    console.log(id)
     markRequest(`notification/mark_as_read/${id}/`)
   }
 
   return (
     <Container>
+      {dropDown && !windowSize && <MobileDropDown setDropDown={setDropDown} dropDown={dropDown}/>}
       <BodyContainer>
         <BodyBox>
           <NewsFeedBox>
             <TitleBox>
               <div>
-                {/* <img alt="arrow icon" src={arrow} onClick={routeBack} /> */}
                 <h3>Notifications</h3>
               </div>
               
               <IconBox ref={moreRef}>
                 <img src={icon} alt="icon" style={{ cursor: "pointer" }} onClick={()=> setDropDown(!dropDown)} />
  
-                <DropDownBox className="dropdown" style={{display: dropDown ? "block" : "none"}}>
+                <DropDownBox className="dropdown" style={{display: windowSize && dropDown ? "block" : "none"}}>
                   <DropDownContent>
                     <div onClick={() => markAllNotifications()}>
                       <img src={TextEdit} alt="" style={{ width: "24px", height: "24px", marginTop: "1px", marginRight: "-15px"}}/>
@@ -122,7 +134,9 @@ const Index = () => {
               notification?.notifications.map((item, ind) => {
                 console.log(item);
                 return (
-                  <CardBody bc="#f7fcfa" key={ind} onClick={() => markSingleNotification(item?.id)}>
+                  <CardBody bc="white" key={ind} onClick={() => markSingleNotification(item?.id)} style={{
+                    backgroundColor: item?.read ? "#ffffff" : "#d0d1eb"
+                  }}>
                     {/* Return empty on Notifications without post url */}
                     {!item?.post?.post_url ? (
                       <NonLinkBox>
@@ -174,3 +188,47 @@ const Index = () => {
 };
 
 export default Index;
+
+export const MobileDropDown = ({setDropDown}) => {
+  const moreRef = useRef()
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setDropDown(false);
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+  useOutsideAlerter(moreRef)
+  return(
+    <DropDown >
+      <MDropDownBox >
+        <DropDownContent>
+          <MoDropDownContent>
+            <img src={TextEdit} alt="" style={{ width: "24px", height: "24px", marginTop: "1px", marginRight: "-15px"}}/>
+            <DropDownText>Mark all as seen</DropDownText>
+          </MoDropDownContent>
+          <MoDropDownContent>
+            <img src={Delet} alt="" style={{marginTop: "1px", marginRight: "-15px"}}/>
+            <DropDownText>Delete notifications</DropDownText>
+          </MoDropDownContent>
+          <MoDropDownContent>
+            <img src={Messetting} alt="" style={{marginTop: "1px", marginRight: "-15px"}}/>
+            <Link to="/user/settings/notification" style={{textDecoration: "none", color: "black"}}>
+              <DropDownText>Notifications settings</DropDownText>
+            </Link>
+          </MoDropDownContent>
+        </DropDownContent>
+        <Button onClick={()=> setDropDown(false)}>Cancel</Button>
+      </MDropDownBox>
+    </DropDown>
+
+  )
+}

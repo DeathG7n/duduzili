@@ -153,7 +153,7 @@ export const CardContent = styled.div`
 
 export const CommentBox = styled.div`
   width: 100%;
-  padding: 0px 15px;
+  padding: 0px 0px 40px 0px;
   border-radius: 4px;
   background-color: white;
   margin-top: 15px;
@@ -167,8 +167,8 @@ export const CommentTopBox = styled.div`
 `;
 
 export const SingleCommentBox = styled.div`
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px;
+  border-bottom: 1px solid #cdd3d1;
 `;
 
 export const CommentText = styled.p`

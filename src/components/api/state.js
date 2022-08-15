@@ -22,6 +22,7 @@ export const initialValues = {
   hideTopBar: false,
   getEditPost: null,
   singleRepostData: null,
+  singleUser: null,
   followings: null,
   followers: null,
   isOnline: null
@@ -82,6 +83,14 @@ export const reducer = (state, action) => {
     return {
       ...state,
       getTopics: action.payload,
+    };
+  }
+
+  // Fetch single user
+  else if (action.type === "SINGLE_USER") {
+    return {
+      ...state,
+      singleUser: action.payload,
     };
   }
 
@@ -179,9 +188,9 @@ export const reducer = (state, action) => {
       getEditPost: state.postData.find((item) => item.id === state.getPostId),
     };
   }
-  else if (action.type === "MARK_RESPONSE") {
-    window.location.reload(false);
-  }
+  // else if (action.type === "MARK_RESPONSE") {
+  //   window.location.reload(false);
+  // }
   // get the repost data of the single page post
   else if (action.type === "GET_SINGLE_REPOST") {
     return {

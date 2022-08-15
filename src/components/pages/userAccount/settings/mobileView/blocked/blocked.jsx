@@ -19,7 +19,7 @@ export default function Muted() {
     return(
         <>
             <Content style={{justifyContent: "space-between"}}>
-                <Link to={`/user/${m?.username}/${m?.id}`} style={{textDecoration: "none", display: "flex",gap: "10px", alignItems: "center", width: "50%"}}>
+                <Link to={`/user/${m?.username}`} style={{textDecoration: "none", display: "flex",gap: "10px", alignItems: "center", width: "50%"}}>
                     <img src={m?.photo_url} alt="" />
                     <TextBox>
                         <p>{m?.first_name} {m?.last_name}</p>

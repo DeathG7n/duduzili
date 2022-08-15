@@ -9,9 +9,10 @@ export const Container = styled.div`
   box-sizing: border-box;
 
   @media screen and (max-width: 900px) {
-    display: block;
     display: flex;
     justify-content: center;
+    margin-top: 0;
+    padding: 5px;
   }
 `;
 
@@ -31,12 +32,14 @@ export const ContentBox = styled.div`
     flex-direction: column;
     justify-content: center;
     width: 99%;
+    margin-top: 0;
   }
 `;
 
 export const MessagesBox = styled.div`
   width: 100%;
   border-right: 1px solid #d0e2dc;
+  overflow: hidden;
 `;
 
 export const TitleBox = styled.div`
@@ -110,7 +113,7 @@ export const Text = styled.p`
 export const DropDownBox = styled.div`
   position: absolute;
   background-color: white;
-  z-index: 2;
+  z-index: 100;
   width: 200px;
   padding: 20px 5px;
   left: -190px;
@@ -125,3 +128,48 @@ export const DropDownContent = styled.div`
 `
 export const DropDownText = styled.div``
   
+export const DropDown = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-color: rgba( 0 0 0 /0.6);
+  position: fixed;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  z-index: 14;
+`;
+export const MDropDownBox = styled.div`
+  width: 100%;
+  background-color: white;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+  padding: 15px 10px 30px 10px;
+  box-sizing: border-box;
+`;
+
+export const MDropDownContent = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 10px 0 10px 10px;
+
+  > p {
+    color: #49665C;
+    font-weight: 600;
+    margin-left: 20px;
+    font-size: 15px;
+    cursor: pointer;
+  }
+`;
+
+export const Button = styled.button`
+  width: 100%;
+  height: 45px;
+  background-color: #F1F5F4;
+  color: black;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 20px;
+`;

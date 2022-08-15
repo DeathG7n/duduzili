@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 
 import { Container, Content, Header, Item, Topic } from "./searchStyles";
 import search from "../../../assets/search.svg";
@@ -12,10 +12,27 @@ const Index = ({ handleOpenSearch }) => {
   const { searchRequest } = useSearchRequest();
 
   useEffect(() => {
-    getRequest("search_list/");
+    getRequest("search_list/");  
   }, []);
 
   const history = useNavigate();
+  const moreRef = useRef()
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          handleOpenSearch();
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+  useOutsideAlerter(moreRef)
 
   const changeRoute = () => {
     handleOpenSearch();
@@ -45,7 +62,7 @@ const Index = ({ handleOpenSearch }) => {
 
   return (
     <Container>
-      <Content>
+      <Content ref={moreRef}>
         <Header>
           <h4>Recent</h4>
           <h5>Clear all</h5>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100%;
   padding-bottom: 15px;
-  margin-top: 60px;
+  margin-top: 10px;
 `;
 
 export const Body = styled.div`
@@ -86,8 +86,8 @@ export const FaqAnswer = styled.div`
 `
 export const FaqContainer = styled.div`
     width: 100%;
-    height: 78vh;
-    overflow-y: scroll;
+    // height: 78vh;
+    // overflow-y: scroll;
     padding: 0 5px 30px 0;
     background-color: white;
 `

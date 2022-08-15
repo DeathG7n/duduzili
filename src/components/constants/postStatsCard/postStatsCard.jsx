@@ -10,7 +10,7 @@ const Index = ({ firstName, userName, photo, id }) => {
       <div>
         <Image src={photo || avatar} alt="avatar" />
         <Link
-          to={`/user/${userName}/${id}`}
+          to={`/user/${userName}`}
           style={{ textDecoration: "none", color: "#000" }}
         >
           <DetailsBox>

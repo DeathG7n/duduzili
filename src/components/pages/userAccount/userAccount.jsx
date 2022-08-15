@@ -18,11 +18,8 @@ import LikedPosts from "./likedPostPage/likedPostPage"
 import Followers from "./followersPage/followersPage"
 import Followings from "./followings/followings"
 import Repost from "./repostPage/repost"
+import Comments from "./commentPage/commentPage"
 import SavedPost from "./savedPost/savedPost"
-import About from "../../constants/static pages/about"
-import Help from "../../constants/static pages/help"
-import Privacy from "../../constants/static pages/privacy"
-
 
 import TopBar from "../../constants/topbar/topBar";
 import home from "../../assets/home.png";
@@ -82,32 +79,32 @@ const Index = () => {
   return (
     <Container>
       {/* Query pathname and hide topbar */}
-      {screenWidth && location === "/user/notifications" ? (
-        ""
-      ) : screenWidth && location === "/user/discover" ? (
-        " "
-      ) 
-      
-      // : screenWidth && hideTopBar ? (
-      //   ""
-      // ) 
-      : (
-        <>
-          <TopBar />
-          {/* <Feeds/> */}
-        </>
-        
-      )}
+      {screenWidth && location === "/user/notifications" 
+      ? ("") 
+      : screenWidth && location === "/user/discover" 
+      ? (" ")
+      : screenWidth && location === "/user/profile" 
+      ? (" ")
+      : screenWidth && location === "/user/article/new" 
+      ? (" ")
+      : screenWidth && location === "/user/messaging" 
+      ? (" ")
+      : screenWidth && location === "/user/messages/chats" 
+      ? (" ")
+      : screenWidth && location === "/user/saved-posts" 
+      ? (" ")
+      : screenWidth && location.includes("/user/settings" ) 
+      ? (" ")
+      : screenWidth && location.includes("/user/msettings" ) 
+      ? (" ")
+      : screenWidth && location.includes("post" ) 
+      ? (" ")
+      : screenWidth && location.includes("followings" ) 
+      ? (" ")
+      : screenWidth && location.includes("followers" ) 
+      ? (" ")
+      : (<TopBar />)}
       <div
-        // Apply padding to every route except discover and notification routes
-        // style={{
-        //   paddingTop:
-        //     screenWidth && location === "/user/discover"
-        //       ? "0px"
-        //       : screenWidth && location === "/user/notifications"
-        //       ? "0px"
-        //       : "60px",
-        // }}
       >
         {/* General snackbar renders when the associate dispatch action fires */}
         <SnackBar open={openSnackBar} message={snackBarMsg} />
@@ -118,15 +115,8 @@ const Index = () => {
               <Route exact path="messaging" element={<Messaging />} />
               <Route exact path="search" element={<SearchResult />} />
           </Route>
-          {/* <ProtectedRoute path="/user/feed" component={Feeds} />
-
-          <ProtectedRoute path="/user/messaging" component={Messaging} />
-
-          <ProtectedRoute path="/user/search" component={SearchResult} /> */}
 
           <Route exact path="messages/chats" element={<MobileChatView />}/>
-            
-          
 
           <Route exact path="settings/*" element={<Settings />} />
 
@@ -152,15 +142,9 @@ const Index = () => {
 
           <Route exact path="saved-posts" element={<SavedPost />} />
 
-          <Route exact path="profile" element={<Profile />} />
+          {/* <Route exact path="profile" element={<Profile />} /> */}
 
           <Route exact path="discover" element={<DiscoverPeople />} />
-
-          <Route exact path="about" element={<About />} />
-
-          <Route exact path="help" element={<Help />} />
-
-          <Route exact path="policy" element={<Privacy />} />
 
           <Route exact path="article/new" element={<PostArticle />} />
 
@@ -168,11 +152,13 @@ const Index = () => {
 
           <Route  path=":username/post/:id/reposts" element={<Repost />} />
 
+          <Route  path=":username/post/:id/comments" element={<Comments />} />
+
           <Route  path=":username/followers" element={<Followers />} />
 
           <Route  path=":username/followings" element={<Followings />} />
 
-          <Route  path=":username/:id" element={<SingleUserProfile />} />
+          <Route  path=":username" element={<SingleUserProfile />} />
 
           <Route  path=":username/post/:post_url/" element={<SinglePost />} />
 

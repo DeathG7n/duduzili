@@ -17,7 +17,7 @@ export default function Blocked() {
         return(
             <Container>
             <Content style={{justifyContent: "space-between"}}>
-                <Link to={`/user/${b?.username}/${b?.id}`} style={{textDecoration: "none", display: "flex",gap: "10px", alignItems: "center", width: "50%"}}>
+                <Link to={`/user/${b?.username}`} style={{textDecoration: "none", display: "flex",gap: "10px", alignItems: "center", width: "50%"}}>
                     <ProfileImg src={b?.photo_url} alt="" />
                     <TextBox>
                         <p>{b?.first_name} {b?.last_name}</p>

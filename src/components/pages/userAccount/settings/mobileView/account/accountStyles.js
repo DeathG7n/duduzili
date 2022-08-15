@@ -6,7 +6,7 @@ export const Container = styled.div`
   padding-top: 30px;
   box-sizing: border-box;
   background: #fff;
-  margin-top: 30px;
+  margin-top: 0;
 `;
 
 export const Content = styled.div`
@@ -36,7 +36,7 @@ export const TextBox = styled.div`
 `;
 
 export const Accounts = styled.div`
-  padding: 20px;
+  padding: 0 15px 15px 15px;
   border-bottom: 1px solid #d0e2dc;
   display: flex;
   align-items: center; 
@@ -82,7 +82,8 @@ export const SocialText = styled.p`
 
 export const Text = styled.div`
   height: 67vh;
-  font-size: 20px;
+  font-size: 15px;
+  text-indent: 10px;
   padding: 5px;
   background: #fff;
   border-bottom: 1px solid #d0e2dc;

@@ -57,7 +57,7 @@ const Index = ({ firstName, lastName, handleLogOut, username, id}) => {
         </Body>
         <Button>
           <Link
-            to={`/user/${username}/${id}`}
+            to={`/user/${username}`}
             style={{ textDecoration: "none", color: "#29bb89" }}
           >
             View Profile
@@ -73,22 +73,24 @@ const Index = ({ firstName, lastName, handleLogOut, username, id}) => {
           </ListBox>
         </Link>
 
-        <Link to="/user/help" style={{textDecoration: "none"}}>
+        <ListBox>
+          <ListImg  width="20px" height="20px" alt="" src={saved} />
+          <Link
+            to={"/user/saved-posts"}
+            style={{ textDecoration: "none", color: "#10221c", marginLeft: "15px" }}
+          >
+            Saved
+          </Link>
+        </ListBox>
+
+        <Link to="/help" style={{textDecoration: "none"}}>
         <ListBox>
           <ListImg width="26px" height="26px" alt="" src={help} />
           <p>Help</p>
         </ListBox>
         </Link>
 
-        <ListBox>
-          <ListImg ml="5px" width="20px" height="25px" alt="" src={saved} />
-          <Link
-            to={"/user/saved-posts"}
-            style={{ textDecoration: "none", color: "#29bb89", marginLeft: "13px" }}
-          >
-            Saved
-          </Link>
-        </ListBox>
+        
 
         <ListBox onClick={handleLogOut}>
           <ListImg width="25px" height="20px" alt="" src={logout} />
@@ -103,14 +105,14 @@ const Index = ({ firstName, lastName, handleLogOut, username, id}) => {
       </TextStatus>
 
       <Footer>
-        <Link to="/user/help" style={{textDecoration: "none"}}>
+        <Link to="/help" style={{textDecoration: "none"}}>
           <Tagbox>
             <div></div>
             <p>Help</p>
           </Tagbox>
         </Link>
         
-        <Link to="/user/about" style={{textDecoration: "none"}}>
+        <Link to="/about" style={{textDecoration: "none"}}>
           <Tagbox>
             <div></div>
             <p>About</p>
@@ -134,7 +136,7 @@ const Index = ({ firstName, lastName, handleLogOut, username, id}) => {
         </Link>
         
 
-        <Link to="/user/policy" style={{textDecoration: "none"}}>
+        <Link to="/policy" style={{textDecoration: "none"}}>
           <Tagbox>
             <div></div>
             <p>Privacy Policy</p>

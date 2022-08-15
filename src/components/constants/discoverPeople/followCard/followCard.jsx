@@ -22,12 +22,12 @@ const FollowCard = ({ item }) => {
   return (
     <>
     <Link
-      to={`/user/${item?.username}/${item?.id}`} style={{textDecoration: "none"}}>
+      to={`/user/${item?.username}`} style={{textDecoration: "none"}}>
     <Body key={item.id}>
       <div>
         <CardImge alt="human" src={item.photo_url || Person} />
         <TextBox>
-          <p>{item.first_name}</p>
+          <p>{item.first_name} {item.last_name}</p>
           <span>@{item.username}</span>
         </TextBox>
       </div>

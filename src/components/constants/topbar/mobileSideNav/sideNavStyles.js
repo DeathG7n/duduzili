@@ -12,9 +12,10 @@ export const NavContainer = styled.div`
 
 export const NavBox = styled.div`
   width: 85%;
-  height: 100%;
+  height: 80vh;
   background: white;
   padding: 20px 0px;
+  overflow-y: scroll;
 `;
 
 export const Body = styled.div`

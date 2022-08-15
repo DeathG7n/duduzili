@@ -22,17 +22,24 @@ export const ContentBox = styled.div`
   /* padding: 15px; */
   background-color: #ffffff;
   overflow-y: hidden;
+  position: relative;
 `;
 
 export const MessagesBox = styled.div`
   width: 40%;
   border-right: 1px solid #d0e2dc;
+  position: absolute;
+  left: 0;
 `;
 
 export const ChatBox = styled.div`
-  width: 62%;
-  max-height: 100vh;
-  position: relative;
+  width: 60%;
+  height: 541px;
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 
   @media screen and (max-width: 900px) {
     width: 99%;
@@ -170,14 +177,16 @@ export const Text = styled.p`
 export const MessageTitleBox = styled.div`
   width: 100%;
   padding: 23px 15px;
+  position: absolute;
+  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
   background-color: white;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-right-radius: 1px;
   border-bottom: 1px solid #d0e2dc;
+  border-left: 1px solid #d0e2dc;
 `;
 
 export const SearchBox = styled.div`
@@ -234,6 +243,7 @@ export const MessageHeader = styled.div`
   display: flex;
   align-items: center;
   margin: -15px 0 -8px 0;
+  
 
   > h3 {
     font-size: 17px;
@@ -258,9 +268,14 @@ export const ProfileImg = styled.img`
 export const ChatBody = styled.div`
   width: 100%;
   box-sizing: border-box;
-  padding: 15px 0;
+  padding: 15px 0 20px 0;
   overflow-x: scroll;
-  height: calc(650px - 173px);
+  height: 83%;
+`;
+export const MessageContainer = styled.div`
+  margin-top: 45px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const ChatMessage = styled.div`
@@ -269,13 +284,12 @@ export const ChatMessage = styled.div`
   border-radius: 16px 16px 16px 0px;
   padding: 15px;
   margin: 0 15px;
+  width: fit-content;
+  min-width: 100px;
   max-width: 300px;
-  box-sizing: border-box;
   overflow-wrap: break-word;
   white-space: pre-wrap;
-  padding: 15px;
   background-color: ${(props) => props.bc};
-  width: unset;
   margin-top: ${(props) => props.mt};
   box-shadow: ${(props) => props.bs};
 
@@ -283,6 +297,21 @@ export const ChatMessage = styled.div`
     color: #49665c;
     font-size: 12px;
     margin-top: 10px;
+  }
+  
+  >img{
+    margin-top: 10px;
+    width: 250px;
+  }
+
+  >video{
+    margin-top: 10px;
+    width: 250px;
+  }
+
+  >audio{
+    margin-top: 10px;
+    width: 250px;
   }
 `;
 
@@ -332,9 +361,8 @@ export const Input = styled.input`
 `;
 
 export const WriteBox = styled.div`
-  position: absolute;
-  bottom: 0px;
-  border-top: 1px solid #d0e2dc;
+  border: 1px solid #d0e2dc;
+  border-bottom: none;
   padding: 10px 20px 40px 20px;
   width: 100%;
   display: flex;
@@ -342,6 +370,7 @@ export const WriteBox = styled.div`
   justify-content: flex-start;
   gap: 20px;
   box-sizing: border-box;
+  background-color: white;
 `;
 
 export const WriteMessage = styled.input`
@@ -355,6 +384,7 @@ export const WriteMessage = styled.input`
   border-radius: 24px;
   font-size: 16px;
   color: black;
+  
 
 
   ::placeholder{

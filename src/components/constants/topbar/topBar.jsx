@@ -26,7 +26,7 @@ import {
   SearchComp,
   NotificationBox,
 } from "./topbarStyles";
-import { useLocation, Link,  useNavigate, Navigate } from "react-router-dom";
+import { useLocation, Link,  useNavigate, Navigate, useParams } from "react-router-dom";
 import { DataContext } from "../../api/context";
 import { truncate } from "../textTruncate";
 import { useSearchRequest } from "../../api/api";
@@ -51,7 +51,15 @@ const Index = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const [searchResult, setSearchResult] = useState("");
   const [dropDown, setDropDown] = useState(false)
-
+  const [windowSize, setWindowSize] = useState(false)
+  useEffect(() => {
+    if (window.innerWidth >= 800) {
+      setWindowSize(false);
+    } else {
+      setWindowSize(true);
+    }
+  });
+  const showTopbar = location.includes("feed") || location.includes("trending")? true : false
   const moreRef = useRef()
   function useOutsideAlerter(ref) {
     useEffect(() => {

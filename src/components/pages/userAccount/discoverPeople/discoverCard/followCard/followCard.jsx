@@ -19,22 +19,20 @@ const FollowCard = ({ item }) => {
     setIsFollowing((props) => !props);
   };
 
-  console.log(item)
-
   return (
     <Body>
       <div>
         <CardImge alt="human" src={item.photo_url || Person} />
 
         <Link
-          to={`/user/${item?.username}/${item?.id}`}
+          to={`/user/${item?.username}`}
           style={{
             textDecoration: "#000",
             color: "#000",
           }}
         >
           <TextBox>
-            <p>{item.first_name}</p>
+            <p>{item.first_name} {item.last_name}</p>
             <span>@{item.username}</span>
             <Text>{item.bio || ""}</Text>
           </TextBox>
@@ -50,6 +48,7 @@ const FollowCard = ({ item }) => {
         color="#29BB89"
         br="20px"
         fw="600"
+        smargin="10px"
         onClick={() => sendFollowRequest(item.id)}
       >
         {isFollowing ? "Unfollow" : "Follow"}

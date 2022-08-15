@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import useWebSocket, { ReadyState } from 'react-use-websocket';
 import {
   Container,
   ContentBox,
@@ -20,6 +21,7 @@ import {
   Text,
   MessageHeader,
   MessageTitleBox,
+  MessageContainer,
   ProfileImg,
   ChatBody,
   ChatMessage,
@@ -50,6 +52,8 @@ const Index = () => {
   const [userIndex, setUserIndex] = useState(0);
   const [userId, setUserId] = useState(null);
   const [userName, setUserName] = useState("");
+  const [userFirstName, setUserFirstName] = useState("");
+  const [userImg, setUserImg] = useState("")
   const [dropDown, setDropDown] = useState(false)
 
   const messageRef = useRef()
@@ -58,31 +62,34 @@ const Index = () => {
   const {
     state: { conversations, userData },
   } = DataContext();
+  console.log(data)
 
-  console.log(conversations, data);
+  
 
+  
+
+  
   const user = conversations && conversations[userIndex];
-
   const firstUser = user?.sender?.id;
+  const token = JSON.parse(localStorage.getItem("token") || null)
 
-  const token = JSON.parse(localStorage.getItem("token") || null);
+  const [socketUrl, setSocketUrl] = useState(`wss://duduzili-staging-server.com.ng/ws/chat/${userName}?token=${token}`);
+  // const socketUrl = `wss://duduzili-staging-server.com.ng/ws/chat/${userName}?token=${token}`
+  const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
+  console.log(readyState)
 
-  function postMessage(){
-    client.send(messageRef.current.value);
-    client.onmessage = (event) => {
-      console.log(event.data);
-    };
-    console.log(messageRef.current.value)
-  }
+  // const client = new WebSocket(
+  //   `wss://duduzili-staging-server.com.ng/ws/chat/${userName}?token=${token}`
+  // );
+  const connectionStatus = {
+    [ReadyState.CONNECTING]: 'Connecting',
+    [ReadyState.OPEN]: 'Open',
+    [ReadyState.CLOSING]: 'Closing',
+    [ReadyState.CLOSED]: 'Closed',
+    [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
+  }[readyState];
 
-  const client = new WebSocket(
-    `wss://duduzili-staging-server.com.ng/ws/chat/psalmskalu?token=${token}`
-  );
-
-  const profileID = conversations?.conversations?.find((c) => c?.user_one?.id === userId || c?.user_two?.id === userId)
-  console.log(profileID)
-
-  console.log(client)
+  console.log(connectionStatus)
 
   function useOutsideAlerter(ref) {
     useEffect(() => {
@@ -100,22 +107,50 @@ const Index = () => {
     }, [ref]);
   }
   useOutsideAlerter(moreRef)
- console.log(data)
+
   const msgBody = {
     user: "psalmskalu",
     firstname: "Psalms",
     message: "Did you receive any message",
   };
 
+  
+  const sendData = "Hello Testing";
+
   useEffect(() => {
     getRequest(`messages/${userId || firstUser}/`);
-    client.onopen = () => {
-      console.log("Web socket connected");
-    };
+    
 
-    client.onmessage = (event) => {
-      console.log(event.data);
-    };
+    // console.log(client)
+    // client.addEventListener('open', function open() {
+    //   console.log("Web socket connected")
+    //   client.send('hello from the client!');
+    // });
+    // client.addEventListener('connection', function connection(ws) {
+    //   ws.addEventListener('message', function incoming(message) {
+    //     client.clients.forEach(function each(client) {
+    //       if (client !== ws && client.readyState === WebSocket.OPEN) {
+    //         client.send(message); 
+    //       }
+    //     });
+    //   });
+    // });
+    
+    // client.addEventListener('message', function incoming(data) {
+    //   console.log(data);
+    // });
+    // client.onopen = () => {
+    //   console.log("Web socket connected");
+    //   client.send("sendData")
+    // };
+
+    // client.onmessage = (event) => {
+    //   console.log(event.data);
+    // };
+
+    // client.onerror = function(error) {
+    //   console.log(`[error] ${error.message}`);
+    // };
 
     // return () => client.close();
   }, [userId]);
@@ -123,21 +158,13 @@ const Index = () => {
 
 
   // Get the array index of user and the user id
-  const changeUserIndex = (index, id, name) => {
+  const changeUserIndex = (index, id, username, img, firstname) => {
     setUserIndex(index);
     setUserId(id);
-    setUserName(name);
+    setUserName(username);
+    setUserImg(img)
+    setUserFirstName(firstname)
   };
-
-  const sendData = "Hello Testing";
-
-  // const sendMessage = () => {
-  //   console.log("Data sent")
-  //   client.send(sendData);
-  // };
-
-  // console.log(userName);
-  // console.log(userId)
 
   const checkMessageLength = conversations?.conversations?.map((c) => {
     const message = JSON.stringify(c?.last_message)
@@ -196,7 +223,6 @@ const Index = () => {
 
             <MessageList>
               {conversations?.conversations?.map((item, index) => {
-                // console.log(index);
                 return (
                   <CardBody
                     key={item?.id}
@@ -204,8 +230,10 @@ const Index = () => {
                       changeUserIndex(
                         index,
                         userData?.user?.id === item?.user_one?.id ?item?.user_two?.id : item?.user_one?.id,
-                        userData?.user?.id === item?.user_one?.id ? item?.user_two?.username : item?.user_one?.username
-                      )
+                        userData?.user?.id === item?.user_one?.id ? item?.user_two?.username : item?.user_one?.username,
+                        userData?.user?.id === item?.user_one?.id ? item?.user_two?.photo_url : item?.user_one?.photo_url,
+                        userData?.user?.id === item?.user_one?.id ? item?.user_two?.first_name : item?.user_one?.first_name
+                        )
                     }
                   >
                     <div>
@@ -262,47 +290,26 @@ const Index = () => {
                   />
                 </div>
               ) : (
-                <ChatBody>
+                <ChatBody >
                   <MessageTitleBox>
-                    {profileID && <MessageHeader>
+                    {userId && <MessageHeader>
                       <ProfileImg
                         alt="human"
-                        src={(userData?.user?.id === profileID?.user_one?.id ? profileID?.user_two?.photo_url : profileID?.user_one?.photo_url) || Person} />
-                      <h3>{userData?.user?.id === profileID?.user_one?.id ? profileID?.user_two?.first_name : profileID?.user_one?.first_name}</h3>
-                      <em>{userData?.user?.id === profileID?.user_one?.id ? profileID?.user_two?.username : profileID?.user_one?.username}</em>
+                        src={userImg || Person} />
+                      <h3>{userFirstName}</h3>
+                      <em>{userName}</em>
                     </MessageHeader>}
-                    {/* {profileID && <img src={dots} alt="three dots" style={{ cursor: "pointer" }} />} */}
                   </MessageTitleBox>
-                  {data?.messages.map((item) => {
-                    return item?.receiver?.id !== userId ? (
-                        <ChatMessage
-                          bc="white"
-                          border="1px solid #d0e2dc"
-                          mt="15px"
-                          key={item?.id}
-                        >
-                            <NameBox>
-                              <h4>{item?.sender?.first_name} </h4>
-                              <span>{item?.sender?.username}</span>
-                              <h6>{item?.date}</h6>
-                            </NameBox>
-                            <p>{item?.text}</p>
-                          </ChatMessage>
-                    ) : (
-                      <ChatMessage
-                        bc="#E6FAEB"
-                        width="70%"
-                        mt="15px"
-                        bs="0px 4px 4px rgba(0, 0, 0, 0.25)"
-                      >
-                        <NameBox>
-                          <h4>You</h4>
-                          <h6>{item?.date}</h6>
-                        </NameBox>
-                        <p>{item?.text}</p>
-                      </ChatMessage>
-                    );
-                  })}
+                  <MessageContainer  >
+                   {data?.messages?.map((item, id)=>{
+                      return(
+                        <div>
+                          <Messages item={item} userId={userId} key={id} />
+                        </div>
+                        )
+                    })}
+                  </MessageContainer>
+                  
                 </ChatBody>
               )}
             </>
@@ -314,16 +321,6 @@ const Index = () => {
                   alt="icon"
                   style={{ height: "26px", width: "28px", cursor: "pointer" }}
                 />
-                {/* <img
-                  src={gif}
-                  alt="icon"
-                  style={{
-                    height: "27px",
-                    width: "27px",
-                    cursor: "pointer",
-                    marginLeft: "7px",
-                  }} */}
-                {/* /> */}
               </GifBox>
               <WriteMessage placeholder="Your message" ref={messageRef}/>
               <ButtonBox>
@@ -334,20 +331,10 @@ const Index = () => {
                   border="none"
                   br="32px"
                   color="white"
-                  onClick={postMessage}
+                  // onClick={sendMessage}
                 >
                   Send
                 </Button>
-                {/* <Button
-                  bc="#F1F5F4"
-                  height="30px"
-                  width="50px"
-                  border="none"
-                  br="20px"
-                  margin="0px 0px 0px 10px"
-                >
-                  <img src={dots} style={{ marginTop: "2px" }} alt="dots" />
-                </Button> */}
               </ButtonBox>
             </WriteBox>
           </ChatBox>
@@ -358,3 +345,44 @@ const Index = () => {
 };
 
 export default Index;
+
+export const Messages =({item, userId})=> {
+  
+  return item?.receiver?.id !== userId ? (
+    <ChatMessage
+      bc="white"
+      border="1px solid #d0e2dc"
+      mt="15px"
+      bs="0px 4px 4px rgba(0, 0, 0, 0.25)"
+      key={item?.id}
+    >
+        <NameBox>
+          <h4>{item?.sender?.first_name} </h4>
+          <span>{item?.sender?.username}</span>
+          <h6>{item?.date}</h6>
+        </NameBox>
+        {item?.video && <video controls> <source src={item?.video}/></video>}
+        {item?.photo && <img src={item?.photo}/>}
+        {item?.audio && <audio controls> <source src={item?.audio}/></audio>}
+        <p>{item?.text}</p>
+      </ChatMessage>
+) : (
+  <ChatMessage
+    bc="#E6FAEB"
+    width="70%"
+    mt="15px"
+    bs="0px 4px 4px rgba(0, 0, 0, 0.25)"
+    style={{alignSelf: "flex-end"}}
+    
+  >
+    <NameBox>
+      <h4>You</h4>
+      <h6>{item?.date}</h6>
+    </NameBox>
+    {item?.video && <video controls> <source src={item?.video}/></video>}
+    {item?.photo && <img src={item?.photo}/>}
+    {item?.audio && <audio controls> <source src={item?.audio}/></audio>}
+    <p>{item?.text}</p>
+  </ChatMessage>
+)
+}

@@ -6,7 +6,7 @@ export const Container = styled.div`
   padding-top: 30px;
   box-sizing: border-box;
   background: #fff;
-  margin-top: 30px;
+  margin-top: 0;
 `;
 
 export const Content = styled.div`
@@ -41,7 +41,7 @@ export const TitleText = styled.div`
   border-bottom: 1px solid #D0E2DC;
   display: flex;
   align-items: center;
-  padding: 15px;
+  padding: 0 15px 15px 15px;
 
   >p{
       padding-left: 10px;

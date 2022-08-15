@@ -4,6 +4,11 @@ export const Container = styled.div`
   width: 100%;
   padding-bottom: 15px;
   margin-top: 60px;
+
+  @media screen and (max-width: 900px){
+    margin-top: 0;
+    padding-bottom: 75px;
+  }
 `;
 
 export const BodyContainer = styled.div`
@@ -27,9 +32,11 @@ export const NewsFeedBox = styled.div`
   width: 60%;
   border: 1px solid #d0e2dc;
   /* box-sizing: border-box; */
-  background-color: #f7fcfa;
+  background-color: white;
   margin-top: 15px;
   border-radius: 8px;
+  border-bottom-right-radius:15px;
+  border-bottom-left-radius:15px;
   margin-left: 105px;
 
 
@@ -60,7 +67,7 @@ export const TitleBox = styled.div`
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  background-color: #f7fcfa;
+  background-color: white;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   border-bottom: 1px solid #d0e2dc;
@@ -118,6 +125,10 @@ export const DropDownContent = styled.div`
     }
   }
 `;
+export const MoDropDownContent = styled.div`
+  display: flex;
+  gap: 5px;
+`
 
 export const DropDownText = styled.p`
   display: flex;
@@ -153,6 +164,11 @@ export const CardBody = styled.div`
   
   :hover{
     border: 1px solid #dbe7e3;
+  }
+
+  :last-child{
+    border-bottom-right-radius:15px;
+    border-bottom-left-radius:15px;
   }
 `;
 

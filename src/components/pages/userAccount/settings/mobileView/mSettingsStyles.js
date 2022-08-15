@@ -10,6 +10,7 @@ export const Container = styled.div`
   @media screen and (max-width: 900px) {
     display: flex;
     justify-content: center;
+    margin-top: 0;
   }
 `;
 

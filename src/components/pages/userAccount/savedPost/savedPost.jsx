@@ -14,7 +14,7 @@ import {
     Name,
     DateText,
     Card,
-    Content,
+    Content, 
     ContentText,
     CardContent,
     DiscoverBox

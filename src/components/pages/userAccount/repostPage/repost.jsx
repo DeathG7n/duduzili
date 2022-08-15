@@ -6,28 +6,29 @@ import {
   BodyBox,
   NewsFeedBox,
   TitleBox,
-//   ContentBox,
+  ContentBox,
 } from "./repostStyles";
 
 import { Link, useNavigate, useParams } from "react-router-dom";
 import arrow from "../../../assets/arrow-right.png";
-// import PostStats from "../../../constants/postStatsCard";
-// import { useGetRequest } from "../../../api/api";
-// import Loader from "react-loader-spinner";
+import PostStats from "../../../constants/postStatsCard/postStatsCard";
+import { useGetRequest } from "../../../api/api";
+import {Rings} from "react-loader-spinner";
 
 const Index = () => {
   const history = useNavigate();
-//   const { getRequest, loading, data } = useGetRequest();
+  const { getRequest, loading, data } = useGetRequest();
 
   const routeBack = () => {
-    history.goBack();
+    history(-1);
   };
 
-//   const id = useParams().id;
+  const id = useParams().id;
 
-//   useEffect(() => {
-//     getRequest(`post_likers/${id}/`);
-//   }, []);
+  useEffect(() => {
+    getRequest(`post_repost/${id}/`);
+  }, []);
+  console.log(data)
 
   return (
     <Container>
@@ -41,7 +42,7 @@ const Index = () => {
               </div>
             </TitleBox>
 
-            {/* {loading ? (
+            {loading ? (
               <div
                 style={{
                   width: "100%",
@@ -49,7 +50,7 @@ const Index = () => {
                   justifyContent: "center",
                 }}
               >
-                <Loader type="Puff" color="#29bb89" height={60} width={60} />
+                <Rings type="Puff" color="#29bb89" height={60} width={60} />
               </div>
             ) : (
               <ContentBox>
@@ -65,8 +66,7 @@ const Index = () => {
                   );
                 })}
               </ContentBox>
-            )} */}
-            <p>endpoint not found</p>
+            )}
           </NewsFeedBox>
         </BodyBox>
       </BodyContainer>

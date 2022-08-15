@@ -9,7 +9,7 @@ export const ModalContainer = styled.div`
   align-items: center;
   box-sizing: border-box;
   position: fixed;
-  z-index: 11;
+  z-index: 100;
 `;
 
 export const ModalBox = styled.div`

@@ -7,9 +7,10 @@ import {
   NewsFeedBox,
   TitleBox,
   ContentBox,
-} from "./likedStyles";
+} from "../repostPage/repostStyles";
+
+import { Link, useNavigate, useParams } from "react-router-dom";
 import arrow from "../../../assets/arrow-right.png";
-import { useNavigate, useParams } from "react-router-dom";
 import PostStats from "../../../constants/postStatsCard/postStatsCard";
 import { useGetRequest } from "../../../api/api";
 import {Rings} from "react-loader-spinner";
@@ -25,7 +26,7 @@ const Index = () => {
   const id = useParams().id;
 
   useEffect(() => {
-    getRequest(`post_likers/${id}/`);
+    getRequest(`post_commenters/${id}/`);
   }, []);
 
   return (
@@ -36,7 +37,7 @@ const Index = () => {
             <TitleBox>
               <div>
                 <img alt="arrow icon" src={arrow} onClick={routeBack} />
-                <h3>People who liked this post</h3>
+                <h3>People who reposted</h3>
               </div>
             </TitleBox>
 
@@ -52,7 +53,7 @@ const Index = () => {
               </div>
             ) : (
               <ContentBox>
-                {data?.likers.map((item) => {
+                {data?.commenters?.map((item) => {
                   return (
                     <PostStats
                       key={item?.id}

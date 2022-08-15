@@ -74,9 +74,6 @@ const Index = ({ handleOpenModal, handleOpenRepostModal }) => {
     }
   }, [postData]);
 
-  console.log(singleUserData);
-  console.log(singleUserData?.user)
-
   return (
     <>
       {postData === null ? (
@@ -89,10 +86,14 @@ const Index = ({ handleOpenModal, handleOpenRepostModal }) => {
                 <img src={singleUserData?.user?.photo_url || Person} alt="dp" />
                 <div>
                   {" "}
-                  <Name>
+                  <Link
+                    to={`/user/${singleUserData?.user?.username}`}
+                    style={{ textDecoration: "none", color: "#49665c" }}
+                  ><Name>
                     {singleUserData?.user?.first_name}{" "}
                     <span>{singleUserData?.user?.username}</span>
                   </Name>{" "}
+                  </Link>
                   <DateText>{singleUserData?.date}</DateText>
                 </div>
               </ProfileBox>
@@ -184,10 +185,15 @@ const Index = ({ handleOpenModal, handleOpenRepostModal }) => {
 
               <Reaction ml="10%">
                 <p style={{ fontWeight: "500" }}>
-                  Comments
-                  <span style={{ fontWeight: "600", marginLeft: "5px" }}>
-                    {singleUserData?.total_comments}
-                  </span>
+                    <Link
+                      to={`/user/${singleUserData?.user?.username}/post/${singleUserData?.id}/comments`}
+                      style={{ textDecoration: "none", color: "#49665c" }}
+                    >
+                      Comments
+                    </Link>
+                    <span style={{ fontWeight: "600", marginLeft: "5px" }}>
+                      {singleUserData?.total_comments}
+                    </span>
                 </p>
               </Reaction>
             </ReactionBox>
@@ -221,58 +227,16 @@ const Index = ({ handleOpenModal, handleOpenRepostModal }) => {
           )}
           <CommentBox>
             {data?.comments.map((item) => {
+              console.log(item)
               return (
-                <SingleCommentBox key={Math.random()}>
-                  <CommentTopBox>
-                    <CommenterPBox>
-                      <CommenterImg
-                        src={item?.user?.photo_url || Person}
-                        alt="dp"
-                      />
-                      <div>
-                        <CommenterName>
-                          {item?.user?.first_name}{" "}
-                          <span>@{item?.user?.username}</span>
-                        </CommenterName>
-                        <CommentDateText>{item?.date}</CommentDateText>
-
-                        <CommentText>{item?.content}</CommentText>
-
-                        <CommentReactionBox mt="15px">
-                          <CommentReaction>
-                            <img alt="icon" src={like} />
-                            <p style={{ fontWeight: "500" }}>
-                              {item?.total_number_of_likes}
-                            </p>
-                          </CommentReaction>
-
-                          <CommentReaction ml="40px">
-                            <img alt="icon" src={comment} />
-                            <p style={{ fontWeight: "500" }}>
-                              {item?.total_number_of_replies}
-                            </p>
-                          </CommentReaction>
-
-                          <CommentReaction ml="40px">
-                            <img alt="icon" src={repost} />
-                            <p style={{ fontWeight: "500" }}>0</p>
-                          </CommentReaction>
-
-                          {/* <CommentReaction ml="20%">
-                            <img alt="icon" src={share} />
-                          </CommentReaction> */}
-                        </CommentReactionBox>
-                      </div>
-                    </CommenterPBox>
-
-                    <DotBox>
-                      <div></div>
-                      <div></div>
-                      <div></div>
-                    </DotBox>
-                  </CommentTopBox>
-                </SingleCommentBox>
-              );
+                <CommentComponent 
+                item={item}
+                singleUserData={singleUserData}
+                handleOpenModal={handleOpenModal}
+                dispatch={dispatch}
+                handleOpenRepostModal={handleOpenRepostModal}
+                />
+                );
             })}
           </CommentBox>
         </>
@@ -290,7 +254,10 @@ export const PostReactions = ({
   handleOpenRepostModal,
 }) => {
   const [isLiked, setIsLiked] = useState(singleUserData?.i_like_this_post);
+  const [likes, setLikes] = useState(singleUserData?.total_likes);
   const { getLikeRequest, data } = useGetLikeRequest();
+
+  console.log(data)
 
   const handleCommentModal = () => {
     dispatch({ type: "POST_ID", payload: singleUserData?.id });
@@ -303,8 +270,10 @@ export const PostReactions = ({
   };
 
   const toggleLikeReaction = () => {
-    setIsLiked((props) => !props);
+    setIsLiked(prevState => !prevState);
+    setLikes(isLiked ? likes - 1 : likes + 1)
   };
+  console.log(singleUserData)
 
   const handleRepost = async (id) => {
     // await dispatch({ type: "GET_REPOST_ID", payload: id });
@@ -317,10 +286,9 @@ export const PostReactions = ({
       <Reaction onClick={() => sendLikeRequest(singleUserData?.id)}>
         <img
           alt="icon"
-          src={isLiked || singleUserData?.i_like_this_post ? love : like}
+          src={isLiked ? love : like}
         />
         <p style={{ marginLeft: "10px" }}>
-          {/* {item?.total_likes} */}
           {data === null ? singleUserData?.total_likes : data.likes}
         </p>
       </Reaction>
@@ -341,3 +309,110 @@ export const PostReactions = ({
     </ReactionBox>
   );
 };
+export const CommentPostReactions = ({
+  handleOpenModal,
+  item,
+  dispatch,
+  handleOpenRepostModal,
+}) => {
+  const [isLiked, setIsLiked] = useState(item?.i_like_this_comment);
+  const [likes, setLikes] = useState(item?.total_number_of_likes);
+  const { getLikeRequest } = useGetLikeRequest();
+
+  // const { data, getRequest, loading } = useGetRequest();
+  // useEffect(()=>{
+  //   getRequest(`posts/${item?.comment_id}/`)
+  // })
+  // console.log(data)
+
+  // console.log(data)
+
+  const handleCommentModal = () => {
+    dispatch({ type: "POST_ID", payload: item?.id });
+    handleOpenModal();
+  };
+
+  const sendLikeRequest = (id) => {
+    getLikeRequest(`like/${id}/`);
+    toggleLikeReaction();
+  };
+
+  const toggleLikeReaction = () => {
+    setIsLiked(prevState => !prevState);
+    setLikes(isLiked ? likes - 1 : likes + 1)
+  };
+  console.log(item)
+
+  const handleRepost = async (id) => {
+    // await dispatch({ type: "GET_REPOST_ID", payload: id });
+    // await dispatch({ type: "GET_REPOSTDATA" });
+    handleOpenRepostModal();
+  };
+
+  return (
+    <CommentReactionBox mt="15px">
+    <CommentReaction onClick={() => sendLikeRequest(item?.id)}>
+       <img
+          alt="icon"
+          src={isLiked ? love : like}
+        />
+      <p style={{ fontWeight: "500" }}>
+        {item?.total_number_of_likes}
+      </p>
+    </CommentReaction>
+    <CommentReaction ml="40px" onClick={handleCommentModal}>
+      <img alt="icon" src={comment} />
+      <p style={{ fontWeight: "500" }}>
+        {item?.total_number_of_replies}
+      </p>
+    </CommentReaction>
+    <CommentReaction ml="40px" onClick={() => handleRepost()}>
+      <img alt="icon" src={repost} />
+      <p style={{ fontWeight: "500" }}>0</p>
+    </CommentReaction>
+  </CommentReactionBox>
+  );
+};
+
+
+export const CommentComponent = ({
+  item,
+  handleOpenModal,
+  dispatch,
+  handleOpenRepostModal
+}) => {
+  
+  return(
+    <>
+      <SingleCommentBox key={Math.random()}>
+        <CommentTopBox>
+          <CommenterPBox>
+            <CommenterImg
+              src={item?.user?.photo_url || Person}
+              alt="dp"
+            />
+            <div>
+              <CommenterName>
+                {item?.user?.first_name}{" "}
+                <span>@{item?.user?.username}</span>
+              </CommenterName>
+              <CommentDateText>{item?.date}</CommentDateText>
+              <CommentText>{item?.content}</CommentText>
+              <CommentPostReactions
+                item={item}
+                handleOpenModal={handleOpenModal}
+                dispatch={dispatch}
+                handleOpenRepostModal={handleOpenRepostModal}
+                />
+            </div>
+          </CommenterPBox>
+          <DotBox>
+            <div></div>
+            <div></div>
+            <div></div>
+          </DotBox>
+        </CommentTopBox>
+      </SingleCommentBox>
+    </>
+  )
+}

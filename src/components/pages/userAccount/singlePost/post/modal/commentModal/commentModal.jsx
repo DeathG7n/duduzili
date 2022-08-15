@@ -1,4 +1,4 @@
-import React, { useRef, useReducer } from "react";
+import React, { useRef, useReducer, useEffect } from "react";
 
 import {
   ModalContainer,
@@ -30,6 +30,23 @@ import { DataContext } from "../../../../../../api/context";
 
 const Index = ({ handleOpenModal }) => {
   const photoRef = useRef();
+  const moreRef = useRef()
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          handleOpenModal();
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+  useOutsideAlerter(moreRef)
 
   const {
     state: { postID },
@@ -63,7 +80,9 @@ const Index = ({ handleOpenModal }) => {
     postValues.append("post_id", postID);
 
     postComment("comment/", postValues, handleOpenModal);
+    console.log(postValues)
   };
+  
 
   function handleMouseEnter(ref) {
     ref.current.style.opacity = 1;
@@ -74,7 +93,7 @@ const Index = ({ handleOpenModal }) => {
 
   return (
     <ModalContainer>
-      <ModalBox>
+      <ModalBox ref={moreRef}>
         <ModalTitle>
           <ArrowBackIcon alt="icon" src={back} onClick={handleOpenModal} />
           <h3>Post Comment</h3>

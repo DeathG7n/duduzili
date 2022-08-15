@@ -11,14 +11,24 @@ export const BodyContainer = styled.div`
   gap: 30px;
   margin-top: 60px;
   padding: 10px 0 ;
+
+  @media screen and (max-width: 900px){
+    margin-top: 0;
+  }
 `;
 
 export const PostContainer = styled.div`
-    display: flex;
-    flex-direction: column;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (max-width: 900px){
+    width: 100%;
+    padding: 0 10px;
+  }
 `
 export const TitleBox = styled.div`
-  width: 700px;
+  width: 100%;
   text-indent: 10px;
   background-color: #fff;
   padding-bottom: 10px;
@@ -33,10 +43,11 @@ export const TitleBox = styled.div`
   @media screen and (max-width: 900px) {
     justify-content: center;
     width: 99%;
+    margin-bottom: 20px;
   }
 `;
 export const PostBox = styled.div`
-  width: 700px;
+  width: 100%;
   padding-bottom: 15px;
   display: flex
   flex-direction: column;

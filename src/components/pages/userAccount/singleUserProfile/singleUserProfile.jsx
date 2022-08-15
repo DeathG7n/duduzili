@@ -42,20 +42,15 @@ import SkeletonLoader from "../../../constants/skeletonLoaders/postCardLoader";
 const Index = () => {
   const [typeId, setTypeId] = useState(0);
   const [openModal, setOpenModal] = useState(false);
-  
-  
-
   const {
-    state: { userData },
+    state: { userData, discoverPeople, singleUser },
   } = DataContext();
-  console.log(userData);
   const { getRequest, loading, data } = useGetRequest();
   const { getFollowRequest } = useFollowGetRequest();
 
-  const [isFollowing, setIsFollowing] = useState(data?.user?.is_following);
+  const [isFollowing, setIsFollowing] = useState(singleUser?.i_am_following_this_user);
   const params = useParams();
-  console.log(data?.user?.is_following);
-  console.log(isFollowing);
+  
 
   const multipleRequest = async () => {
     let promise = await Promise.all([
@@ -70,10 +65,14 @@ const Index = () => {
     return promise;
   };
 
+  const singlUser = discoverPeople?.users?.find((user) => user?.username === params.username)
+  const id = userData?.user?.username === params.username? userData?.user?.id : singlUser?.id
+
   useEffect(() => {
-    getRequest(`user/${params.id}/`);
+    // getRequest(`user/${singlUser?.id}/`);
+    getRequest(`user/${id}/`);
     multipleRequest();
-  }, [params.id, isFollowing]);
+  }, [params.username, isFollowing]);
 
   const sendFollowRequest = (id) => {
     getFollowRequest(`follow/${id}/`, isFollowing);
@@ -94,8 +93,6 @@ const Index = () => {
     data?.saveds,
     data?.drafts,
   ];
-
-  console.log(data)
 
   const handleChangePostType = (num) => {
     setTypeId(num);

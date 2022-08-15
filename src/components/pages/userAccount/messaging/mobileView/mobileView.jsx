@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState, useEffect, useRef} from "react";
 
 import {
   Container,
@@ -11,8 +11,12 @@ import {
   TextBox,
   Text,
   DropDownBox,
+  MDropDownBox,
+  MDropDownContent,
   DropDownContent,
-  DropDownText
+  DropDownText,
+  DropDown,
+  Button
 } from "./messageMobileStyles";
 import { Link } from "react-router-dom";
 import Settings from "../../../../assets/setting.png";
@@ -39,8 +43,10 @@ const Index = () => {
       return "..."
     }
   })
+
   return (
     <Container>
+      {dropDown && <MobileDropDown setDropDown={setDropDown} dropDown={dropDown}/>}
       <ContentBox>
         <MessagesBox>
           <TitleBox>
@@ -48,7 +54,7 @@ const Index = () => {
 
             <ImgBox>
               <img src={Settings} alt="icons" onClick={()=> setDropDown(!dropDown)}/>
-              <DropDownBox className="dropdown"  style={{display: dropDown ? "block" : "none"}}>
+              {/* <DropDownBox className="dropdown"  style={{display: dropDown ? "block" : "none"}}>
                   <DropDownContent>
                     <div style={{
                       display: "flex",
@@ -71,7 +77,7 @@ const Index = () => {
                       </div>
                     </Link>
                   </DropDownContent>
-                </DropDownBox>
+                </DropDownBox> */}
             </ImgBox>
           </TitleBox>
           
@@ -128,3 +134,52 @@ const Index = () => {
 };
 
 export default Index;
+
+
+export const MobileDropDown = ({setDropDown}) => {
+  const moreRef = useRef()
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setDropDown(false);
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+  useOutsideAlerter(moreRef)
+  return(
+    <DropDown >
+      <MDropDownBox ref={moreRef} >
+        <DropDownContent>
+          <MDropDownContent style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px"
+          }}>
+            <img src={Delete} alt="" />
+            <DropDownText>Delete conversations</DropDownText>
+          </MDropDownContent>
+        <Link to="/user/settings/chat" style={{textDecoration: "none", color: "black"}}>
+          <MDropDownContent style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px"
+          }}>
+              <img src={Messetting} alt="" />
+              <DropDownText>Message settings</DropDownText>
+            </MDropDownContent>
+          </Link>
+        </DropDownContent>
+        <Button onClick={()=> setDropDown(false)}>Cancel</Button>
+      </MDropDownBox>
+    </DropDown>
+
+  )
+}
