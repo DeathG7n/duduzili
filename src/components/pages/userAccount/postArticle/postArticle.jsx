@@ -113,7 +113,6 @@ const Index = () => {
             <label for="photo">
               <img
                 src={showImage && formData.photo? URL.createObjectURL(formData.photo): imageIcon}
-                style={{}}
                 alt="image icon"
                 onClick={handleShow}
               />
