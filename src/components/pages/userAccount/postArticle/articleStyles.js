@@ -13,6 +13,11 @@ export const Container = styled.div`
     display: flex;
     justify-content: flex-end;
     grid-gap: 20px;
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      justify-content: space-between;
+    }
   }
 
   .title {
@@ -30,7 +35,7 @@ export const Container = styled.div`
       color: gray;
     }
 
-    @media screen and (max-width: 950%) {
+    @media screen and (max-width: 900px) {
       width: 100%;
     }
   }
@@ -64,11 +69,27 @@ export const Container = styled.div`
     overflow: scroll;
     position: relative;
 
+    @media screen and (max-width: 900px) {
+      width: 100%;
+    }
+
     >div{
+      width: 26px;
+      height: 26px;
       position: absolute;
       top: 0;
-      left: 30px;
+      left: 20px;
       cursor: pointer;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @media screen and (max-width: 900px) {
+        left: 5px;
+        top: 5px;
+        border: 2px solid #048764;
+      }
     }
 
     .photo {
@@ -90,9 +111,13 @@ export const Container = styled.div`
     width: 100%;
     margin-top: 25px;
 
-    @media screen and (max-width: 950%) {
+    @media screen and (max-width: 900px) {
       width: 100%;
     }
+  }
+
+  @media screen and (max-width: 900px) {
+    margin: 0 0 70px 0;
   }
 `;
 
@@ -102,7 +127,7 @@ export const Box = styled.div`
   box-sizing: border-box;
   background-color: white;
 
-  @media screen and (max-width: 950%) {
+  @media screen and (max-width: 900px) {
     width: 100%;
   }
 `;
@@ -126,6 +151,6 @@ export const Button = styled.button`
   }
 
   @media screen and (max-width: 650px) {
-    display: none;
+    // display: none;
   }
 `;

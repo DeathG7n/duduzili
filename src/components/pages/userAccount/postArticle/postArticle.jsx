@@ -102,7 +102,7 @@ const Index = () => {
 
           <div className="photoBox">
 
-           {formData.photo && <div>{showImage && <CancelSharpIcon sx={{fontSize: "20px", color : "#006a46"}} onClick={handleRemove}/>}</div>}
+           {formData.photo && <div>{showImage && <CancelSharpIcon sx={{fontSize: "30px", color : "#05ffbc"}} onClick={handleRemove}/>}</div>}
             <input
               type="file"
               className="photo"
@@ -135,7 +135,7 @@ const Index = () => {
 
           <div className="richText">
             <ReactQuill
-              modules={modules}
+              modules={modules} 
               theme="snow"
               onChange={setValue}
               placeholder="Content goes here..."
