@@ -46,7 +46,7 @@ const Index = () => {
 
   return (
     <Container>
-      {dropDown && <MobileDropDown setDropDown={setDropDown} dropDown={dropDown}/>}
+      {dropDown && <MobileDropDown setDropDown={setDropDown}/>}
       <ContentBox>
         <MessagesBox>
           <TitleBox>
@@ -54,30 +54,6 @@ const Index = () => {
 
             <ImgBox>
               <img src={Settings} alt="icons" onClick={()=> setDropDown(!dropDown)}/>
-              {/* <DropDownBox className="dropdown"  style={{display: dropDown ? "block" : "none"}}>
-                  <DropDownContent>
-                    <div style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px"
-                    }}>
-                      <img src={Delete} alt="" />
-                      <DropDownText>Delete conversations</DropDownText>
-                    </div>
-                  <Link to="/user/settings/chat" style={{textDecoration: "none", color: "black"}}>
-                    <div style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px"
-                    }}>
-                      
-                        <img src={Messetting} alt="" />
-                        <DropDownText>Message settings</DropDownText>
-                      
-                      </div>
-                    </Link>
-                  </DropDownContent>
-                </DropDownBox> */}
             </ImgBox>
           </TitleBox>
           

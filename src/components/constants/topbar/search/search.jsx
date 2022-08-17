@@ -3,13 +3,14 @@ import React, { useEffect, useState,useRef } from "react";
 import { Container, Content, Header, Item, Topic } from "./searchStyles";
 import search from "../../../assets/search.svg";
 import cancel from "../../../assets/x.svg";
-import { useGetRequest, useSearchRequest } from "../../../api/api";
+import { useGetRequest, useSearchRequest, useDeleteRequest } from "../../../api/api";
 import { useNavigate } from "react-router-dom";
 
 const Index = ({ handleOpenSearch }) => {
   const [searchString, setSearchString] = useState(null);
   const { getRequest, data } = useGetRequest();
   const { searchRequest } = useSearchRequest();
+  const { deleteRequest } = useDeleteRequest();
 
   useEffect(() => {
     getRequest("search_list/");  
@@ -43,7 +44,7 @@ const Index = ({ handleOpenSearch }) => {
     if (searchString === null) {
       return;
     } else {
-      searchRequest(`make_search/${searchString}/`, changeRoute);
+      searchRequest(`make_search/`, changeRoute, searchString)
     }
   };
 
@@ -57,6 +58,14 @@ const Index = ({ handleOpenSearch }) => {
       handleSubmit();
     }
   };
+  const makeDeleteRequest = (id) => {
+    deleteRequest(`delete_search/${id}/`)
+  };
+
+  const clearSearches = () => {
+    deleteRequest("clear_searches")
+  };
+
   console.log(data)
   console.log(searchString);
 
@@ -65,7 +74,7 @@ const Index = ({ handleOpenSearch }) => {
       <Content ref={moreRef}>
         <Header>
           <h4>Recent</h4>
-          <h5>Clear all</h5>
+          <h5 onClick={clearSearches}>Clear all</h5>
         </Header>
 
         {data?.searches.length === 0 ? (
@@ -75,30 +84,23 @@ const Index = ({ handleOpenSearch }) => {
             padding: "10px 0 20px 15px"
         }}>No Recent search</h3>
         ) : (
-          data?.searches.map((item) => {
+          data?.searches.map((item) => { 
             return (
               <Item key={item?.id}>
-                <Topic>
+                <Topic onClick={() => makeSearchRequest(item?.search_string)}>
                   <img alt="icon" src={search} />
-                  <h4 onClick={() => makeSearchRequest(item?.search_string)}>
+                  <h4>
                     {item?.search_string}
                   </h4>
                 </Topic>
 
-                <img alt="icon" src={cancel} style={{ cursor: "pointer" }} />
+                <img alt="icon" src={cancel} style={{ cursor: "pointer" }} onClick={()=>{
+                  makeDeleteRequest(item?.id)
+                }}/>
               </Item>
             );
           })
         )}
-
-        {/* <Item>
-          <Topic>
-            <img alt="icon" src={search} />
-            <h4>George Floyd</h4>
-          </Topic>
-
-          <img alt="icon" src={cancel} style={{ cursor: "pointer" }} />
-        </Item> */}
       </Content>
     </Container>
   );

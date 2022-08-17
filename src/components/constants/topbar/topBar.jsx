@@ -59,7 +59,6 @@ const Index = () => {
       setWindowSize(true);
     }
   });
-  const showTopbar = location.includes("feed") || location.includes("trending")? true : false
   const moreRef = useRef()
   function useOutsideAlerter(ref) {
     useEffect(() => {
@@ -89,6 +88,7 @@ const Index = () => {
   const handleOpenMenu = () => {
     setOpenMenu((props) => !props);
   };
+  
   const handleDropDown = () => {
     setDropDown(!dropDown);
   };
@@ -125,8 +125,6 @@ const Index = () => {
     } else {
       searchRequest(`make_search/`, changeRoute, searchResult);
     }
-
-    // handleOpenSearch();
   };
 
   const checkNameLength = `${userData?.user?.first_name} ${userData?.user?.last_name}`;

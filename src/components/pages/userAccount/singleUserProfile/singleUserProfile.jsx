@@ -73,6 +73,7 @@ const Index = () => {
     getRequest(`user/${id}/`);
     multipleRequest();
   }, [params.username, isFollowing]);
+  console.log(data)
 
   const sendFollowRequest = (id) => {
     getFollowRequest(`follow/${id}/`, isFollowing);

@@ -21,8 +21,6 @@ export default function CustomizedSnackbars({ open, message, setOpen }) {
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
       <MuiAlert severity="error" onClose={handleClose} sx={{ width: '100%' }}>{message}</MuiAlert>
       </Snackbar>
-     
-     
     </Stack>
   );
 }

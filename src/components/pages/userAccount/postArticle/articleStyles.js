@@ -48,26 +48,41 @@ export const Container = styled.div`
     margin-top: 20px;
     background-color: white;
 
-    @media screen and (max-width: 950%) {
+    @media screen and (max-width: 900px) {
       width: 100%;
     }
   }
 
   .photoBox {
+    margin: 10px 0;
     width: 100%;
-    height: 200px;
+    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+    overflow: scroll;
+    position: relative;
+
+    >div{
+      position: absolute;
+      top: 0;
+      left: 30px;
+      cursor: pointer;
+    }
 
     .photo {
       display: none;
     }
 
-    label img {
-      /* width: 120px; */
-      height: auto;
+    label{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    label>img {
+      max-width: 100%;
     }
   }
 

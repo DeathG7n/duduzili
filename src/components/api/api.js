@@ -34,6 +34,7 @@ export const usePostRequest = () => {
             (err.response && err.response.data.error) && "Something went wrong"
           );
         }
+        console.log(err)
         setLoading(false);
       });
   };
@@ -306,8 +307,8 @@ export const useSearchRequest = () => {
       data: data,
       responseType: "json",
       headers: {
-        "Content-Type": "Text",
-      },
+        "Content-Type": "multipart/form-data",
+      }, 
     })
       .then((res) => {
         setLoading(false);
@@ -336,10 +337,10 @@ export const useDeleteRequest = () => {
   const [loading, setLoading] = useState(false);
   const { dispatch } = DataContext();
 
-  const deleteRequest = (endpoint, id) => {
+  const deleteRequest = (endpoint) => {
     setLoading(true);
     API({
-      url: `${endpoint}/${id}/`,
+      url: endpoint,
       method: "DELETE",
     })
       .then(() => {

@@ -71,7 +71,7 @@ const Index = () => {
       };
     }, [ref]);
   }
-  useOutsideAlerter(moreRef)
+  // useOutsideAlerter(moreRef)
 
   
   const { markAllRequest, markRequest} = useMarkRequest()
@@ -93,7 +93,7 @@ const Index = () => {
 
   return (
     <Container>
-      {dropDown && !windowSize && <MobileDropDown setDropDown={setDropDown} dropDown={dropDown}/>}
+      {dropDown && !windowSize && <MobileDropDown setDropDown={setDropDown}/>}
       <BodyContainer>
         <BodyBox>
           <NewsFeedBox>
@@ -208,8 +208,8 @@ export const MobileDropDown = ({setDropDown}) => {
   }
   useOutsideAlerter(moreRef)
   return(
-    <DropDown >
-      <MDropDownBox >
+    <DropDown>
+      <MDropDownBox ref={moreRef}>
         <DropDownContent>
           <MoDropDownContent>
             <img src={TextEdit} alt="" style={{ width: "24px", height: "24px", marginTop: "1px", marginRight: "-15px"}}/>

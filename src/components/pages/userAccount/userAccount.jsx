@@ -93,6 +93,8 @@ const Index = () => {
       ? (" ")
       : screenWidth && location === "/user/saved-posts" 
       ? (" ")
+      : screenWidth && location === "/user/search" 
+      ? (" ")
       : screenWidth && location.includes("/user/settings" ) 
       ? (" ")
       : screenWidth && location.includes("/user/msettings" ) 

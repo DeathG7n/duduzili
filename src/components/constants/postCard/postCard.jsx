@@ -135,7 +135,7 @@ const Index = ({
         <>
           
           {postFeed &&
-            postFeed.map((item, idx, arr) => {
+            postFeed.map((item, idx) => {
               return (
                 <Container key={idx} >
                   

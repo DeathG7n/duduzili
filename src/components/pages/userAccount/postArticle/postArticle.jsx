@@ -4,6 +4,8 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Container, Button, Box } from "./articleStyles";
 import { usePostRequest } from "../../../api/api";
+import { useNavigate } from "react-router-dom";
+import CancelSharpIcon from '@mui/icons-material/CancelSharp';
 
 import imageIcon from "../../../assets/image.png";
 
@@ -25,7 +27,8 @@ const modules = {
 const Index = () => {
   const [value, setValue] = useState(null);
   const { postRequest } = usePostRequest();
-
+  const [showImage, setShowImage] = useState(true)
+  const history = useNavigate()
   const formReducer = (state, event) => {
     return {
       ...state,
@@ -34,6 +37,7 @@ const Index = () => {
   };
 
   const [formData, setFormData] = useReducer(formReducer, {});
+  const postValues = new FormData();
 
   const handleChange = (e) => {
     let event = e.target;
@@ -45,17 +49,28 @@ const Index = () => {
     });
   };
 
+  const handleRemove = () =>{
+    setShowImage(false)
+  }
+
+  const handleShow = () =>{
+    setTimeout(()=> setShowImage(true), 5000)
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    const postValues = new FormData();
     postValues.append("text", value);
     postValues.append("title", formData.title);
     postValues.append("photo", formData.photo);
     postValues.append("is_Article", false);
 
     postRequest("posts/", postValues);
+    setTimeout(() => history("/"), 4000)
+    
   };
+
+  console.log(formData)
+  console.log(value)
 
   return (
     <React.Fragment>
@@ -86,6 +101,8 @@ const Index = () => {
           </div>
 
           <div className="photoBox">
+
+           {formData.photo && <div>{showImage && <CancelSharpIcon sx={{fontSize: "20px", color : "#006a46"}} onClick={handleRemove}/>}</div>}
             <input
               type="file"
               className="photo"
@@ -95,12 +112,10 @@ const Index = () => {
             />
             <label for="photo">
               <img
-                src={
-                  formData.photo
-                    ? URL.createObjectURL(formData.photo)
-                    : imageIcon
-                }
+                src={showImage && formData.photo? URL.createObjectURL(formData.photo): imageIcon}
+                style={{}}
                 alt="image icon"
+                onClick={handleShow}
               />
             </label>
           </div>
@@ -111,6 +126,7 @@ const Index = () => {
             name="title"
             placeholder="Headline"
             onChange={handleChange}
+            required
           />
 
           <select name="" id="" className="select">

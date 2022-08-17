@@ -32,9 +32,9 @@ export default function Animations() {
   const classes = useStyles();
   return (
     <Box width="100%" mt={3}>
-      {[...Array(3)].map(() => {
+      {[...Array(3)].map((id) => {
         return (
-          <Box className={classes.container}>
+          <Box className={classes.container} key={id}>
             <Box className={classes.topBox}>
               <Skeleton
                 variant="circular"
