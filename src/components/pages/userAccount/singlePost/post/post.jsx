@@ -325,10 +325,11 @@ export const CommentPostReactions = ({
   // })
   // console.log(data)
 
-  // console.log(data)
+  console.log(item)
 
   const handleCommentModal = () => {
     dispatch({ type: "POST_ID", payload: item?.id });
+    console.log(item?.id)
     handleOpenModal();
   };
 
@@ -341,14 +342,14 @@ export const CommentPostReactions = ({
     setIsLiked(prevState => !prevState);
     setLikes(isLiked ? likes - 1 : likes + 1)
   };
-  console.log(item)
+  
 
   const handleRepost = async (id) => {
     // await dispatch({ type: "GET_REPOST_ID", payload: id });
     // await dispatch({ type: "GET_REPOSTDATA" });
     handleOpenRepostModal();
   };
-
+ 
   return (
     <CommentReactionBox mt="15px">
     <CommentReaction onClick={() => sendLikeRequest(item?.id)}>

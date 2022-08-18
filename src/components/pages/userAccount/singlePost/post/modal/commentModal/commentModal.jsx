@@ -52,8 +52,6 @@ const Index = ({ handleOpenModal }) => {
     state: { postID },
   } = DataContext();
 
-  console.log(postID);
-
   const handleFormData = (state, event) => {
     return {
       ...state,

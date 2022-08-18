@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 import {
@@ -63,34 +63,18 @@ const Index = () => {
     state: { conversations, userData },
   } = DataContext();
   
-  
-
-  
-
-  
-
-  
   const user = conversations && conversations[userIndex];
   const firstUser = user?.sender?.id;
-  const token = JSON.parse(localStorage.getItem("token") || null)
+  
 
-  const [socketUrl, setSocketUrl] = useState(`wss://duduzili-staging-server.com.ng/ws/chat/${userName}?token=${token}`);
+
   // const socketUrl = `wss://duduzili-staging-server.com.ng/ws/chat/${userName}?token=${token}`
-  const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl);
-  console.log(readyState)
+  
 
   // const client = new WebSocket(
   //   `wss://duduzili-staging-server.com.ng/ws/chat/${userName}?token=${token}`
   // );
-  const connectionStatus = {
-    [ReadyState.CONNECTING]: 'Connecting',
-    [ReadyState.OPEN]: 'Open',
-    [ReadyState.CLOSING]: 'Closing',
-    [ReadyState.CLOSED]: 'Closed',
-    [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
-  }[readyState];
-
-  console.log(connectionStatus)
+  
 
   function useOutsideAlerter(ref) {
     useEffect(() => {
@@ -306,7 +290,7 @@ const Index = () => {
                    {data?.messages?.map((item, id)=>{
                       return(
                         <div>
-                          <Messages item={item} userId={userId} key={id} />
+                          <Messages item={item} userId={userId} key={id} userName={userName}/>
                         </div>
                         )
                     })}
@@ -348,21 +332,52 @@ const Index = () => {
 
 export default Index;
 
-export const Messages =({item, userId})=> {
+export const Messages =({item, userId, userName})=> {
   const {
     state: { conversations, userData },
   } = DataContext();
+  const didUnmount = useRef(false)
 
-  const { markAllRequest, markRequest} = useMarkRequest()
+  const token = JSON.parse(localStorage.getItem("token") || null)
+  const [socketUrl, setSocketUrl] = useState(`wss://duduzili-staging-server.com.ng/ws/chat/${userName}?token=${token}`);
+  const { sendMessage, readyState } = useWebSocket(socketUrl,
+    {
+      onOpen: (message)=>{
+        console.log(message)
+      },
+      onMessage: (message)=>{
+        console.log("message")
+      },
+      onError: (err)=>{
+        console.log(err)
+        sendMessage("Hello")
+      },
+      shouldReconnect: (closeEvent) => {
+        console.log(closeEvent)
+        return didUnmount.current === false;
+      },
+      reconnectAttempts: 10,
+      reconnectInterval: 3000, 
+    });
+  const connectionStatus = {
+    [ReadyState.CONNECTING]: 'Connecting',
+    [ReadyState.OPEN]: 'Open',
+    [ReadyState.CLOSING]: 'Closing',
+    [ReadyState.CLOSED]: 'Closed',
+    [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
+  }[readyState];
+
   
-  useEffect(()=>{
-    markAllRequest(`messages/mark_as_read/${userData?.user?.id}/`)
-  }, [item])
+  useEffect(() => {
+    return () => {
+      didUnmount.current = true;
+    };
+  }, [])
 
-  const markSingleMessage = (id) => {
-    markRequest(`message/mark_as_read/${id}/`)
-  }
- console.log(conversations)
+  console.log(connectionStatus)
+
+
+
   return item?.receiver?.id !== userId ? (
     <ChatMessage
       bc="white"
@@ -381,23 +396,23 @@ export const Messages =({item, userId})=> {
         {item?.audio && <audio controls> <source src={item?.audio}/></audio>}
         <p>{item?.text}</p>
       </ChatMessage>
-) : (
-  <ChatMessage
-    bc="#E6FAEB"
-    width="70%"
-    mt="15px"
-    bs="0px 4px 4px rgba(0, 0, 0, 0.25)"
-    style={{alignSelf: "flex-end"}}
-    
-  >
-    <NameBox>
-      <h4>You</h4>
-      <h6>{item?.date}</h6>
-    </NameBox>
-    {item?.video && <video controls> <source src={item?.video}/></video>}
-    {item?.photo && <img src={item?.photo}/>}
-    {item?.audio && <audio controls> <source src={item?.audio}/></audio>}
-    <p>{item?.text}</p>
-  </ChatMessage>
-)
+    ) : (
+      <ChatMessage
+        bc="#E6FAEB"
+        width="70%"
+        mt="15px"
+        bs="0px 4px 4px rgba(0, 0, 0, 0.25)"
+        style={{alignSelf: "flex-end"}}
+        
+      >
+        <NameBox>
+          <h4>You</h4>
+          <h6>{item?.date}</h6>
+        </NameBox>
+        {item?.video && <video controls> <source src={item?.video}/></video>}
+        {item?.photo && <img src={item?.photo}/>}
+        {item?.audio && <audio controls> <source src={item?.audio}/></audio>}
+        <p>{item?.text}</p>
+      </ChatMessage>
+    )
 }
