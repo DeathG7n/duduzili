@@ -72,15 +72,15 @@ const Index = ({ firstName, lastName, handleLogOut, username, id}) => {
           </ListBox>
         </Link>
 
-        <ListBox>
-          <ListImg  width="20px" height="20px" alt="" src={saved} />
-          <Link
-            to={"/user/saved-posts"}
-            style={{ textDecoration: "none", color: "#10221c", marginLeft: "15px" }}
-          >
-            Saved
+        
+          
+          <Link to={"/user/saved-posts"} style={{ textDecoration: "none"}}>
+            <ListBox>
+              <ListImg  width="25px" height="20px" alt="" src={saved} />
+              <p>Saved</p>
+            </ListBox>
           </Link>
-        </ListBox>
+        
 
         <Link to="/help" style={{textDecoration: "none"}}>
         <ListBox>
