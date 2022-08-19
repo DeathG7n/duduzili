@@ -10,12 +10,12 @@ export const ModalContainer = styled.div`
   box-sizing: border-box;
   position: fixed;
   z-index: 100;
-  overflow-y: scroll;
+  overflow: hidden;
 `;
 
 export const ModalBox = styled.div`
   width: 550px;
-  /* height: 450px; */
+  min-height: 450px; 
   overflow-y: scroll;
   padding-bottom: 15px;
   background-color: white;
@@ -37,7 +37,7 @@ export const ModalBox = styled.div`
   }
 
   @media screen and (max-width: 700px) {
-    height: 100%;
+    height: 100vh;
     width: 100%;
     border-radius: 0px;
   }
@@ -215,15 +215,18 @@ export const ModalFooter = styled.div`
   @media screen and (max-width: 700px) {
     border-top: 1px solid #d0e2dc;
     position: absolute;
-    top: 85%;
+    bottom: 10px;
     width: 100%;
     padding-top: 15px;
+    height: 50px;
   }
 `;
 
 export const IconBox = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 25px;
 
   > div {
     position: relative;

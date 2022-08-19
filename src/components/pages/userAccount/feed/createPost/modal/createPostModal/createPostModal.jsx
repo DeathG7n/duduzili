@@ -28,6 +28,12 @@ import text from "../../../../../../assets/mic.png";
 import image from "../../../../../../assets/photo.png";
 import human from "../../../../../../assets/People.png";
 import back from "../../../../../../assets/back.svg";
+
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
+import ArticleIcon from '@mui/icons-material/Article';
+import CropOriginalIcon from '@mui/icons-material/CropOriginal';
+
 import { usePostComment } from "../../../../../../api/api";
 import { DataContext } from "../../../../../../api/context";
 import { Link } from "react-router-dom";
@@ -118,6 +124,7 @@ const Index = ({ handleOpenModal }) => {
             bc="#29bb89"
             display="none"
             smdisplay="block"
+            margin="0 15px 0 0"
             onClick={handleSubmit}
           >
             Post
@@ -184,7 +191,7 @@ const Index = ({ handleOpenModal }) => {
                   src={URL.createObjectURL(formData.video) || ""}
                   type="video/mp4"
                 />
-              </video>
+              </video> 
             )}
           </ImageBox>
         </ModalBody>
@@ -198,7 +205,7 @@ const Index = ({ handleOpenModal }) => {
               onMouseLeave={() => handleMouseLeave(photoRef)}
             >
               <label for="photo">
-                <Icon alt="link icon" src={image} width="25px" height="25px" />
+                <CropOriginalIcon sx={{ fontSize: "30px"}}/>
               </label>
 
               <ToolTipBox ref={photoRef}>
@@ -211,13 +218,7 @@ const Index = ({ handleOpenModal }) => {
               onMouseLeave={() => handleMouseLeave(videoRef)}
             >
               <label for="video">
-                <Icon
-                  alt="link icon"
-                  src={youtube}
-                  width="30px"
-                  height="30px"
-                  ml="20px"
-                />
+                <YouTubeIcon sx={{color: "red", fontSize: "30px"}}/>
               </label>
 
               <ToolTipBox ref={videoRef}>
@@ -230,14 +231,7 @@ const Index = ({ handleOpenModal }) => {
               onMouseLeave={() => handleMouseLeave(gifRef)}
             >
               <label for="audio">
-                <Icon
-                  alt="link icon"
-                  src={text}
-                  width="25px"
-                  height="25px"
-                  ml="20px"
-                  show
-                />
+                <KeyboardVoiceIcon sx={{color: "#ffc107", fontSize: "30px"}}/>
               </label>
               <ToolTipBox ref={gifRef}>
                 <p>Share Audio</p>
@@ -245,13 +239,7 @@ const Index = ({ handleOpenModal }) => {
             </div>
 
             <Link to="/user/article/new">
-              <Icon
-                alt="link icon"
-                ml="20px"
-                height="24px"
-                width="25px"
-                src={hash}
-              />
+              <ArticleIcon sx={{color: "black", fontSize: "30px"}}/>
             </Link>
           </IconBox>
 
