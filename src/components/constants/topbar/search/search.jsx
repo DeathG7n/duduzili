@@ -46,7 +46,7 @@ const Index = ({ handleOpenSearch, show , search}) => {
   searches.sort(()=> 0.5 - Math.random())
 
   const searchArticle = searches.map((s)=>{
-    const show = s?.text !== "" && s?.text?.toLowerCase()?.includes(search)
+    const show = s?.text !== "" && s?.text?.toLowerCase()?.includes(search?.toLowerCase())
     console.log(show)
     return(
       <>
