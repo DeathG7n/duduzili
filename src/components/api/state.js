@@ -75,7 +75,7 @@ export const reducer = (state, action) => {
     return {
       ...state,
       conversations: action.payload,
-    };
+    }; 
   }
 
   // Fetch trending topics

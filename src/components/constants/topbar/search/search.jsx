@@ -1,16 +1,62 @@
 import React, { useEffect, useState,useRef } from "react";
 
-import { Container, Content, Header, Item, Topic } from "./searchStyles";
+import { Container, Content, Header, Item, SearchArticle, Topic , SearchImg, SearchBox} from "./searchStyles";
 import search from "../../../assets/search.svg";
+import logo from "../../../assets/new-logo.png";
 import cancel from "../../../assets/x.svg";
 import { useGetRequest, useSearchRequest, useDeleteRequest } from "../../../api/api";
 import { useNavigate } from "react-router-dom";
+import { DataContext } from "../../../api/context";
 
-const Index = ({ handleOpenSearch }) => {
+const Index = ({ handleOpenSearch, show , search}) => {
+  const {state: { getTopics, postData, trendingPosts, discoverPeople },} = DataContext()
   const [searchString, setSearchString] = useState(null);
   const { getRequest, data } = useGetRequest();
   const { searchRequest } = useSearchRequest();
   const { deleteRequest } = useDeleteRequest();
+
+  console.log(getTopics, postData, trendingPosts, discoverPeople)
+
+  const topics = getTopics?.topics?.map((c)=>{
+    return {
+      img: logo,
+      text: c.title
+    }
+  })
+  const posts = postData?.map((c)=>{
+    return {
+      img: logo,
+      text: c.text
+    }
+  })
+  const trendingPost = trendingPosts?.trending?.article?.map((c)=>{
+    return {
+      img: logo,
+      text: c.text
+    }
+  })
+  const users = discoverPeople?.users?.map((c)=>{
+    return {
+      img: logo,
+      text: `${c?.first_name} ${c?.last_name}`
+    }
+  })
+
+  const searches = topics?.concat(posts, trendingPost, users) 
+  searches.sort(()=> 0.5 - Math.random())
+
+  const searchArticle = searches.map((s)=>{
+    const show = s?.text !== "" && s?.text?.toLowerCase()?.includes(search)
+    console.log(show)
+    return(
+      <>
+      {<SearchBox onClick={() => makeSearchRequest(s?.text)} style={{display: show ? "flex" : "none"}}>
+        <SearchImg src={s?.img}/>
+        <SearchArticle>{s?.text?.substring(0, 30)}</SearchArticle>
+      </SearchBox>}
+      </>
+  )
+  })
 
   useEffect(() => {
     getRequest("search_list/");  
@@ -72,17 +118,18 @@ const Index = ({ handleOpenSearch }) => {
   return (
     <Container>
       <Content ref={moreRef}>
-        <Header>
+       {!show && <Header>
           <h4>Recent</h4>
           <h5 onClick={clearSearches}>Clear all</h5>
-        </Header>
+        </Header>}
 
-        {data?.searches.length === 0 ? (
-          <h3 style={{
+        {!show && data?.searches.length === 0 ? (
+          <><h3 style={{
             color: "#49665C",
             fontSize: "13px",
             padding: "10px 0 20px 15px"
         }}>No Recent search</h3>
+        </>
         ) : (
           data?.searches.map((item) => { 
             return (
@@ -101,6 +148,7 @@ const Index = ({ handleOpenSearch }) => {
             );
           })
         )}
+        {show && searchArticle}
       </Content>
     </Container>
   );

@@ -122,12 +122,12 @@ export const Input = styled.input`
   background: #f1f5f4;
   outline: none;
   font-size: 16px;
-  
   font-weight: 400;
   box-sizing: border-box;
   border-radius: 24px;
   align-items: center;
-  padding-left: 40px;
+  text-indent: 50px;
+  
 
   @media screen and (max-width: 1100px) {
     height: 40px;

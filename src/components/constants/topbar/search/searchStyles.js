@@ -14,13 +14,15 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   width: 42%;
-  min-height: 300px;
+  height: 300px;
   background-color: white;
   border-radius: 8px;
   /* position: relative; */
   top: 17px;
   z-index: 2;
   margin: 0 auto 0 305px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 
   @media screen and (max-width: 700px) {
     width: 95%;
@@ -72,5 +74,28 @@ export const Topic = styled.div`
   > h4 {
     font-size: 13px;
     margin-left: 10px;
-  }
+  } 
 `;
+
+export const SearchArticle = styled.h3`
+  font-size: 14px;
+  color: #49665C;
+`
+
+export const SearchBox = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 10px 5px;
+  padding: 0 10px;
+  cursor: pointer;
+`
+
+export const SearchImg = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+`
+
+

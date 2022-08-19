@@ -345,8 +345,13 @@ export const useDeleteRequest = () => {
     })
       .then(() => {
         setLoading(false);
-        dispatch({ type: "OPEN_SNACKBAR", payload: "Post Deleted" });
-        window.location.reload(false);
+        if (endpoint.includes("delete_search/")) {
+          dispatch({ type: "OPEN_SNACKBAR", payload: "Search Deleted" })
+        } else{
+          dispatch({ type: "OPEN_SNACKBAR", payload: "Post Deleted" });
+        // window.location.reload(false);
+        }
+        
       })
       .catch((err) => {
         setLoading(false);

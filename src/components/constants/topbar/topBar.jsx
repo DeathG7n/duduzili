@@ -48,6 +48,7 @@ import DropDownMenu from "./dropdownmenu/dropDownMenu";
 const Index = () => {
   const location = useLocation().pathname;
   const [openMenu, setOpenMenu] = useState(false);
+  const [show, setShow] = useState("")
   const [openSearch, setOpenSearch] = useState(false);
   const [searchResult, setSearchResult] = useState("");
   const [dropDown, setDropDown] = useState(false)
@@ -107,9 +108,15 @@ const Index = () => {
     }
   };
 
+
   const handleChange = (e) => {
     setSearchResult(e.target.value);
-    
+    if(e.target.value === ""){
+      setShow(false)
+    } else{
+      setShow(true)
+    }
+    console.log(searchResult)
   };
   console.log(userData)
   // Redirect user to search results pages
@@ -145,6 +152,8 @@ const Index = () => {
             searchResult={data}
             handleSubmit={handleSubmit}
             handleOpenSearch={handleOpenSearch}
+            show={show}
+            search={searchResult}
           />
         </SearchComp>
       )}
