@@ -1,7 +1,9 @@
 import React, { useEffect, useState,useRef } from "react";
 
 import { Container, Content, Header, Item, SearchArticle, Topic , SearchImg, SearchBox} from "./searchStyles";
-import search from "../../../assets/search.svg";
+
+import SearchIcon from '@mui/icons-material/Search';
+
 import logo from "../../../assets/new-logo.png";
 import cancel from "../../../assets/x.svg";
 import { useGetRequest, useSearchRequest, useDeleteRequest } from "../../../api/api";
@@ -51,7 +53,6 @@ const Index = ({ handleOpenSearch, show , search}) => {
     return(
       <>
       {<SearchBox onClick={() => makeSearchRequest(s?.text)} style={{display: show ? "flex" : "none"}}>
-        <SearchImg src={s?.img}/>
         <SearchArticle>{s?.text?.substring(0, 30)}</SearchArticle>
       </SearchBox>}
       </>
@@ -123,6 +124,8 @@ const Index = ({ handleOpenSearch, show , search}) => {
           <h5 onClick={clearSearches}>Clear all</h5>
         </Header>}
 
+        {show && searchArticle}
+
         {!show && data?.searches.length === 0 ? (
           <><h3 style={{
             color: "#49665C",
@@ -135,7 +138,7 @@ const Index = ({ handleOpenSearch, show , search}) => {
             return (
               <Item key={item?.id}>
                 <Topic onClick={() => makeSearchRequest(item?.search_string)}>
-                  <img alt="icon" src={search} />
+                  <SearchIcon sx={{fontSize: "35px"}}/>
                   <h4>
                     {item?.search_string}
                   </h4>
@@ -148,7 +151,7 @@ const Index = ({ handleOpenSearch, show , search}) => {
             );
           })
         )}
-        {show && searchArticle}
+        
       </Content>
     </Container>
   );

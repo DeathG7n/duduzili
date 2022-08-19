@@ -72,7 +72,7 @@ export const Topic = styled.div`
   width: 90%;
 
   > h4 {
-    font-size: 13px;
+    font-size: 16px;
     margin-left: 10px;
   } 
 `;
