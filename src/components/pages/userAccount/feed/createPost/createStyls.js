@@ -60,17 +60,13 @@ export const Tag = styled.div`
   display: flex;
   cursor: pointer;
   position: relative;
-
-  > img {
-    /* width: 20px;
-    height: 20px; */
-  }
+  align-items: center;
 
   > p {
     font-size: 14px;
     margin-left: 7px;
   }
-
+  
   .link {
     color: #000;
     text-decoration: none;
@@ -79,6 +75,7 @@ export const Tag = styled.div`
     > p {
       font-size: 15px;
       margin-left: 7px;
+      text-decoration: none;
     }
   }
 `;

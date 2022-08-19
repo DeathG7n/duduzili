@@ -9,6 +9,11 @@ import {
   Tag,
   ToolTipBox,
 } from "./createStyls";
+
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
+import ArticleIcon from '@mui/icons-material/Article';
+import CropOriginalIcon from '@mui/icons-material/CropOriginal';
 import photo from "../../../../assets/photo.png";
 import gif from "../../../../assets/gif.png";
 import mic from "../../../../assets/mic.png";
@@ -60,9 +65,7 @@ const Index = ({ handleOpenModal }) => {
                 onMouseLeave={() => handleMouseLeave(photoRef)}
                 onClick={handleOpenModal}
               >
-                <img alt="icon" src={photo} style={{
-                  width: "25px",
-                }}/>
+                <CropOriginalIcon sx={{ fontSize: "30px"}}/>
                 <p>Photo</p>
 
                 <ToolTipBox ref={photoRef}>
@@ -75,11 +78,7 @@ const Index = ({ handleOpenModal }) => {
                 onMouseLeave={() => handleMouseLeave(videoRef)}
                 onClick={handleOpenModal}
               >
-                <img alt="icon" src={gif} style={{
-                  width: "25px",
-                  height: "16px",
-                  alignSelf: "center"
-                }}/>
+                <YouTubeIcon sx={{color: "red", fontSize: "30px"}}/>
                 <p>Gif</p>
 
                 <ToolTipBox ref={videoRef}>
@@ -92,7 +91,7 @@ const Index = ({ handleOpenModal }) => {
                 onMouseLeave={() => handleMouseLeave(gifRef)}
                 onClick={handleOpenModal}
               >
-                <img alt="icon" src={mic} />
+                <KeyboardVoiceIcon sx={{color: "#ffc107", fontSize: "30px"}}/>
                 <p>Audio</p>
 
                 <ToolTipBox ref={gifRef}>
@@ -100,12 +99,12 @@ const Index = ({ handleOpenModal }) => {
                 </ToolTipBox>
               </Tag>
 
-              <Tag>
-                <Link className="link" to="/user/article/new">
-                  <img alt="icon" src={write} />
-                  <p>Write Article</p>
-                </Link>
-              </Tag>
+              <Link className="link" to="/user/article/new" style={{textDecoration: "none", color: "#000"}}>
+                <Tag>
+                    <ArticleIcon sx={{color: "black", fontSize: "30px"}}/>
+                    <p>Write Article</p> 
+                </Tag>
+              </Link>
             </TagBox>
           </div>
         </Body>
