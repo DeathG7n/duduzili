@@ -101,8 +101,8 @@ const Index = ({ handleOpenModal }) => {
 
               <Link className="link" to="/user/article/new" style={{textDecoration: "none", color: "#000"}}>
                 <Tag>
-                    <ArticleIcon sx={{color: "black", fontSize: "30px"}}/>
-                    <p>Write Article</p> 
+                  <ArticleIcon sx={{color: "black", fontSize: "30px"}}/>
+                  <p>Write Article</p> 
                 </Tag>
               </Link>
             </TagBox>
