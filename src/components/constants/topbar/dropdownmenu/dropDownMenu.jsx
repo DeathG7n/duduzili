@@ -74,12 +74,12 @@ const Index = ({ firstName, lastName, handleLogOut, username, id}) => {
 
         
           
-          <Link to={"/user/saved-posts"} style={{ textDecoration: "none"}}>
-            <ListBox>
-              <ListImg  width="25px" height="20px" alt="" src={saved} />
-              <p>Saved</p>
-            </ListBox>
-          </Link>
+        <Link to={"/user/saved-posts"} style={{ textDecoration: "none"}}>
+          <ListBox>
+            <ListImg  width="25px" height="20px" alt="" src={saved} />
+            <p>Saved</p>
+          </ListBox>
+        </Link>
         
 
         <Link to="/help" style={{textDecoration: "none"}}>
@@ -99,7 +99,6 @@ const Index = ({ firstName, lastName, handleLogOut, username, id}) => {
 
       <TextStatus onClick={()=> toggleOnline()}>
         <p>Online Status </p>
-
         <Switch checkedValue={online} />
       </TextStatus>
 

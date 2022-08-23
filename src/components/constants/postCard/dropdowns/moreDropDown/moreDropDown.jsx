@@ -20,7 +20,6 @@ import { useFollowGetRequest } from "../../../../api/api";
 const Index = ({
   userAction,
   userData,
-  save,
   updateStateEditPost,
   handleDeleteRequest,
   openModal

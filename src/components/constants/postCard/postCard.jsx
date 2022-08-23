@@ -55,6 +55,7 @@ import {
   useGetLikeRequest,
   useDeleteRequest,
   useUserActions,
+  useFollowGetRequest
 } from "../../api/api";
 import { Link } from "react-router-dom";
 import { DataContext } from "../../api/context";
@@ -120,7 +121,6 @@ const Index = ({
       openModal={handleOpenMobileModal} 
       userAction={userAction}
       userData={userData}
-      save={save}
       updateStateEditPost={ updateStateEditPost}
       handleDeleteRequest={handleDeleteRequest}
       />
@@ -433,6 +433,18 @@ const MoreComponent = ({
 }) =>{
   const [dropDown, setDropDown] = useState(false)
   const [windowSize, setWindowSize] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(item.is_following);
+  const { getFollowRequest } = useFollowGetRequest();
+
+  const sendFollowRequest = (id) => {
+    toggleFollowText();
+    getFollowRequest(`follow/${id}/`);
+  };
+
+  const toggleFollowText = () => {
+    setIsFollowing((props) => !props);
+  };
+
   const moreRef = useRef()
   function useOutsideAlerter(ref) {
     useEffect(() => {
@@ -460,8 +472,7 @@ const MoreComponent = ({
     }
   });
   const toggle = () =>{
-    setDropDown(!dropDown)
-    openModal()
+    !windowSize ?  openModal() : setDropDown(!dropDown)
     localStorage.setItem("item", JSON.stringify(item))
     localStorage.setItem("itemId", JSON.stringify(item?.id))
   }
@@ -478,7 +489,7 @@ const MoreComponent = ({
         <DropDown1 className="dropdown" height="230px" style={{
           display: windowSize && dropDown ? "block" : "none"
         }} >
-          <DropDownContent>
+          <DropDownContent onClick={() => sendFollowRequest(item?.user?.id)}>
             <img src={user} alt="icon" />
             <p>{item?.user?.is_following ? "Unfollow" : "Follow"} @{item?.user?.username}</p>
           </DropDownContent>

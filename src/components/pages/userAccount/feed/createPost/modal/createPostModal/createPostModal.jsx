@@ -1,4 +1,4 @@
-import React, { useRef, useReducer, useCallback } from "react";
+import React, { useRef, useReducer, useCallback, useEffect } from "react";
 
 import {
   ModalContainer,
@@ -42,6 +42,7 @@ const Index = ({ handleOpenModal }) => {
   const photoRef = useRef();
   const videoRef = useRef();
   const gifRef = useRef();
+  const moreRef = useRef();
 
   const { postComment, loading } = usePostComment();
 
@@ -98,10 +99,26 @@ const Index = ({ handleOpenModal }) => {
   function handleMouseLeave(ref) {
     ref.current.style.opacity = 0;
   }
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          handleCloseModal();
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+  }
+  useOutsideAlerter(moreRef)
 
   return (
     <ModalContainer>
-      <ModalBox>
+      <ModalBox ref={moreRef}>
         <ModalTitle>
           <TitleBox>
             <ArrowBackIcon alt="icon" src={back} onClick={handleCloseModal} />

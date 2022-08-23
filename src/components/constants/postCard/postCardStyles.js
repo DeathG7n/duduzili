@@ -125,6 +125,7 @@ export const MoreBox = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  cursor: pointer;
 
   > span {
     height: 4px;
@@ -266,6 +267,7 @@ export const DropDownReaction = styled.div`
   align-items: center;
   margin-left: ${(props) => props.ml};
   position: relative;
+  z-index: 12;
 
   > img {
     width: 17px;

@@ -38,11 +38,12 @@ import MMuted from "./settings/mobileView/muted/muted";
 import SnackBar from "../../constants/successSnackbar";
 
 import { DataContext } from "../../api/context";
-import { useGetRequest } from "../../api/api";
+import { useGetRequest, useMarkRequest } from "../../api/api";
 import ProtectedRoutes from "../../constants/protectedRoute";
 
 const Index = () => {
   const { getRequest } = useGetRequest();
+  const { loading} = useMarkRequest();
   const [screenWidth, setScreenWith] = useState(false);
 
   const volumeRequest = async () => {
@@ -56,7 +57,6 @@ const Index = () => {
       getRequest("discover_people/"),
     ]);
     return promise;
-    console.log(promise)
   };
 
   useEffect(() => {
@@ -68,10 +68,10 @@ const Index = () => {
     } else {
       return;
     }
-  }, [])
+  }, [loading])
 
   const {
-    state: { userData, openSnackBar, snackBarMsg, hideTopBar },
+    state: { userData, openSnackBar, snackBarMsg },
   } = DataContext();
 
   // Get the current route location

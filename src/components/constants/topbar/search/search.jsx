@@ -15,9 +15,11 @@ const Index = ({ handleOpenSearch, show , search}) => {
   const [searchString, setSearchString] = useState(null);
   const { getRequest, data } = useGetRequest();
   const { searchRequest } = useSearchRequest();
-  const { deleteRequest } = useDeleteRequest();
+  const { deleteRequest, loading } = useDeleteRequest();
 
-  console.log(getTopics, postData, trendingPosts, discoverPeople)
+  useEffect(() => {
+    getRequest("search_list/");  
+  }, [loading]);
 
   const topics = getTopics?.topics?.map((c)=>{
     return {
@@ -45,9 +47,12 @@ const Index = ({ handleOpenSearch, show , search}) => {
   })
 
   const searches = topics?.concat(posts, trendingPost, users) 
-  searches.sort(()=> 0.5 - Math.random())
+  
+  useEffect(()=>{
+    searches.sort(()=> 0.5 - Math.random())
+  },[searches])
 
-  const searchArticle = searches.map((s)=>{
+  const searchArticle = searches?.map((s)=>{
     const show = s?.text !== "" && s?.text?.toLowerCase()?.includes(search?.toLowerCase())
     console.log(show)
     return(
@@ -57,11 +62,9 @@ const Index = ({ handleOpenSearch, show , search}) => {
       </SearchBox>}
       </>
   )
-  })
+})
 
-  useEffect(() => {
-    getRequest("search_list/");  
-  }, []);
+  
 
   const history = useNavigate();
   const moreRef = useRef()
@@ -112,9 +115,6 @@ const Index = ({ handleOpenSearch, show , search}) => {
   const clearSearches = () => {
     deleteRequest("clear_searches")
   };
-
-  console.log(data)
-  console.log(searchString);
 
   return (
     <Container>

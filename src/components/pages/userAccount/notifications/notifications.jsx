@@ -80,7 +80,7 @@ const Index = () => {
   const history = useNavigate();
 
   const routeBack = () => {
-    history.goBack();
+    history.goBack(); 
   };
 
   const markAllNotifications = () => {
